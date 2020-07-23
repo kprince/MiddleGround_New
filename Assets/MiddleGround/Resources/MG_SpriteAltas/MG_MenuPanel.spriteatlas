@@ -43,62 +43,76 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e5fccc039d1d8074ea92a3c4fe5150f6, type: 3}
-    totalSpriteSurfaceArea: 657922
+    totalSpriteSurfaceArea: 626018
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: e00fef00b9f00b64aa0ce0f981a0e0d1, type: 3}
+  - {fileID: 21300000, guid: a0e2a640b43cc254ca4651f1753092ab, type: 3}
   - {fileID: 21300000, guid: 14cc2960944b71c438c1f237756f6b57, type: 3}
-  - {fileID: 21300000, guid: 1983cf905ca0ef644a8013b492bd0d7a, type: 3}
   - {fileID: 21300000, guid: 665505313c3a8de4b8de0096825155f6, type: 3}
+  - {fileID: 21300000, guid: 8105e3913bda49243abb1a606a91bec7, type: 3}
   - {fileID: 21300000, guid: c759b722d365c11418fca4ff598d906c, type: 3}
-  - {fileID: 21300000, guid: 878775d22d4ed344cb19e693683fcbc0, type: 3}
+  - {fileID: 21300000, guid: 9985c842e3eb429488932e68c9ff57ee, type: 3}
+  - {fileID: 21300000, guid: da33d4b2b36c02349a186e8d041fdc26, type: 3}
+  - {fileID: 21300000, guid: 992679c3da3457d4cb93104266d1b3d3, type: 3}
+  - {fileID: 21300000, guid: 1a8fc4e3ab2e13045bf99088ad9c57cc, type: 3}
+  - {fileID: 21300000, guid: 50f6f8e3653352b4abd3c0839cddf7e9, type: 3}
   - {fileID: 21300000, guid: 944ce3a4a8a44f943b51703217231fcd, type: 3}
+  - {fileID: 21300000, guid: ea8839a47bcbb6041a3c5f975c1a4b7f, type: 3}
   - {fileID: 21300000, guid: a71254d415de0664687da46fb22b3478, type: 3}
   - {fileID: 21300000, guid: c2cca6d4fd169b841b16683a1caa4d9d, type: 3}
+  - {fileID: 21300000, guid: f63f3815767316d4082cd6f2b7165284, type: 3}
   - {fileID: 21300000, guid: 2b01f7951fb364847a96e5c35ba73e59, type: 3}
   - {fileID: 21300000, guid: 31f389a5000f29d4b84d443b245cdb4c, type: 3}
+  - {fileID: 21300000, guid: 793f2c564b699284596f2a4c1fa8d9e9, type: 3}
   - {fileID: 21300000, guid: 1779e7662230ff24c84fadd3897eb3ae, type: 3}
-  - {fileID: 21300000, guid: b8b413c642d297941bc7678ae1bee242, type: 3}
-  - {fileID: 21300000, guid: 37ffb977a3786a441998acc38fc038ea, type: 3}
+  - {fileID: 21300000, guid: 1056703831f08034a9b2a7cd8b63b359, type: 3}
   - {fileID: 21300000, guid: 2815edc89b1831e458fe53649dca49a9, type: 3}
-  - {fileID: 21300000, guid: 02322ee8f4f398d4792f31d2a4023d70, type: 3}
+  - {fileID: 21300000, guid: 9642ace8c9ff1cf478ffdb6dcb7ad499, type: 3}
+  - {fileID: 21300000, guid: a354d8790405223449f446d6ff535fef, type: 3}
   - {fileID: 21300000, guid: ee0a4f79eae58cf4a810315245aca595, type: 3}
+  - {fileID: 21300000, guid: a2f3d9995f799eb419b023849f7cad26, type: 3}
   - {fileID: 21300000, guid: 4fd5381a128ee2a47986fe7438d1820a, type: 3}
-  - {fileID: 21300000, guid: 4f30061be7473184a8361e259a008954, type: 3}
-  - {fileID: 21300000, guid: 8920579bca67bee40b1c7b79ff60cd43, type: 3}
-  - {fileID: 21300000, guid: 0b911aab4fbce9c4ebad4ed3d4edac45, type: 3}
-  - {fileID: 21300000, guid: 96dda44dff4722a4daabdfef209f4305, type: 3}
-  - {fileID: 21300000, guid: bfbabd9d85fa8e94599168ac052635b2, type: 3}
+  - {fileID: 21300000, guid: de8d3c9bd8a650940821bda2cdf3e9d8, type: 3}
+  - {fileID: 21300000, guid: 6b3d57bcc84a3144aae1567862002440, type: 3}
+  - {fileID: 21300000, guid: c6d345cc92c42bd409ec9cdc4d5cbcc2, type: 3}
   - {fileID: 21300000, guid: 789cf7edb729ba54695f1d6ebc884a76, type: 3}
   - {fileID: 21300000, guid: 80799e2e4ca303248af689c6dad6a44b, type: 3}
   - {fileID: 21300000, guid: 2ff0745e75ac10046a464cfe580b73bd, type: 3}
-  - {fileID: 21300000, guid: f7acb3de24c2e0b408912ae850b0c2ac, type: 3}
   m_PackedSpriteNamesToIndex:
+  - MG_Sprite_Menu_SlotsOff
+  - Btn_Redeem_H
   - MG_Sprite_Menu_Guid_Amazon
-  - MG_Sprite_Menu_Wheel
   - MG_Sprite_Menu_WheelticketNotice
+  - MG_Sprite_Menu_Gold
   - MG_Sprite_Menu_ScratchToken_odl
+  - MG_Sprite_Menu_Setting
+  - MG_Sprite_Menu_SlotsOn
   - MG_Sprite_Menu_SlotsToken
+  - MG_Sprite_Menu_ScratchOff
+  - Btn_LukyWheel_N
   - MG_Sprite_Menu_Guid_Paypal
+  - MG_Sprite_Menu_ScratchOn
   - MG_Sprite_Menu_Guid_O
   - MG_Sprite_Menu_Select
+  - Btn_LukyWheel_H
   - MG_Sprite_Menu_Guid_G
   - MG_Sprite_Menu_DiceToken
-  - MG_Sprite_Menu_CashOut
   - MG_Sprite_Menu_TokenBg
-  - MG_Sprite_Menu_Scratch
+  - MG_Sprite_Menu_CashOut
+  - MG_Sprite_Menu_DiceOff
   - MG_Sprite_Menu_CashoutNotice
-  - MG_Sprite_Menu_Gold
-  - MG_Sprite_Menu_CashA
-  - MG_Sprite_Menu_Guid_Cashout
-  - MG_Sprite_Menu_Setting
-  - MG_Sprite_Menu_Dice
   - MG_Sprite_Menu_Signin
-  - MG_Sprite_Menu_Slots
+  - Btn_Redeem_N
+  - MG_Sprite_Menu_CashA
   - MG_Sprite_Menu_CashB
+  - MG_Sprite_Menu_Guid_Cashout
+  - MG_Sprite_Menu_DiceOn
+  - MG_Sprite_Menu_Bottom
+  - MG_Sprite_Menu_Wheel
   - MG_Sprite_Menu_ScratchToken
   - MG_Sprite_Menu_RedPoint
   - MG_Sprite_Menu_Guid_B
-  - MG_Sprite_Menu_Bottom
   m_Tag: MG_MenuPanel
   m_IsVariant: 0

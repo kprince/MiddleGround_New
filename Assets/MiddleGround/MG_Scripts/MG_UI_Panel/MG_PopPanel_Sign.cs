@@ -15,6 +15,7 @@ namespace MiddleGround.UI
         float[] rewardmutiples = new float[7] { 3, 1.5f, 1.5f, 5, 1.5f, 1.5f, 5 };
         Sprite sp_gold;
         Sprite sp_cash;
+        Sprite sp_reawrd7;
         Sprite sp_scratchTicket;
         Sprite sp_lastBg;
         Sprite sp_thisBg;
@@ -27,12 +28,12 @@ namespace MiddleGround.UI
             base.Awake();
             signSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.SignPanel);
             sp_gold = signSA.GetSprite("MG_Sprite_Sign_Gold");
-            bool packB = MG_Manager.Instance.Get_Save_PackB();
-            sp_cash = signSA.GetSprite("MG_Sprite_Sign_Cash" + (packB ? "B" : "A"));
+            sp_cash = signSA.GetSprite("MG_Sprite_Sign_Cash");
             sp_scratchTicket = signSA.GetSprite("MG_Sprite_Sign_ScratchTicket");
             sp_lastBg = signSA.GetSprite("MG_Sprite_Sign_Signed");
             sp_thisBg = signSA.GetSprite("MG_Sprite_Sign_Signing");
-            sp_nextBg = sp_lastBg;
+            sp_reawrd7 = signSA.GetSprite("MG_Sprite_Sign_DayFinalReward");
+            sp_nextBg = sp_thisBg;
             btn_Sign.onClick.AddListener(OnSignButtonClick);
             btn_Nothanks.onClick.AddListener(OnNothanksClick);
         }
@@ -94,7 +95,7 @@ namespace MiddleGround.UI
             {
                 int lastSignDay = MG_Manager.Instance.Get_Save_NextSignDay();
                 string signState = MG_SaveManager.SignState;
-                bool changeScratchTicket = false;
+                bool changeScratchTicket = true;
                 if (lastSignDay >= 7)
                 {
                     changeScratchTicket = true;
@@ -114,25 +115,25 @@ namespace MiddleGround.UI
                     if (changeScratchTicket)
                     {
                         if (i < lastSignDay)
-                            list_alldays[i].SetDay(i + 1, lastSignDay, bg, sp_scratchTicket, getAd ? "5" : "1", canSign);
+                            list_alldays[i].SetDay(i + 1, lastSignDay, bg,  sp_scratchTicket, getAd ? "5" : "1", canSign);
                         else
-                            list_alldays[i].SetDay(i + 1, lastSignDay, bg, sp_scratchTicket, "?", canSign);
+                            list_alldays[i].SetDay(i + 1, lastSignDay, bg,  sp_scratchTicket, "?", canSign);
                     }
                     else
                     {
                         if (isGold[i])
                         {
                             if (i < lastSignDay)
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, sp_gold, getAd ? (rewards[i] * rewardmutiples[i]).ToString() : rewards[i].ToString(), canSign);
+                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_gold, getAd ? (rewards[i] * rewardmutiples[i]).ToString() : rewards[i].ToString(), canSign);
                             else
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, sp_gold, rewards[i].ToString(), canSign);
+                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_gold, rewards[i].ToString(), canSign);
                         }
                         else
                         {
                             if (i < lastSignDay)
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, sp_cash, MG_Manager.Get_CashShowText(getAd ? (int)(rewards[i] * rewardmutiples[i]) : (int)rewards[i]), canSign);
+                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_cash, MG_Manager.Get_CashShowText(getAd ? (int)(rewards[i] * rewardmutiples[i]) : (int)rewards[i]), canSign);
                             else
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, sp_cash, "?", canSign);
+                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_cash, "?", canSign);
                         }
                     }
                 }

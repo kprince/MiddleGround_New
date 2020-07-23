@@ -11,11 +11,12 @@ namespace MiddleGround.UI
     {
         public Button btn_Spin;
         public GameObject go_adicon;
-        public RectTransform rect_spin;
+        Image img_Spinbutton;
         public Image img_L;
         public Image img_M;
         public Image img_R;
-        public Image img_Notice;
+        Sprite sp_spinUp;
+        Sprite sp_spinDown;
         static readonly Dictionary<string, float> dic_name_offsetY = new Dictionary<string, float>()
         {
             {"Cash5",0.848f },
@@ -33,15 +34,18 @@ namespace MiddleGround.UI
         const float offsetXA = 0.5f;
         const float offsetXB = 0;
         float finalOffsetX = 0.25f;
-        SpriteAtlas diceslotsSA;
+        SpriteAtlas slotsSA;
         protected override void Awake()
         {
             base.Awake();
             btn_Spin.onClick.AddListener(OnSpinButtonClick);
             bool packB = MG_Manager.Instance.Get_Save_PackB();
             finalOffsetX = packB ? offsetXB : offsetXA;
-            diceslotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.DiceSlotsPanel);
-            img_Notice.sprite = diceslotsSA.GetSprite(packB ? "MG_Sprite_DiceSlots_NoticeB" : "MG_Sprite_DiceSlots_NoticeA");
+            slotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_GamePanelType.SlotsPanel);
+            sp_spinDown = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinDown");
+            sp_spinUp = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinUp");
+            img_Spinbutton = btn_Spin.GetComponent<Image>();
+            img_Spinbutton.sprite = sp_spinUp;
             text_nothanks.GetComponent<Button>().onClick.AddListener(OnNothanksClick);
         }
         bool isSpining = false;
@@ -55,8 +59,6 @@ namespace MiddleGround.UI
             if (!needAd)
             {
                 needAd = true;
-                go_adicon.SetActive(true);
-                rect_spin.localPosition = new Vector2(26, 4);
             }
             else
             {
@@ -89,6 +91,7 @@ namespace MiddleGround.UI
         bool needAd = false;
         IEnumerator StartSpin()
         {
+            img_Spinbutton.sprite = sp_spinDown;
             Material mt_L = img_L.material;
             Material mt_M = img_M.material;
             Material mt_R = img_R.materialForRendering;
@@ -243,6 +246,9 @@ namespace MiddleGround.UI
                     }
             }
             as_Spin.Stop();
+            img_Spinbutton.sprite = sp_spinUp;
+            if(!go_adicon.activeSelf)
+            go_adicon.SetActive(true);
             yield return new WaitForSeconds(0.5f * Time.timeScale);
             if (rewardNum == 0)
             {
@@ -274,7 +280,6 @@ namespace MiddleGround.UI
             isSpining = false;
             needAd = false;
             go_adicon.SetActive(false);
-            rect_spin.localPosition = new Vector2(0, 4);
             img_L.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
             img_M.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
             img_R.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));

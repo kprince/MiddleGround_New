@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.U2D;
 
 namespace MiddleGround
 {
@@ -116,7 +117,7 @@ namespace MiddleGround
             MG_SaveManager.ScratchTickets += value;
             if (value < 0)
             {
-                MG_UIManager.Instance.UpdateMenuPanel_ScratchTicketText();
+                MG_UIManager.Instance.Update_ScratchTicketText();
                 Add_Save_ScratchTotalTimes(-value);
             }
             if (value > 0)
@@ -760,6 +761,36 @@ namespace MiddleGround
             return MG_SaveManager.DiceLife;
         }
 
+        Dictionary<int, Sprite> dic_rewardType_sp = new Dictionary<int, Sprite>();
+        SpriteAtlas rewardSA = null;
+        public MG_RewardType RewardType = MG_RewardType.Gold;
+        public MG_RewardPanelType RewardPanelType = MG_RewardPanelType.AdClaim;
+        public int RewardNum = 1;
+        public float RewardMutiple = 1;
+        public Sprite Get_RewardSprite(MG_RewardType _RewardType)
+        {
+            if(dic_rewardType_sp.TryGetValue((int)_RewardType,out Sprite result))
+            {
+                return result;
+            }
+            else
+            {
+                if (rewardSA is null)
+                    rewardSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.RewardPanel);
+                result = rewardSA.GetSprite("MG_Sprites_Reward_" + _RewardType);
+                dic_rewardType_sp.Add((int)_RewardType, result);
+                return result;
+            }
+        }
+        public void Show_RewardPanel(MG_RewardPanelType _RewardPanelType, MG_RewardType _RewardType, int rewardNum, float rewardMutiple = 1)
+        {
+            RewardPanelType = _RewardPanelType;
+            RewardType = _RewardType;
+            RewardNum = rewardNum;
+            RewardMutiple = rewardMutiple;
+            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.RewardPanel);
+        }
+
 
         public void SendAdjustPackBEvent()
         {
@@ -985,5 +1016,24 @@ namespace MiddleGround
         DiceGuid,
         ScratchGuid,
         SlotsGuid
+    }
+    public enum MG_RewardType
+    {
+        Cash,
+        Gold,
+        Diamond,
+        Amazon,
+        Cherry,
+        Orange,
+        Watermalen,
+        SSS,
+        ScratchTicket,
+    }
+    public enum MG_RewardPanelType
+    {
+        AdRandom,
+        AdClaim,
+        AdDouble,
+        MutipleClaim,
     }
 }

@@ -3,6 +3,7 @@ using MiddleGround.Save;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.UI;
 
 namespace MiddleGround.UI
@@ -15,15 +16,21 @@ namespace MiddleGround.UI
         public Image img_L;
         public Image img_M;
         public Image img_R;
-        public Image img_BG;
         public Image img_LightUp;
         public Image img_LightDown;
+        public Text text_FruitNum;
         public GameObject go_ad;
         public GameObject go_use;
         public GameObject go_lock;
         public RectTransform rect_spin;
+
+        Image img_button;
         Sprite sp_LightA;
         Sprite sp_LightB;
+        Sprite sp_spinUp;
+        Sprite sp_spinDown;
+
+        SpriteAtlas slotsSA;
 
         public Text text_SpinGoldNum;
         public Text text_X10;
@@ -48,14 +55,23 @@ namespace MiddleGround.UI
         protected override void Awake()
         {
             base.Awake();
+            img_button = btn_Spin.image;
+
             btn_Spin.onClick.AddListener(OnSpinButtonClick);
             btn_addMutiple.onClick.AddListener(OnX10ButtonClick);
+            MG_UIManager.Instance.MenuPanel.dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Cherry, text_FruitNum.transform);
+            MG_UIManager.Instance.MenuPanel.dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Orange, text_FruitNum.transform);
+            MG_UIManager.Instance.MenuPanel.dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Watermalen, text_FruitNum.transform);
             bool packB = MG_Manager.Instance.Get_Save_PackB();
             mutiplesIndex = 0;
             text_X10.text = "x" + mutiples[mutiplesIndex];
             finalOffsetX = packB ? offsetXB : offsetXA;
             sp_LightA = img_LightUp.sprite;
             sp_LightB = img_LightDown.sprite;
+            slotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_GamePanelType.SlotsPanel);
+            sp_spinDown = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinDown");
+            sp_spinUp = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinUp");
+            img_button.sprite = sp_spinUp;
         }
         int clickTime = 0;
         void OnSpinButtonClick()
@@ -123,6 +139,7 @@ namespace MiddleGround.UI
         {
             MG_Manager.Instance.SendAdjustSlotsEvent();
             MG_Manager.Instance.canChangeGame = false;
+            img_button.sprite = sp_spinDown;
             Material mt_L = img_L.material;
             Material mt_M = img_M.material;
             Material mt_R = img_R.materialForRendering;
@@ -288,6 +305,7 @@ namespace MiddleGround.UI
                     }
             }
             as_Spin.Stop();
+            img_button.sprite = sp_spinUp;
             yield return new WaitForSeconds(0.5f * Time.timeScale);
             StopCoroutine("AutoShiningLight");
             switch (rewardType)
@@ -328,12 +346,12 @@ namespace MiddleGround.UI
         {
             canvasGroup.alpha = 1;
             canvasGroup.blocksRaycasts = true;
-            img_BG.sprite = MG_Manager.Instance.Get_GamePanelBg();
             img_L.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_type_offsetY[(int)MG_Slots_RewardType.SSS]));
             img_M.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_type_offsetY[(int)MG_Slots_RewardType.SSS]));
             img_R.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_type_offsetY[(int)MG_Slots_RewardType.SSS]));
             CheckIsLock();
             UpdateSpinButtonState(MG_SaveManager.Gold);
+            UpdateFruitNumText();
             yield return null;
             clickTime = 0;
         }
@@ -387,6 +405,10 @@ namespace MiddleGround.UI
                 rect_spin.localPosition = new Vector2(44, 0);
                 needAd = true;
             }
+        }
+        public void UpdateFruitNumText()
+        {
+            text_FruitNum.text = MG_Manager.Instance.Get_Save_Fruits().ToString();
         }
         IEnumerator AutoShiningLight()
         {

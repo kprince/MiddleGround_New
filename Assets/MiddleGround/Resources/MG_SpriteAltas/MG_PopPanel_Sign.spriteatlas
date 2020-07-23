@@ -43,36 +43,42 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f52dcf32b3f4a004dbfbaea940bdcbce, type: 3}
-    totalSpriteSurfaceArea: 845719
+    totalSpriteSurfaceArea: 522440
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 66d88161f61e620449a0542060d53d8a, type: 3}
-  - {fileID: 21300000, guid: 7341c755ca3b7694d82d5db6ac52d595, type: 3}
+  - {fileID: 21300000, guid: 110433f1891adb04db07fe12fab3dc06, type: 3}
+  - {fileID: 21300000, guid: 93d66032fb2ae6449ad21b60a07d06c7, type: 3}
+  - {fileID: 21300000, guid: c46695b267fe3354685b90de59458bab, type: 3}
+  - {fileID: 21300000, guid: e26836a4e6f87ed4eb84cd7ed67a6041, type: 3}
+  - {fileID: 21300000, guid: 7fd09e35199f5354bb35fb5bef281d40, type: 3}
+  - {fileID: 21300000, guid: 33b75465273ea6e4788340bc838b9f30, type: 3}
   - {fileID: 21300000, guid: 498cc1e5095eebd46b59971164dea326, type: 3}
-  - {fileID: 21300000, guid: 61fc11b7809b70b4e8746023c7aeb63a, type: 3}
-  - {fileID: 21300000, guid: 6c0c37d7666033d4bbe36d9e2367afc5, type: 3}
-  - {fileID: 21300000, guid: be8e76386045c3b41af07c7d29a464c2, type: 3}
-  - {fileID: 21300000, guid: dbe7b349ac381a8438f6d0819dd66146, type: 3}
-  - {fileID: 21300000, guid: aa16960a412c40946b1d7fec72c913c1, type: 3}
-  - {fileID: 21300000, guid: 275b711a01957b546ae02cc9a5daaf15, type: 3}
-  - {fileID: 21300000, guid: afbfe19a0e6f5084eab93e1f4079a885, type: 3}
-  - {fileID: 21300000, guid: 2c1abbdc8c7f08443a47fa7da6a6b8d2, type: 3}
-  - {fileID: 21300000, guid: 673e9e3e2d3a4254882c61b3f6b8b17a, type: 3}
+  - {fileID: 21300000, guid: 7b8bd947aaf425246bb73ce14315d0fc, type: 3}
+  - {fileID: 21300000, guid: 9ce10c58edd698141b1c1c7050f2dfd2, type: 3}
+  - {fileID: 21300000, guid: 66ef695ac80ac0e40bdfab5abce9f7ba, type: 3}
+  - {fileID: 21300000, guid: 5e51837a5dfe6404cacbd5871e63fdc9, type: 3}
+  - {fileID: 21300000, guid: a0e6548a700e7994eb43a1fa2b883aa0, type: 3}
+  - {fileID: 21300000, guid: 4443c6bba3579cd42a6808b285eebbd8, type: 3}
+  - {fileID: 21300000, guid: 3017488cb58ace940b5cd0abd5c64d20, type: 3}
+  - {fileID: 21300000, guid: e9ae29bc7dd5c824582a9b07049fbdfe, type: 3}
   - {fileID: 21300000, guid: 28b8213fe91ffa54892f3053defa41f9, type: 3}
   m_PackedSpriteNamesToIndex:
   - MG_Sprite_Sign_Signing
-  - MG_Sprite_Sign_Gold
-  - MG_Sprite_Sign_Sure
-  - MG_Sprite_Sign_Sign
+  - MG_Sprite_Sign_DayFinalReward
   - MG_Sprite_Sign_ScratchTicket
-  - MG_Sprite_Sign_SignMask
-  - MG_Sprite_Sign_CashB
   - MG_Sprite_Sign_Signed
-  - MG_Sprite_Sign_SignDis
+  - MG_Sprite_Common_BlackalphaBG 1
+  - MG_Sprite_Sign_Title
+  - MG_Sprite_Sign_Sure
+  - MG_Sprite_Sign_Select
+  - MG_Sprite_Sign_Check
+  - MG_Sprite_Sign_Gold
+  - "\u7EC4 44 \u62F7\u8D1D 4"
+  - MG_Sprite_Sign_Cash
+  - MG_Sprite_Common_LongButton 1
   - MG_Sprite_Sign_Base
-  - MG_Sprite_Sign_SignGold
-  - MG_Sprite_Sign_CashA
+  - "\u7EC4 44 \u62F7\u8D1D 5"
   - MG_Sprite_Sign_Nothanks
   m_Tag: MG_PopPanel_Sign
   m_IsVariant: 0

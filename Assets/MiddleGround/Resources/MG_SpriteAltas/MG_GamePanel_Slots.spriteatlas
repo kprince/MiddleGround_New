@@ -43,26 +43,26 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 4cb84c4f8ec81ef4fb55e0ab3c948a64, type: 3}
-    totalSpriteSurfaceArea: 712069
+    totalSpriteSurfaceArea: 670312
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 61aa7013168e20540bb49803f61b35c4, type: 3}
-  - {fileID: 21300000, guid: 63ba71056a08ed44fad45f54125a0d54, type: 3}
-  - {fileID: 21300000, guid: 209e0d355b846274286e8c4dd85165e2, type: 3}
-  - {fileID: 21300000, guid: 268313854075b8a4485672ec965337a9, type: 3}
-  - {fileID: 21300000, guid: d904cae685b6f104cb216ceeece00e1f, type: 3}
-  - {fileID: 21300000, guid: e8606e07d8c4b0d4a8928953d53b6154, type: 3}
+  - {fileID: 21300000, guid: 2f741382546fcd744a60edaddc58846c, type: 3}
+  - {fileID: 21300000, guid: 7aa6b094a42b30141ad6fc375a63e92b, type: 3}
+  - {fileID: 21300000, guid: c0ed608a35d738140b175ed55eeed6fa, type: 3}
+  - {fileID: 21300000, guid: 6437a31b636c547478345b94755167df, type: 3}
+  - {fileID: 21300000, guid: 42c4b5bbcbd4968438a0f03a7ff7f3da, type: 3}
   - {fileID: 21300000, guid: 984855ad1e963a0429dac1e5dbbd0c5d, type: 3}
   - {fileID: 21300000, guid: 5a1e2b2e11c24c74795bb76f0bd5f3dc, type: 3}
+  - {fileID: 21300000, guid: 021663df89186624299a50c857bb58ad, type: 3}
   m_PackedSpriteNamesToIndex:
-  - MG_Sprite_Slots_Gold
-  - MG_Sprite_Slots_ButtonAd
-  - MG_Sprite_Slots_Lock
+  - MG_Sprite_Slots_ButtonSpinUp
   - MG_Sprite_Slots_AddMutiple
-  - MG_Sprite_Slots_ButtonBig
-  - MG_Sprite_Slots_Machine
+  - MG_Sprite_Slots_ButtonSpinDown
+  - MG_Sprite_Common_Lock 1
+  - MG_Sprite_Common_Gold 1
   - MG_Sprite_Slots_LightA
   - MG_Sprite_Slots_LightB
+  - MG_Sprite_Slots_Machine
   m_Tag: MG_GamePanel_Slots
   m_IsVariant: 0

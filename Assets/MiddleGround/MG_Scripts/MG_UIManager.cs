@@ -38,10 +38,11 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.Random,"MG_SpriteAltas/MG_PopPanel_Random" },
             {(int)MG_PopPanelType.SettingPanel,"MG_SpriteAltas/MG_PopPanel_Setting" },
             {(int)MG_GamePanelType.ScratchPanel,"MG_SpriteAltas/MG_GamePanel_Scratch" },
-            {(int)MG_PopPanelType.DiceSlotsPanel,"MG_SpriteAltas/MG_PopPanel_DiceSlots" },
             {(int)MG_PopPanelType.DiceRewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
             {(int)MG_PopPanelType.WheelPanel,"MG_SpriteAltas/MG_PopPanel_Wheel" },
             {(int)MG_PopPanelType.SignPanel ,"MG_SpriteAltas/MG_PopPanel_Sign"},
+            {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
+            {(int)MG_PopPanelType.RewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
         };
         readonly Dictionary<int, SpriteAtlas> LoadedSpriteAtlas_Dic = new Dictionary<int, SpriteAtlas>();
         const string MenuPanelPath = "MG_Prefabs/MG_MenuPanel";
@@ -396,9 +397,19 @@ namespace MiddleGround.UI
         {
             MenuPanel.UpdateGoldText();
         }
-        public void UpdateMenuPanel_ScratchTicketText()
+        MG_GamePanel_Scratch _Scratch = null;
+        public void Update_ScratchTicketText()
         {
             MenuPanel.UpdateScratchTicketText();
+            if(_Scratch is null)
+            {
+                if(LoadedPanel_Dic.TryGetValue((int)MG_GamePanelType.ScratchPanel,out MG_UIBase _UIBase))
+                {
+                    _Scratch = _UIBase as MG_GamePanel_Scratch;
+                }
+            }
+            if (_Scratch is object)
+                _Scratch.UpdateScratchTicketNumText();
         }
         public void UpdateMenuPanel_SpecialTokenText()
         {
@@ -423,6 +434,19 @@ namespace MiddleGround.UI
             if (_PopPanel_Wheel is null)
                 return;
             _PopPanel_Wheel.UpdateWheelTicketShow();
+        }
+        MG_GamePanel_Slots _Slots = null;
+        public void UpdateSlotsPanel_FruitText()
+        {
+            if(_Slots is null)
+            {
+                if(LoadedPanel_Dic.TryGetValue((int)MG_GamePanelType.SlotsPanel,out MG_UIBase _UIBase))
+                {
+                    _Slots = _UIBase as MG_GamePanel_Slots;
+                }
+            }
+            if (_Slots is object)
+                _Slots.UpdateFruitNumText();
         }
         public void UpdateWheelRP()
         {
@@ -506,6 +530,7 @@ namespace MiddleGround.UI
         CashoutPanel = 14,
         Tips = 15,
         Rateus = 16,
+        RewardPanel = 17,
     }
     public enum MG_GamePanelType
     {

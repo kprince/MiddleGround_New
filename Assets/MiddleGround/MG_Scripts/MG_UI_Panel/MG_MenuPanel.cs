@@ -49,10 +49,24 @@ namespace MiddleGround.UI
         public GameObject go_cashoutTips_cash;
         public GameObject go_cashoutTips_special;
 
+        Sprite sp_scratchOn;
+        Sprite sp_scratchOff;
+        Sprite sp_diceOn;
+        Sprite sp_diceOff;
+        Sprite sp_slotsOn;
+        Sprite sp_slotsOff;
+        Image img_scratchbutton;
+        Image img_dicebutton;
+        Image img_slotsbutton;
+
         SpriteAtlas MenuAtlas;
         protected override void Awake()
         {
             base.Awake();
+            img_scratchbutton = btn_Scratch.image;
+            img_dicebutton = btn_Dice.image;
+            img_slotsbutton = btn_Slots.image;
+
             btn_Setting.onClick.AddListener(OnSettingButtonClick);
             btn_Wheel.onClick.AddListener(OnWheelButtonClick);
             btn_Sign.onClick.AddListener(OnSignButtonClick);
@@ -85,6 +99,14 @@ namespace MiddleGround.UI
 
 
             MenuAtlas = MG_UIManager.Instance.GetMenuSpriteAtlas();
+
+            sp_diceOff = MenuAtlas.GetSprite("MG_Sprite_Menu_DiceOff");
+            sp_diceOn = MenuAtlas.GetSprite("MG_Sprite_Menu_DiceOn");
+            sp_scratchOff = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchOff");
+            sp_scratchOn = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchOn");
+            sp_slotsOff = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsOff");
+            sp_slotsOn = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsOn");
+
             sp_ScratchToken = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchToken");
             sp_SlotsToken = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsToken");
             sp_DiceToken = MenuAtlas.GetSprite("MG_Sprite_Menu_DiceToken");
@@ -104,9 +126,6 @@ namespace MiddleGround.UI
             dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Scratch, btn_Scratch.transform);
             dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Slots, btn_Slots.transform);
             dic_flytarget_transform.Add((int)MG_MenuFlyTarget.SSS, btn_SpecialToken.transform);
-            dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Orange, btn_Cash.transform);
-            dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Cherry, btn_Cash.transform);
-            dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Watermalen, btn_Cash.transform);
             dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Diamond, btn_SpecialToken.transform);
             go_scratchRP.SetActive(false);
         }
@@ -137,6 +156,7 @@ namespace MiddleGround.UI
                 go_scratchRP.SetActive(false);
             trans_SelectGame.localPosition = new Vector3(scratchX, selectGameY);
             MG_UIManager.Instance.ShowGamePanel(MG_GamePanelType.ScratchPanel);
+            UpdateBottomButtonState(MG_GamePanelType.ScratchPanel);
             SetSpecialToken(MG_SpecialTokenType.ScratchToken);
         }
         void OnDiceButtonClick()
@@ -145,6 +165,7 @@ namespace MiddleGround.UI
             if (!MG_Manager.Instance.canChangeGame) return;
             trans_SelectGame.localPosition = new Vector3(diceX, selectGameY);
             MG_UIManager.Instance.ShowGamePanel(MG_GamePanelType.DicePanel);
+            UpdateBottomButtonState(MG_GamePanelType.DicePanel);
             SetSpecialToken(MG_SpecialTokenType.DiceToken);
         }
         void OnSlotsButtonClick()
@@ -153,6 +174,7 @@ namespace MiddleGround.UI
             if (!MG_Manager.Instance.canChangeGame) return;
             trans_SelectGame.localPosition = new Vector3(slotsX, selectGameY);
             MG_UIManager.Instance.ShowGamePanel(MG_GamePanelType.SlotsPanel);
+            UpdateBottomButtonState(MG_GamePanelType.SlotsPanel);
             SetSpecialToken(MG_SpecialTokenType.SlotsToken);
         }
         void OnGoldButtonClick()
@@ -270,6 +292,27 @@ namespace MiddleGround.UI
                 SetSpecialToken(MG_SpecialTokenType.SlotsToken);
             }
         }
+        void UpdateBottomButtonState(MG_GamePanelType clickbuttonType)
+        {
+            switch (clickbuttonType)
+            {
+                case MG_GamePanelType.DicePanel:
+                    img_scratchbutton.sprite = sp_scratchOff;
+                    img_dicebutton.sprite = sp_diceOn;
+                    img_slotsbutton.sprite = sp_slotsOff;
+                    break;
+                case MG_GamePanelType.ScratchPanel:
+                    img_scratchbutton.sprite = sp_scratchOn;
+                    img_dicebutton.sprite = sp_diceOff;
+                    img_slotsbutton.sprite = sp_slotsOff;
+                    break;
+                case MG_GamePanelType.SlotsPanel:
+                    img_scratchbutton.sprite = sp_scratchOff;
+                    img_dicebutton.sprite = sp_diceOff;
+                    img_slotsbutton.sprite = sp_slotsOn;
+                    break;
+            }
+        }
         public readonly Dictionary<int, Transform> dic_flytarget_transform = new Dictionary<int, Transform>();
         Vector3 GetFlyTargetPos(MG_MenuFlyTarget _flyTarget)
         {
@@ -281,10 +324,16 @@ namespace MiddleGround.UI
         }
         void FlyToTargetCallback(MG_MenuFlyTarget _flyTarget)
         {
-            if (_flyTarget == MG_MenuFlyTarget.WheelTicket)
+            switch (_flyTarget)
             {
-                MG_UIManager.Instance.UpdateWheelTicketText();
-                return;
+                case MG_MenuFlyTarget.WheelTicket:
+                    MG_UIManager.Instance.UpdateWheelTicketText();
+                    return;
+                case MG_MenuFlyTarget.Orange:
+                case MG_MenuFlyTarget.Cherry:
+                case MG_MenuFlyTarget.Watermalen:
+                    MG_UIManager.Instance.UpdateSlotsPanel_FruitText();
+                    return;
             }
             StopCoroutine("ExpandTarget");
             StartCoroutine("ExpandTarget", _flyTarget);
@@ -316,7 +365,7 @@ namespace MiddleGround.UI
                                 break;
                             case MG_MenuFlyTarget.Scratch:
                             case MG_MenuFlyTarget.ScratchTicket:
-                                UpdateScratchTicketText();
+                                MG_UIManager.Instance.Update_ScratchTicketText();
                                 break;
                             default:
                                 UpdateSpecialTokenText();
@@ -348,6 +397,7 @@ namespace MiddleGround.UI
             {
                 MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
             }
+            UpdateBottomButtonState((MG_GamePanelType)MG_SaveManager.Current_GamePanel);
             yield return null;
         }
 

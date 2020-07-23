@@ -9,7 +9,7 @@ namespace MiddleGround.UI
     {
         Image img_rewardIcon;
         Image img_bg;
-        GameObject go_mask;
+        GameObject go_select;
         GameObject go_sure;
         Text text_rewardNum;
         Text text_day;
@@ -20,11 +20,11 @@ namespace MiddleGround.UI
             text_rewardNum = transform.GetChild(2).GetComponent<Text>();
             text_day = transform.GetChild(0).GetComponent<Text>();
             go_sure = transform.GetChild(3).gameObject;
-            go_mask = transform.GetChild(4).gameObject;
+            go_select = transform.GetChild(4).gameObject;
         }
         public void SetDay(int day,int today, Sprite bgSp,Sprite rewardSp,string rewardNum,bool canSign)
         {
-            text_day.text = "Day" + day;
+            text_day.text = "Day " + day;
             img_bg.sprite = bgSp;
             img_rewardIcon.sprite = rewardSp;
             text_rewardNum.text = rewardNum;
@@ -32,16 +32,16 @@ namespace MiddleGround.UI
             if (day < today)
             {
                 go_sure.SetActive(true);
-                go_mask.SetActive(false);
+                go_select.SetActive(false);
             }
             else if (day == today&&canSign)
             {
-                go_mask.SetActive(false);
+                go_select.SetActive(true);
                 go_sure.SetActive(false);
             }
             else
             {
-                go_mask.SetActive(true);
+                go_select.SetActive(false);
                 go_sure.SetActive(false);
             }
         }

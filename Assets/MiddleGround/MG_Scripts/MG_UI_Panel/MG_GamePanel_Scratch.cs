@@ -9,7 +9,6 @@ namespace MiddleGround.UI
 {
     public class MG_GamePanel_Scratch : MG_UIBase
     {
-        public Image img_BG;
         public Image[] img_Cards = new Image[9];
         private Transform[] trans_Cards = new Transform[9];
         public Image img_TargetCard;
@@ -31,6 +30,7 @@ namespace MiddleGround.UI
         public Text text_LockDes;
         public Text text_btn;
         public Text text_LockTime;
+        public Text text_ScratchTicketNum;
 
         const int CardSpriteCount = 10;
         Dictionary<int, Sprite> dic_index_TargetCard = new Dictionary<int, Sprite>();
@@ -147,7 +147,7 @@ namespace MiddleGround.UI
         {
             CheckWehtherLock();
             CheckWetherNoTickets();
-            img_BG.sprite = MG_Manager.Instance.Get_GamePanelBg();
+            UpdateScratchTicketNumText();
             canvasGroup.alpha = 1;
             canvasGroup.blocksRaycasts = true;
             if (notTouch && !isNoTicket && !isLock)
@@ -497,7 +497,6 @@ namespace MiddleGround.UI
             }
             CheckWehtherLock();
             CheckWetherNoTickets();
-            img_BG.sprite = MG_Manager.Instance.Get_GamePanelBg();
 
             rewardNum = MG_SaveManager.ScratchCardRewardNum;
             rewardType = MG_SaveManager.ScratchCardRewardType;
@@ -566,6 +565,10 @@ namespace MiddleGround.UI
                 }
                 go_BigPrize.SetActive(true);
             }
+        }
+        public void UpdateScratchTicketNumText()
+        {
+            text_ScratchTicketNum.text = MG_Manager.Instance.Get_Save_ScratchTicket().ToString();
         }
         IEnumerator AutoMoveHandle()
         {

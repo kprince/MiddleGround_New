@@ -43,64 +43,78 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 0bbf4ebad9d1a3d46a12cbafceaaad93, type: 3}
-    totalSpriteSurfaceArea: 872033
+    totalSpriteSurfaceArea: 749236
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: b807d2d09c9b1e746b6598dfc9eb6cff, type: 3}
-  - {fileID: 21300000, guid: 2e1bbca10be7b244cb46351b84a9830d, type: 3}
-  - {fileID: 21300000, guid: 9751a25252019d6459223b71c4ded65a, type: 3}
+  - {fileID: 21300000, guid: 329eebb0627ce1f4f980751d0ef08033, type: 3}
+  - {fileID: 21300000, guid: d6ae9bf0da2440c4d874f9d3bff8b831, type: 3}
+  - {fileID: 21300000, guid: 137c7d01e9ec2ea4f8199aa66d00d885, type: 3}
+  - {fileID: 21300000, guid: 3d04652158c7e564f916ab838de539db, type: 3}
   - {fileID: 21300000, guid: cfb41b629f66e244a8a0481bad1e7933, type: 3}
   - {fileID: 21300000, guid: 105f96d3c1db35a4986a495be8f4d481, type: 3}
-  - {fileID: 21300000, guid: bbb455949306d2f4597f88511f6cf502, type: 3}
+  - {fileID: 21300000, guid: 4df510f302b201b44a94643358b327e9, type: 3}
+  - {fileID: 21300000, guid: bae28b6487c83a94e8cb3b2c74b59d9d, type: 3}
+  - {fileID: 21300000, guid: 87fe19740c37bea47b88ede3fb7437b4, type: 3}
   - {fileID: 21300000, guid: 0f9456a40afc53b4591d93ff3d773a20, type: 3}
-  - {fileID: 21300000, guid: c0a455d48fd799741b7837ec0e9d4530, type: 3}
-  - {fileID: 21300000, guid: 6242d815bc09b4642b6744ef30f8fa90, type: 3}
-  - {fileID: 21300000, guid: 58847486c0ea4894e9e68d1fefbbe51b, type: 3}
-  - {fileID: 21300000, guid: 7a9cbec6960677d4d9443383e51d1169, type: 3}
-  - {fileID: 21300000, guid: 016f0c8967fa8d3438bdfd67c2dced3a, type: 3}
-  - {fileID: 21300000, guid: c65783b93b68b2d4697fa4fe487dfc87, type: 3}
-  - {fileID: 21300000, guid: 8649ab1a3b2368244a3c99910f796e50, type: 3}
+  - {fileID: 21300000, guid: 35353315e17383546916a6a5881f10e1, type: 3}
+  - {fileID: 21300000, guid: d5296715136d8c64cba1ef378625c47c, type: 3}
+  - {fileID: 21300000, guid: 9fd51995706f699458baaaac6b94a9ca, type: 3}
+  - {fileID: 21300000, guid: 4fc01b366c961f54a85ee313a9afda53, type: 3}
+  - {fileID: 21300000, guid: 863b33288ad694d43b7fbd5bc5c59c11, type: 3}
+  - {fileID: 21300000, guid: 18f50828148828c45953e4684ac2cf2c, type: 3}
+  - {fileID: 21300000, guid: 0983642924fd45b4abb54a4d858459b2, type: 3}
+  - {fileID: 21300000, guid: c2912a6918982f744849c30d20f5fd6f, type: 3}
+  - {fileID: 21300000, guid: 36fd9eb997ed84a4bbf6764dd0d62f26, type: 3}
+  - {fileID: 21300000, guid: e8c16e5ac2731924fa32877113b143e0, type: 3}
+  - {fileID: 21300000, guid: 5fea1aca689ea2c46ac41ed3706f59f7, type: 3}
+  - {fileID: 21300000, guid: c5b4badadb3d4c946a992cf64851a201, type: 3}
   - {fileID: 21300000, guid: e2d685fab10443c4cb35c654f9943784, type: 3}
-  - {fileID: 21300000, guid: 8934252be2a4b504da1e2c9747d3deb6, type: 3}
-  - {fileID: 21300000, guid: 6cf31d0cbf02af74d9167b3ed1c94f17, type: 3}
-  - {fileID: 21300000, guid: 4b128f8c06790274ebcf12983dccf5bf, type: 3}
+  - {fileID: 21300000, guid: f63f043becefb864ab4dd1f2f77ff6da, type: 3}
+  - {fileID: 21300000, guid: 5ef7fe5b9e33f6d4c8110a3952c4ed1d, type: 3}
+  - {fileID: 21300000, guid: bc1f96cbb2ddfbb47812879e8e7ca4c3, type: 3}
+  - {fileID: 21300000, guid: 733ad92c310d0ea4e81379e1219800e5, type: 3}
   - {fileID: 21300000, guid: 5ccde19c841248b41a004fe3dee7e3e0, type: 3}
-  - {fileID: 21300000, guid: 6595b7cce858d9040a875778d0d8c783, type: 3}
-  - {fileID: 21300000, guid: de5130dcce1432549af34d41aa74a137, type: 3}
   - {fileID: 21300000, guid: 9070343d19ec3b847b21e773f214a78f, type: 3}
   - {fileID: 21300000, guid: 27547b3dc2da94541a07eae30023d6bc, type: 3}
-  - {fileID: 21300000, guid: 5f71615de73f1e84199f6b4927b5d8dd, type: 3}
-  - {fileID: 21300000, guid: 1824119e32e8a61439439d4ac2ed3252, type: 3}
-  - {fileID: 21300000, guid: 037d23de795005b4da85053ea009b657, type: 3}
-  - {fileID: 21300000, guid: 29c869cfffe3c24439350f3a1517d91d, type: 3}
+  - {fileID: 21300000, guid: 5e48843ed73a01e48808b0367cafaf64, type: 3}
+  - {fileID: 21300000, guid: c1dd366ef79d12048bcb97bc7536b9a3, type: 3}
+  - {fileID: 21300000, guid: f88a46ae2e8713447937a34d14f11ce6, type: 3}
+  - {fileID: 21300000, guid: 33d048ce710d40d4ebeb5b0a71d02746, type: 3}
   m_PackedSpriteNamesToIndex:
-  - MG_Sprite_Shop_AmazonCard100
-  - MG_Sprite_Shop_Orange
-  - MG_Sprite_Shop_Top
+  - MG_Sprite_Shop_CashB
+  - Img_LiHe
+  - MG_Sprite_Shop_AmazonCard10000
+  - MG_Sprite_Shop_Amazon
   - MG_Sprite_Shop_OneGold
   - MG_Sprite_Shop_BG
-  - MG_Sprite_Shop_Watermalen
-  - MG_Sprite_Shop_Gold
-  - MG_Sprite_Shop_AmazonCard500
-  - MG_Sprite_Shop_Scratch
-  - MG_Sprite_Shop_Base
-  - MG_Sprite_Shop_AmazonCard200
-  - MG_Sprite_Shop_AmazonCard1000
+  - MG_Sprite_Shop_SliderFill
+  - Img_MeiChao
   - MG_Sprite_Shop_Fruits
-  - MG_Sprite_Shop_Diamond
-  - MG_Sprite_Shop_Gfit
-  - MG_Sprite_Shop_ScratchTicket
+  - MG_Sprite_Shop_Gold
+  - MG_Sprite_Shop_AmazonCard1000
+  - MG_Sprite_Shop_AmazonCard500
+  - img_ZhuanShi
+  - "\u5F62\u72B6 7"
+  - MG_Sprite_Shop_SSS
+  - Img_777
+  - MG_Sprite_Shop_ItemBG
   - MG_Sprite_Shop_SignScratchTicket
-  - MG_Sprite_Shop_Cherry
+  - MG_Sprite_Shop_DesBG
+  - MG_Sprite_Shop_Scratch
+  - MG_Sprite_Shop_SliderBG
+  - MG_Sprite_Shop_ScratchTicket
+  - MG_Sprite_Shop_Gfit
+  - MG_Sprite_Shop_Top
+  - MG_Sprite_Shop_Diamond
+  - Img_ZheZhao
+  - MG_Sprite_Shop_Watermalen
   - MG_Sprite_Shop_WheelTicket
-  - MG_Sprite_Shop_Amazon
-  - MG_Sprite_Shop_AmazonCard10000
   - MG_Sprite_Shop_Back
   - MG_Sprite_Shop_CashA
-  - MG_Sprite_Shop_CashB
   - MG_Sprite_Shop_Paypal50
-  - MG_Sprite_Shop_SSS
   - MG_Sprite_Shop_Paypal100
+  - MG_Sprite_Shop_Orange
+  - MG_Sprite_Shop_Cherry
   m_Tag: MG_PopPanel_Shop
   m_IsVariant: 0
