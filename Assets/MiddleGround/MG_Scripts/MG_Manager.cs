@@ -1019,7 +1019,6 @@ namespace MiddleGround
     }
     public enum MG_RewardType
     {
-        Cash,
         Gold,
         Diamond,
         Amazon,

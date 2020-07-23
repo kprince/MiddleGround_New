@@ -57,10 +57,6 @@ namespace MiddleGround.UI
                     MG_Manager.Instance.Add_Save_Gold(finalRewardNum);
                     MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.OneGold, finalRewardNum);
                     break;
-                case MG_RewardType.Cash:
-                    MG_Manager.Instance.Add_Save_Cash(finalRewardNum);
-                    MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.Cash, finalRewardNum);
-                    break;
                 case MG_RewardType.Diamond:
                     MG_Manager.Instance.Add_Save_Diamond(finalRewardNum);
                     MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.Diamond, finalRewardNum);
@@ -116,10 +112,7 @@ namespace MiddleGround.UI
             RewardMutiple = MG_Manager.Instance.RewardMutiple;
 
             img_rewardIcon.sprite = MG_Manager.Instance.Get_RewardSprite(RewardType);
-            if (RewardType == MG_RewardType.Cash)
-                text_rewardNum.text = MG_Manager.Get_CashShowText(RewardNum);
-            else
-                text_rewardNum.text = RewardNum.ToString();
+            text_rewardNum.text = RewardNum.ToString();
             switch (RewardPanelType)
             {
                 case MG_RewardPanelType.AdClaim:

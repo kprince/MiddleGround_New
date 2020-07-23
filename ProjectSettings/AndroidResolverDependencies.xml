@@ -71,7 +71,7 @@
     <file>Assets/Plugins/Android/androidx.versionedparcelable.versionedparcelable-1.0.0.aar</file>
     <file>Assets/Plugins/Android/androidx.viewpager.viewpager-1.0.0.aar</file>
     <file>Assets/Plugins/Android/com.android.installreferrer.installreferrer-1.0.aar</file>
-    <file>Assets/Plugins/Android/com.facebook.android.audience-network-sdk-5.10.0.aar</file>
+    <file>Assets/Plugins/Android/com.facebook.android.audience-network-sdk-5.10.1.aar</file>
     <file>Assets/Plugins/Android/com.facebook.android.facebook-applinks-6.5.1.aar</file>
     <file>Assets/Plugins/Android/com.facebook.android.facebook-common-6.5.1.aar</file>
     <file>Assets/Plugins/Android/com.facebook.android.facebook-core-6.5.1.aar</file>
@@ -106,7 +106,7 @@
   </files>
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
-    <setting name="bundleId" value="com.SuperLucky.FreeBigWinner.LuckyRoyale.Lottery" />
+    <setting name="bundleId" value="com.FunStudio.LukcyClub.FreeGames.BoardGames" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradleTemplateEnabled" value="False" />

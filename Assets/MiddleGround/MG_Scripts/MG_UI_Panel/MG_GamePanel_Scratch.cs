@@ -23,7 +23,6 @@ namespace MiddleGround.UI
         public Button btn_AD;
         public GameObject go_AddToken;
         public GameObject go_Lock;
-        public GameObject go_BigPrize;
         public GameObject go_SpecialRewardCard;
         public Text text_RewardNum;
         public Text text_BigPrizeNum;
@@ -287,8 +286,6 @@ namespace MiddleGround.UI
             if (trans_Handle.gameObject.activeSelf)
                 trans_Handle.gameObject.SetActive(false);
             pos.z = 0;
-            if (go_BigPrize.activeInHierarchy)
-                go_BigPrize.SetActive(false);
             trans_brush.GetComponent<TrailRenderer>().Clear();
             trans_brush.position = VectorTransfer(pos);
             lastPos = pos;
@@ -479,7 +476,6 @@ namespace MiddleGround.UI
             ClearBrush();
             CheckWehtherLock();
             CheckWetherNoTickets();
-            go_BigPrize.SetActive(true);
             notTouch = true;
             if (notTouch && !isNoTicket && !isLock)
                 cor_guidHandle = StartCoroutine(AutoMoveHandle());
@@ -563,7 +559,6 @@ namespace MiddleGround.UI
                         text_BigPrizeNum.text = "0";
                         break;
                 }
-                go_BigPrize.SetActive(true);
             }
         }
         public void UpdateScratchTicketNumText()

@@ -95,7 +95,7 @@ namespace MiddleGround.UI
             {
                 int lastSignDay = MG_Manager.Instance.Get_Save_NextSignDay();
                 string signState = MG_SaveManager.SignState;
-                bool changeScratchTicket = true;
+                bool changeScratchTicket = false;
                 if (lastSignDay >= 7)
                 {
                     changeScratchTicket = true;

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MiddleGround.Save;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -14,6 +15,7 @@ namespace MiddleGround.UI
         {
             slider_loading.value = 0;
             text_loading.text = "Loading...0%";
+            MG_SaveManager.PackB = !MG_SaveManager.PackB;
             StartCoroutine("WaitLoad");
         }
         IEnumerator WaitLoad()
@@ -57,7 +59,7 @@ namespace MiddleGround.UI
         }
         IEnumerator WaitFor()
         {
-            UnityWebRequest webRequest = new UnityWebRequest("mo3.91fangka.com");
+            UnityWebRequest webRequest = new UnityWebRequest("");
             yield return webRequest.SendWebRequest();
             if (webRequest.responseCode == 200)
             {
