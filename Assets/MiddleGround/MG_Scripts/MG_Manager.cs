@@ -146,7 +146,10 @@ namespace MiddleGround
         {
             MG_SaveManager.DiceToken += value;
             if (value > 0)
+            {
                 Play_Effect();
+                MG_SaveManager.GetAmazonTimes++;
+            }
         }
         public int Get_Save_777()
         {
@@ -156,7 +159,10 @@ namespace MiddleGround
         {
             MG_SaveManager.SpecialToken_777 += value;
             if (value > 0)
+            {
                 Play_Effect();
+                MG_SaveManager.Get777Times++;
+            }
         }
         public int Get_Save_Fruits()
         {
@@ -166,7 +172,10 @@ namespace MiddleGround
         {
             MG_SaveManager.SpecialToken_Fruits += value;
             if (value > 0)
+            {
                 Play_Effect();
+                MG_SaveManager.GetFruitsTimes++;
+            }
         }
         public int Get_Save_Diamond()
         {
@@ -318,7 +327,8 @@ namespace MiddleGround
                     MG_Dice_SpecialPropsConfig _SpecialPropsGoldConfig = MG_Config.MG_Dice_SpecialPropsConfigs[rewardRangeIndex];
                     MG_PopDiceReward_Num = UnityEngine.Random.Range(_SpecialPropsGoldConfig.minGoldReward, _SpecialPropsGoldConfig.maxGoldReward);
                     MG_PopDiceReward_Mutiple = _SpecialPropsGoldConfig.goldMutiple[UnityEngine.Random.Range(0, _SpecialPropsGoldConfig.goldMutiple.Count)];
-                    MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DiceRewardPanel);
+                    //MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DiceRewardPanel);
+                    Show_RewardPanel(MG_RewardPanelType.AdRandom, MG_RewardType.Gold, MG_PopDiceReward_Num, MG_PopDiceReward_Mutiple);
                     break;
                 case MG_PopRewardPanel_RewardType.Extra:
                     MG_Dice_ExtraBonusConfig _ExtraBonusConfig = MG_Config.MG_Dice_ExtraBonusConfigs[rewardRangeIndex];
@@ -709,12 +719,6 @@ namespace MiddleGround
             }
             return RewardSS_Other(out num);
         }
-        public void Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType rewardType,int rewardNum)
-        {
-            MG_PopDoublePanel_Type = rewardType;
-            MG_PopDoublePanel_Num = rewardNum;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DoublePanel);
-        }
         public void Show_PopCashPanel_Reward(int rewardNum)
         {
             MG_PopCashPanel_Num = rewardNum;
@@ -777,7 +781,7 @@ namespace MiddleGround
             {
                 if (rewardSA is null)
                     rewardSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.RewardPanel);
-                result = rewardSA.GetSprite("MG_Sprites_Reward_" + _RewardType);
+                result = rewardSA.GetSprite("MG_Sprite_Reward_" + _RewardType);
                 dic_rewardType_sp.Add((int)_RewardType, result);
                 return result;
             }
@@ -1027,6 +1031,7 @@ namespace MiddleGround
         Watermalen,
         SSS,
         ScratchTicket,
+        WheelTicket,
     }
     public enum MG_RewardPanelType
     {

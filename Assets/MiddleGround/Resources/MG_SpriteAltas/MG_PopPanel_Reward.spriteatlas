@@ -42,31 +42,41 @@ SpriteAtlas:
       enableTightPacking: 0
     variantMultiplier: 1
     packables:
-    - {fileID: 102900000, guid: 4cb383624671e7242a10e049b455ad76, type: 3}
-    totalSpriteSurfaceArea: 1569365
+    - {fileID: 102900000, guid: 3e31762f42532a84fa2a170fb08a16a4, type: 3}
+    totalSpriteSurfaceArea: 329235
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: a0c84ab0aa784ec4fb8158e4cefb1513, type: 3}
-  - {fileID: 21300000, guid: 41bc411162d990548ada5706b465bb0d, type: 3}
-  - {fileID: 21300000, guid: 2f42c002f0168a24bb9c57f96077ceb2, type: 3}
-  - {fileID: 21300000, guid: be01ba128754aff43a58569b5dee7591, type: 3}
-  - {fileID: 21300000, guid: bdc4b6d242dc30b4f905d0baa0aa3a6d, type: 3}
-  - {fileID: 21300000, guid: 0c6bc604a9febaf4e904aec08a148a7c, type: 3}
-  - {fileID: 21300000, guid: ef2c9fc7a51ddb546a0b73833b674dee, type: 3}
-  - {fileID: 21300000, guid: f165f539db002e244a7de246be2cdc1a, type: 3}
-  - {fileID: 21300000, guid: 52ae45fa7e0942c4ab6ef8513ef5e9f2, type: 3}
-  - {fileID: 21300000, guid: 5c52376e4f2d45e4b976a837f1a8fe05, type: 3}
+  - {fileID: 21300000, guid: ebf0b34046c47dc45b0129673b4e0bc0, type: 3}
+  - {fileID: 21300000, guid: 03161880da2d4c74eb6ca7e547ca40a9, type: 3}
+  - {fileID: 21300000, guid: 4fc01b366c961f54a85ee313a9afda53, type: 3}
+  - {fileID: 21300000, guid: 4d740cc7d37606243a3141958a75bb32, type: 3}
+  - {fileID: 21300000, guid: c784e1e771ad3464fa67e8f62c60c3d7, type: 3}
+  - {fileID: 21300000, guid: 926018f814d128e45889321a201f8484, type: 3}
+  - {fileID: 21300000, guid: b4e697e9495539b4f8e1c06a5a243501, type: 3}
+  - {fileID: 21300000, guid: 72d0303bf17c44c479802a785cc9f5df, type: 3}
+  - {fileID: 21300000, guid: 5ef7fe5b9e33f6d4c8110a3952c4ed1d, type: 3}
+  - {fileID: 21300000, guid: 733ad92c310d0ea4e81379e1219800e5, type: 3}
+  - {fileID: 21300000, guid: 3cf8692d0d92b774db3ef2f1385e2676, type: 3}
+  - {fileID: 21300000, guid: 33d048ce710d40d4ebeb5b0a71d02746, type: 3}
+  - {fileID: 21300000, guid: 3271f05fa3eb9e945847499739766d9a, type: 3}
+  - {fileID: 21300000, guid: 1b4a085fe4757c34dbbc75fe3d4663e2, type: 3}
+  - {fileID: 21300000, guid: 90e51f7fc1363e147bbf422ee3f2d283, type: 3}
   m_PackedSpriteNamesToIndex:
-  - MG_Sprite_CashPop_Light
-  - MG_Sprite_CashPop_CashIconB
-  - MG_Sprite_DicePop_Giveup
-  - MG_Sprite_DicePop_Title
-  - MG_Sprite_ExtraPop_Close
-  - MG_Sprite_CashPop_CashIconA
-  - MG_Sprite_DicePop_GfitIcon
-  - MG_Sprite_DicePop_GiftBG
-  - MG_Sprite_DicePop_Close
-  - MG_Sprite_DicePop_CardBG
+  - MG_Sprite_Reward_Base
+  - MG_Sprite_Common_AdIcon 1
+  - MG_Sprite_Reward_ScratchTicket
+  - MG_Sprite_Reward_PinkBG
+  - MG_Sprite_Reward_Gold
+  - MG_Sprite_Common_LongButton 1
+  - MG_Sprite_Reward_Title
+  - MG_Sprite_Reward_GiftBG
+  - MG_Sprite_Reward_Diamond
+  - MG_Sprite_Reward_Watermalen
+  - MG_Sprite_Reward_WheelTicket
+  - MG_Sprite_Reward_Cherry
+  - MG_Sprite_Reward_Orange
+  - MG_Sprite_Reward_Amazon
+  - MG_Sprite_Reward_SSS
   m_Tag: MG_PopPanel_Reward
   m_IsVariant: 0

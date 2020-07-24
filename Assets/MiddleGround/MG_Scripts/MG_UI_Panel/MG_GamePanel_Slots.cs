@@ -315,20 +315,25 @@ namespace MiddleGround.UI
                     break;
                 case MG_Slots_RewardType.Diamond:
                     rewardNum -= rewardNum % 10;
-                    MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Diamond, rewardNum);
+                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Diamond, rewardNum);
+                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.Diamond, rewardNum);
                     break;
                 case MG_Slots_RewardType.Gold:
                     rewardNum -= rewardNum % 10;
-                    MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Gold, rewardNum);
+                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Gold, rewardNum);
+                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.Gold, rewardNum);
                     break;
                 case MG_Slots_RewardType.Cherry:
-                    MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Cherry, rewardNum);
+                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Cherry, rewardNum);
+                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Cherry, rewardNum);
                     break;
                 case MG_Slots_RewardType.Orange:
-                    MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Orange, rewardNum);
+                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Orange, rewardNum);
+                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Orange, rewardNum);
                     break;
                 case MG_Slots_RewardType.Watermalen:
-                    MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Watermalen, rewardNum);
+                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Watermalen, rewardNum);
+                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Watermalen, rewardNum);
                     break;
                 case MG_Slots_RewardType.Gift:
                     MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);

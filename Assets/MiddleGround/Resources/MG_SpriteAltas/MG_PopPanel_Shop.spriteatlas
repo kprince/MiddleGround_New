@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 0bbf4ebad9d1a3d46a12cbafceaaad93, type: 3}
-    totalSpriteSurfaceArea: 749236
+    totalSpriteSurfaceArea: 690606
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -60,7 +60,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 35353315e17383546916a6a5881f10e1, type: 3}
   - {fileID: 21300000, guid: d5296715136d8c64cba1ef378625c47c, type: 3}
   - {fileID: 21300000, guid: 9fd51995706f699458baaaac6b94a9ca, type: 3}
-  - {fileID: 21300000, guid: 4fc01b366c961f54a85ee313a9afda53, type: 3}
   - {fileID: 21300000, guid: 863b33288ad694d43b7fbd5bc5c59c11, type: 3}
   - {fileID: 21300000, guid: 18f50828148828c45953e4684ac2cf2c, type: 3}
   - {fileID: 21300000, guid: 0983642924fd45b4abb54a4d858459b2, type: 3}
@@ -71,16 +70,13 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c5b4badadb3d4c946a992cf64851a201, type: 3}
   - {fileID: 21300000, guid: e2d685fab10443c4cb35c654f9943784, type: 3}
   - {fileID: 21300000, guid: f63f043becefb864ab4dd1f2f77ff6da, type: 3}
-  - {fileID: 21300000, guid: 5ef7fe5b9e33f6d4c8110a3952c4ed1d, type: 3}
   - {fileID: 21300000, guid: bc1f96cbb2ddfbb47812879e8e7ca4c3, type: 3}
-  - {fileID: 21300000, guid: 733ad92c310d0ea4e81379e1219800e5, type: 3}
   - {fileID: 21300000, guid: 5ccde19c841248b41a004fe3dee7e3e0, type: 3}
   - {fileID: 21300000, guid: 9070343d19ec3b847b21e773f214a78f, type: 3}
   - {fileID: 21300000, guid: 27547b3dc2da94541a07eae30023d6bc, type: 3}
   - {fileID: 21300000, guid: 5e48843ed73a01e48808b0367cafaf64, type: 3}
   - {fileID: 21300000, guid: c1dd366ef79d12048bcb97bc7536b9a3, type: 3}
   - {fileID: 21300000, guid: f88a46ae2e8713447937a34d14f11ce6, type: 3}
-  - {fileID: 21300000, guid: 33d048ce710d40d4ebeb5b0a71d02746, type: 3}
   m_PackedSpriteNamesToIndex:
   - MG_Sprite_Shop_CashB
   - Img_LiHe
@@ -95,7 +91,6 @@ SpriteAtlas:
   - MG_Sprite_Shop_AmazonCard1000
   - MG_Sprite_Shop_AmazonCard500
   - img_ZhuanShi
-  - "\u5F62\u72B6 7"
   - MG_Sprite_Shop_SSS
   - Img_777
   - MG_Sprite_Shop_ItemBG
@@ -106,15 +101,12 @@ SpriteAtlas:
   - MG_Sprite_Shop_ScratchTicket
   - MG_Sprite_Shop_Gfit
   - MG_Sprite_Shop_Top
-  - MG_Sprite_Shop_Diamond
   - Img_ZheZhao
-  - MG_Sprite_Shop_Watermalen
   - MG_Sprite_Shop_WheelTicket
   - MG_Sprite_Shop_Back
   - MG_Sprite_Shop_CashA
   - MG_Sprite_Shop_Paypal50
   - MG_Sprite_Shop_Paypal100
   - MG_Sprite_Shop_Orange
-  - MG_Sprite_Shop_Cherry
   m_Tag: MG_PopPanel_Shop
   m_IsVariant: 0

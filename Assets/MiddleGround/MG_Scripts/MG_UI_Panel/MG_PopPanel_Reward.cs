@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MiddleGround.Save;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,17 +34,36 @@ namespace MiddleGround.UI
         int clickAdTime = 0;
         void OnButtonClick()
         {
-            switch (RewardPanelType)
+            if (needAd)
             {
-                case MG_RewardPanelType.AdClaim:
-                case MG_RewardPanelType.AdDouble:
-                case MG_RewardPanelType.AdRandom:
-                    clickAdTime++;
-                    MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
-                    break;
-                case MG_RewardPanelType.MutipleClaim:
-                    GetReward();
-                    break;
+                switch (RewardPanelType)
+                {
+                    case MG_RewardPanelType.AdDouble:
+                        RewardMutiple = 2;
+                        clickAdTime++;
+                        MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                        break;
+                    case MG_RewardPanelType.AdClaim:
+                    case MG_RewardPanelType.AdRandom:
+                        clickAdTime++;
+                        MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                        break;
+                }
+            }
+            else
+            {
+                switch (RewardPanelType)
+                {
+                    case MG_RewardPanelType.AdDouble:
+                        RewardMutiple = 2;
+                        GetReward();
+                        break;
+                    case MG_RewardPanelType.AdClaim:
+                    case MG_RewardPanelType.AdRandom:
+                    case MG_RewardPanelType.MutipleClaim:
+                        GetReward();
+                        break;
+                }
             }
         }
         void GetReward()
@@ -81,6 +101,10 @@ namespace MiddleGround.UI
                     MG_Manager.Instance.Add_Save_ScratchTicket(finalRewardNum);
                     MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.ScratchTicket, finalRewardNum);
                     break;
+                case MG_RewardType.WheelTicket:
+                    MG_Manager.Instance.Add_Save_WheelTickets(finalRewardNum);
+                    MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.WheelTicket, finalRewardNum);
+                    break;
                 case MG_RewardType.SSS:
                     MG_Manager.Instance.Add_Save_777(finalRewardNum);
                     MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.SSS, finalRewardNum);
@@ -112,27 +136,33 @@ namespace MiddleGround.UI
             RewardMutiple = MG_Manager.Instance.RewardMutiple;
 
             img_rewardIcon.sprite = MG_Manager.Instance.Get_RewardSprite(RewardType);
-            text_rewardNum.text = RewardNum.ToString();
+            text_claim.gameObject.SetActive(true);
             switch (RewardPanelType)
             {
                 case MG_RewardPanelType.AdClaim:
-                    text_buttonText.text = "Claim";
+                    needAd = true;
+                    text_buttonText.text = "    Claim";
                     text_claim.text = "Give up";
                     text_claimUnderline.text = "─────";
                     go_claim.SetActive(true);
                     go_adIcon.SetActive(true);
                     go_mutiple.SetActive(false);
+                    SetSpecialTokenInfo();
                     break;
                 case MG_RewardPanelType.AdDouble:
-                    text_buttonText.text = "Claim x2";
+                    needAd = true;
+                    text_buttonText.text = "    Claim x2";
                     text_claim.text = "Claim Reward!";
                     text_claimUnderline.text = "─────────";
                     go_claim.SetActive(true);
                     go_adIcon.SetActive(true);
                     go_mutiple.SetActive(false);
+                    if(RewardType==MG_RewardType.Diamond&& !MG_SaveManager.GuidSlots)
+                        MG_Manager.Instance.next_GuidType = MG_Guid_Type.SlotsGuid;
                     break;
                 case MG_RewardPanelType.AdRandom:
-                    text_buttonText.text = "Random x1~5";
+                    needAd = true;
+                    text_buttonText.text = "    Random x1~5";
                     text_claim.text = "Claim Reward!";
                     text_claimUnderline.text = "─────────";
                     go_claim.SetActive(true);
@@ -140,6 +170,7 @@ namespace MiddleGround.UI
                     go_mutiple.SetActive(false);
                     break;
                 case MG_RewardPanelType.MutipleClaim:
+                    needAd = false;
                     text_buttonText.text = "Claim";
                     text_rewardMutiple.text = "x" + RewardMutiple;
                     go_claim.SetActive(false);
@@ -147,6 +178,7 @@ namespace MiddleGround.UI
                     go_mutiple.SetActive(true);
                     break;
             }
+            text_rewardNum.text = RewardNum.ToString();
 
             Transform transAll = transform.GetChild(1);
             transAll.localScale = new Vector3(0.8f, 0.8f, 1);
@@ -162,6 +194,60 @@ namespace MiddleGround.UI
             transAll.localScale = Vector3.one;
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
+        }
+        bool needAd = false;
+        void SetSpecialTokenInfo()
+        {
+            switch (RewardType)
+            {
+                case MG_RewardType.SSS:
+                    SetSpecialShowTextButton(MG_SaveManager.Get777Times);
+                    if (!MG_SaveManager.GuidScratch)
+                        MG_Manager.Instance.next_GuidType = MG_Guid_Type.ScratchGuid;
+                    break;
+                case MG_RewardType.Amazon:
+                    SetSpecialShowTextButton(MG_SaveManager.GetAmazonTimes);
+                    break;
+                case MG_RewardType.Cherry:
+                case MG_RewardType.Orange:
+                case MG_RewardType.Watermalen:
+                    SetSpecialShowTextButton(MG_SaveManager.GetFruitsTimes);
+                    break;
+            }
+        }
+        void SetSpecialShowTextButton(int times)
+        {
+            if (times == 0)
+            {
+                go_adIcon.SetActive(false);
+                RewardNum = 3;
+                text_buttonText.text = "Claim";
+                needAd = false;
+                text_claim.gameObject.SetActive(false);
+            }
+            else if (times == 1)
+            {
+                go_adIcon.SetActive(false);
+                RewardNum = 2;
+                text_buttonText.text = "Claim";
+                needAd = false;
+                text_claim.gameObject.SetActive(false);
+            }
+            else if (times == 2)
+            {
+                go_adIcon.SetActive(true);
+                RewardNum = 2;
+                text_buttonText.text = "    Claim";
+                needAd = true;
+                text_claim.gameObject.SetActive(true);
+            }
+            else
+            {
+                go_adIcon.SetActive(true);
+                text_buttonText.text = "    Random x1~2";
+                needAd = true;
+                text_claim.gameObject.SetActive(true);
+            }
         }
 
         public override IEnumerator OnExit()

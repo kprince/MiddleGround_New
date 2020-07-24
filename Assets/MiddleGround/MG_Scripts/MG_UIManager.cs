@@ -21,13 +21,14 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.SettingPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Setting" },
             {(int)MG_PopPanelType.BuyDiceEnergy,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceBuyEnergy" },
             {(int)MG_PopPanelType.DiceSlotsPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceSlots" },
-            {(int) MG_PopPanelType.DoublePanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Double"},
+            //{(int) MG_PopPanelType.DoublePanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Double"},
             {(int)MG_PopPanelType.CashoutPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Cashout" },
             {(int)MG_PopPanelType.Tips,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Tips" },
             {(int)MG_PopPanelType.ShopPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Shop" },
             {(int)MG_PopPanelType.Rateus,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Rateus" },
             {(int)MG_PopPanelType.WheelPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Wheel" },
             {(int)MG_PopPanelType.SignPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Sign" },
+            {(int)MG_PopPanelType.RewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Reward" },
         };
         readonly Dictionary<int, MG_UIBase> LoadedPanel_Dic = new Dictionary<int, MG_UIBase>();
 
@@ -38,7 +39,7 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.Random,"MG_SpriteAltas/MG_PopPanel_Random" },
             {(int)MG_PopPanelType.SettingPanel,"MG_SpriteAltas/MG_PopPanel_Setting" },
             {(int)MG_GamePanelType.ScratchPanel,"MG_SpriteAltas/MG_GamePanel_Scratch" },
-            {(int)MG_PopPanelType.DiceRewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
+            {(int)MG_PopPanelType.DiceRewardPanel,"MG_SpriteAltas/MG_PopPanel_DiceReward" },
             {(int)MG_PopPanelType.WheelPanel,"MG_SpriteAltas/MG_PopPanel_Wheel" },
             {(int)MG_PopPanelType.SignPanel ,"MG_SpriteAltas/MG_PopPanel_Sign"},
             {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
@@ -94,7 +95,7 @@ namespace MiddleGround.UI
                 {
                     if(loadedPopPanel is null)
                     {
-                        Debug.LogWarning((open ? "Show" : "Close") + " MG_PopPanel-" + panelIndex + " Error : loadedDic has key , but content is null.");
+                        Debug.LogWarning((open ? "Show" : "Close") + " MG_PopPanel-" + nextTask.t_panelType + " Error : loadedDic has key , but content is null.");
                         continue;
                     }
                     else
@@ -103,7 +104,7 @@ namespace MiddleGround.UI
                         {
                             if (open)
                             {
-                                Debug.LogWarning("Show MG_PopPanel-" + panelIndex + " Error : panel has showed.");
+                                Debug.LogWarning("Show MG_PopPanel-" + nextTask.t_panelType + " Error : panel has showed.");
                                 continue;
                             }
                             else
@@ -148,7 +149,7 @@ namespace MiddleGround.UI
                             }
                             else
                             {
-                                Debug.LogWarning("Close MG_PopPanel-" + panelIndex + " Error : panel has not show.");
+                                Debug.LogWarning("Close MG_PopPanel-" + nextTask.t_panelType + " Error : panel has not show.");
                                 continue;
                             }
                         }
@@ -162,7 +163,7 @@ namespace MiddleGround.UI
                         {
                             if (string.IsNullOrEmpty(panelPath))
                             {
-                                Debug.LogWarning("Show MG_PopPanel-" + panelIndex + " Error : panelPathDic content is null or empty.");
+                                Debug.LogWarning("Show MG_PopPanel-" + nextTask.t_panelType + " Error : panelPathDic content is null or empty.");
                                 continue;
                             }
                             else
@@ -186,13 +187,13 @@ namespace MiddleGround.UI
                         }
                         else
                         {
-                            Debug.LogWarning("Show MG_PopPanel-" + panelIndex + " Error : panelPathDic content is null or empty.");
+                            Debug.LogWarning("Show MG_PopPanel-" + nextTask.t_panelType + " Error : panelPathDic content is null or empty.");
                             continue;
                         }
                     }
                     else
                     {
-                        Debug.LogWarning("Close MG_PopPanel-" + panelIndex + " Error : panel has not loaded or show.");
+                        Debug.LogWarning("Close MG_PopPanel-" + nextTask.t_panelType + " Error : panel has not loaded or show.");
                         continue;
                     }
                 }
@@ -526,7 +527,7 @@ namespace MiddleGround.UI
         ShopPanel = 10,
         Random = 11,
         BuyDiceEnergy = 12,
-        DoublePanel = 13,
+        //DoublePanel = 13,
         CashoutPanel = 14,
         Tips = 15,
         Rateus = 16,

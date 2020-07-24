@@ -43,6 +43,7 @@ public class Ads : MonoBehaviour
 		rewardCallback = rewardedCallback;
 #if UNITY_EDITOR
 		rewardedCallback();
+		Debug.LogError("Show RV : 【" + des + "】");
 		return true;
 #endif
 #if UNITY_IOS
@@ -69,6 +70,7 @@ public class Ads : MonoBehaviour
 		popCallback = callback;
 #if UNITY_EDITOR
 		callback();
+		Debug.LogError("Show IV : 【" + des + "】");
 		return;
 #endif
 		adDes = des;

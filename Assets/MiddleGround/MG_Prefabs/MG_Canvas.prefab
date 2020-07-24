@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &795929286724491342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -262,7 +262,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 2160}
+  m_SizeDelta: {x: 1080, y: 2450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &795929286724491344
 CanvasRenderer:
@@ -383,7 +383,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 10.369995, y: 0}
   m_SizeDelta: {x: 20.73639, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1288,6 +1288,10 @@ MonoBehaviour:
   next_GuidType: 0
   MG_SignRewardNum: 0
   MG_SignRewardMutiple: 1
+  RewardType: 0
+  RewardPanelType: 1
+  RewardNum: 1
+  RewardMutiple: 1
 --- !u!1 &795929288301742045
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,7 +1482,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1080, y: 2160}
+  m_SizeDelta: {x: 1080, y: 2450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5648241196344889479
 CanvasRenderer:
