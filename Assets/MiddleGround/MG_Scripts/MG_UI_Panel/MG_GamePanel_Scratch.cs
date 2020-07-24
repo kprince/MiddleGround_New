@@ -339,15 +339,13 @@ namespace MiddleGround.UI
                     switch (rewardType)
                     {
                         case -1:
-                            //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Gold, rewardNum);
-                            MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.Gold, rewardNum);
+                            MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.Gold, rewardNum);
                             break;
                         case -2:
-                            MG_Manager.Instance.Show_PopCashPanel_Reward(rewardNum);
+                            MG_Manager.Instance.Show_CashRewardPanel(MG_RewardPanelType.AdClaim, rewardNum);
                             break;
                         case -3:
-                            //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.SSS, rewardNum);
-                            MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.SSS, rewardNum);
+                            MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.SSS, rewardNum);
                             break;
                     }
                     maskMat.SetFloat(Mat_Alpha_Key, 1);

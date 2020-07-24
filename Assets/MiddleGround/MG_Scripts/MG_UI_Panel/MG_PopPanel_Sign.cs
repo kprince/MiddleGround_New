@@ -61,13 +61,13 @@ namespace MiddleGround.UI
             if (day < 7)
             {
                 if (isGold[day])
-                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.MutipleClaim, MG_RewardType.Gold, rewards[day], rewardmutiples[day]);
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.Gold, rewards[day], rewardmutiples[day]);
                 else
-                    MG_Manager.Instance.Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType.SignCash, rewards[day], rewardmutiples[day]);
+                    //MG_Manager.Instance.Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType.SignCash, rewards[day], rewardmutiples[day]);
+                    MG_Manager.Instance.Show_CashRewardPanel(MG_RewardPanelType.FreeMutipleClaim, rewards[day], rewardmutiples[day]);
             }
             else
-                //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.SignScratchTicket, 5);
-                MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.MutipleClaim, MG_RewardType.ScratchTicket, 1, 5);
+                MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.ScratchTicket, 1, 5);
             MG_UIManager.Instance.UpdateSignRP();
             day %= 7;
             MG_SaveManager.SignState = MG_SaveManager.SignState.Remove(day, 1).Insert(day, "1");
@@ -83,12 +83,12 @@ namespace MiddleGround.UI
                 if (day < 7)
                 {
                     if (isGold[day])
-                        MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.MutipleClaim, MG_RewardType.Gold, rewards[day]);
+                        MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.Gold, rewards[day]);
                     else
                         MG_Manager.Instance.Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType.SignCash, rewards[day], 1);
                 }
                 else
-                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.MutipleClaim, MG_RewardType.ScratchTicket, 1, 1);
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.ScratchTicket, 1, 1);
                 MG_UIManager.Instance.UpdateSignRP();
                 day %= 7;
                 MG_SaveManager.SignState = MG_SaveManager.SignState.Remove(day, 1).Insert(day, "0");

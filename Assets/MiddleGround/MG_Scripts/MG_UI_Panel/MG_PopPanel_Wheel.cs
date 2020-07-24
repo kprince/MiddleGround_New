@@ -171,26 +171,22 @@ namespace MiddleGround.UI
             switch (_Wheel_RewardTypes[rewardIndex])
             {
                 case MG_Wheel_RewardType.Gold:
-                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Gold, _Wheel_RewardNums[rewardIndex]);
-                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.Gold, _Wheel_RewardNums[rewardIndex]);
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.Gold, _Wheel_RewardNums[rewardIndex]);
                     break;
                 case MG_Wheel_RewardType.Cash:
-                    MG_Manager.Instance.Show_PopCashPanel_Reward(_Wheel_RewardNums[rewardIndex]);
+                    MG_Manager.Instance.Show_CashRewardPanel(MG_RewardPanelType.AdClaim, _Wheel_RewardNums[rewardIndex]);
                     break;
                 case MG_Wheel_RewardType.Scratch:
-                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Scratch, _Wheel_RewardNums[rewardIndex]);
-                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.ScratchTicket, _Wheel_RewardNums[rewardIndex]);
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.ScratchTicket, _Wheel_RewardNums[rewardIndex]);
                     break;
                 case MG_Wheel_RewardType.Gift:
                     MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
                     break;
                 case MG_Wheel_RewardType.Amazon:
-                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Amazon, _Wheel_RewardNums[rewardIndex]);
-                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Amazon, _Wheel_RewardNums[rewardIndex]);
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Amazon, _Wheel_RewardNums[rewardIndex]);
                     break;
                 case MG_Wheel_RewardType.WheelTicket:
-                    //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.WheelTicket, _Wheel_RewardNums[rewardIndex]);
-                    MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.WheelTicket, _Wheel_RewardNums[rewardIndex]);
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.WheelTicket, _Wheel_RewardNums[rewardIndex]);
                     break;
             }
             CheckLock();

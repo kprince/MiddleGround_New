@@ -60,7 +60,7 @@ namespace MiddleGround.UI
                         break;
                     case MG_RewardPanelType.AdClaim:
                     case MG_RewardPanelType.AdRandom:
-                    case MG_RewardPanelType.MutipleClaim:
+                    case MG_RewardPanelType.FreeMutipleClaim:
                         GetReward();
                         break;
                 }
@@ -110,7 +110,7 @@ namespace MiddleGround.UI
                     MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.SSS, finalRewardNum);
                     break;
             }
-            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.RewardPanel);
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
         }
         void OnClaim()
         {
@@ -125,8 +125,10 @@ namespace MiddleGround.UI
                     RewardMutiple = 1;
                     GetReward();
                     break;
+                default:
+                    MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
+                    break;
             }
-            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.RewardPanel);
         }
         public override IEnumerator OnEnter()
         {
@@ -169,7 +171,7 @@ namespace MiddleGround.UI
                     go_adIcon.SetActive(true);
                     go_mutiple.SetActive(false);
                     break;
-                case MG_RewardPanelType.MutipleClaim:
+                case MG_RewardPanelType.FreeMutipleClaim:
                     needAd = false;
                     text_buttonText.text = "Claim";
                     text_rewardMutiple.text = "x" + RewardMutiple;
@@ -252,6 +254,8 @@ namespace MiddleGround.UI
 
         public override IEnumerator OnExit()
         {
+            clickAdTime = 0;
+
             Transform transAll = transform.GetChild(1);
             canvasGroup.interactable = false;
             while (transAll.localScale.x > 0.8f)

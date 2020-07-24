@@ -51,6 +51,7 @@ namespace MiddleGround.UI
         bool isSpining = false;
         int rewardNum = 0;
         bool rewardIsGold = false;
+        float rewardMutiple = 1;
         int clickTime = 0;
         void OnSpinButtonClick()
         {
@@ -68,7 +69,7 @@ namespace MiddleGround.UI
             }
             isSpining = true;
 
-            rewardNum = MG_Manager.Instance.Random_DiceSlotsReward(out rewardIsGold);
+            rewardNum = MG_Manager.Instance.Random_DiceSlotsReward(out rewardIsGold, out rewardMutiple);
             StartCoroutine(StartSpin());
 
         }
@@ -76,7 +77,7 @@ namespace MiddleGround.UI
         {
             clickTime = 0;
             isSpining = true;
-            rewardNum = MG_Manager.Instance.Random_DiceSlotsReward(out rewardIsGold);
+            rewardNum = MG_Manager.Instance.Random_DiceSlotsReward(out rewardIsGold, out rewardMutiple);
             StartCoroutine(StartSpin());
         }
         void OnNothanksClick()
@@ -258,7 +259,10 @@ namespace MiddleGround.UI
             else
             {
                 MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.DiceSlotsPanel);
-                MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DiceRewardPanel);
+                if (rewardIsGold)
+                    MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdRandom, MG_RewardType.Gold, rewardNum, rewardMutiple);
+                else
+                    MG_Manager.Instance.Show_CashRewardPanel(MG_RewardPanelType.AdRandom, rewardNum, rewardMutiple);
             }
         }
         public Text text_nothanks;

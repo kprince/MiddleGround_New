@@ -43,7 +43,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 0bbf4ebad9d1a3d46a12cbafceaaad93, type: 3}
-    totalSpriteSurfaceArea: 690606
+    totalSpriteSurfaceArea: 732656
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -60,6 +60,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 35353315e17383546916a6a5881f10e1, type: 3}
   - {fileID: 21300000, guid: d5296715136d8c64cba1ef378625c47c, type: 3}
   - {fileID: 21300000, guid: 9fd51995706f699458baaaac6b94a9ca, type: 3}
+  - {fileID: 21300000, guid: c9523e968b18e594a96fc31e060d116c, type: 3}
+  - {fileID: 21300000, guid: 47cde917b4bb657438e6c2cbf36e9335, type: 3}
   - {fileID: 21300000, guid: 863b33288ad694d43b7fbd5bc5c59c11, type: 3}
   - {fileID: 21300000, guid: 18f50828148828c45953e4684ac2cf2c, type: 3}
   - {fileID: 21300000, guid: 0983642924fd45b4abb54a4d858459b2, type: 3}
@@ -90,7 +92,9 @@ SpriteAtlas:
   - MG_Sprite_Shop_Gold
   - MG_Sprite_Shop_AmazonCard1000
   - MG_Sprite_Shop_AmazonCard500
-  - img_ZhuanShi
+  - MG_Sprite_Shop_Diamond
+  - MG_Sprite_Shop_Watermalen
+  - MG_Sprite_Shop_Cherry
   - MG_Sprite_Shop_SSS
   - Img_777
   - MG_Sprite_Shop_ItemBG

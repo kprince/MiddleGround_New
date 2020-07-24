@@ -44,9 +44,9 @@ namespace MiddleGround
             Instance = this;
             Application.targetFrameRate = 60;
             gameObject.AddComponent<MG_UIManager>().Init(
-                transform.GetChild(0),
                 transform.GetChild(1),
-                transform.GetChild(2)
+                transform.GetChild(2),
+                transform.GetChild(3)
                 );
             MG_Config = Resources.Load<ScriptableObject>("MG_ConfigAssets/MG_Dice_Config") as MG_Config;
             gameObject.AddComponent<MG_AudioManager>().Init(transform.Find("MG_AudioRoot").gameObject);
@@ -318,17 +318,15 @@ namespace MiddleGround
                 case MG_PopRewardPanel_RewardType.Cash:
                     MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.Cash;
                     MG_Dice_SpecialPropsConfig _SpecialPropsCashConfig = MG_Config.MG_Dice_SpecialPropsConfigs[rewardRangeIndex];
-                    MG_PopDiceReward_Num = UnityEngine.Random.Range(_SpecialPropsCashConfig.minCashReward, _SpecialPropsCashConfig.maxCashReward);
-                    MG_PopDiceReward_Mutiple = _SpecialPropsCashConfig.cashMutiple[UnityEngine.Random.Range(0, _SpecialPropsCashConfig.cashMutiple.Count)];
-                    MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DiceRewardPanel);
+                    int rewardCashNum = UnityEngine.Random.Range(_SpecialPropsCashConfig.minCashReward, _SpecialPropsCashConfig.maxCashReward);
+                    float rewardCashMutiple = _SpecialPropsCashConfig.cashMutiple[UnityEngine.Random.Range(0, _SpecialPropsCashConfig.cashMutiple.Count)];
+                    Show_CashRewardPanel(MG_RewardPanelType.AdRandom, rewardCashNum, rewardCashMutiple);
                     break;
                 case MG_PopRewardPanel_RewardType.Gold:
-                    MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.Gold;
                     MG_Dice_SpecialPropsConfig _SpecialPropsGoldConfig = MG_Config.MG_Dice_SpecialPropsConfigs[rewardRangeIndex];
-                    MG_PopDiceReward_Num = UnityEngine.Random.Range(_SpecialPropsGoldConfig.minGoldReward, _SpecialPropsGoldConfig.maxGoldReward);
-                    MG_PopDiceReward_Mutiple = _SpecialPropsGoldConfig.goldMutiple[UnityEngine.Random.Range(0, _SpecialPropsGoldConfig.goldMutiple.Count)];
-                    //MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DiceRewardPanel);
-                    Show_RewardPanel(MG_RewardPanelType.AdRandom, MG_RewardType.Gold, MG_PopDiceReward_Num, MG_PopDiceReward_Mutiple);
+                    int rewardGoldNum = UnityEngine.Random.Range(_SpecialPropsGoldConfig.minGoldReward, _SpecialPropsGoldConfig.maxGoldReward);
+                    float rewardGoldMutiple = _SpecialPropsGoldConfig.goldMutiple[UnityEngine.Random.Range(0, _SpecialPropsGoldConfig.goldMutiple.Count)];
+                    Show_MostRewardPanel(MG_RewardPanelType.AdRandom, MG_RewardType.Gold, rewardGoldNum, rewardGoldMutiple);
                     break;
                 case MG_PopRewardPanel_RewardType.Extra:
                     MG_Dice_ExtraBonusConfig _ExtraBonusConfig = MG_Config.MG_Dice_ExtraBonusConfigs[rewardRangeIndex];
@@ -348,7 +346,7 @@ namespace MiddleGround
                     break;
             }
         }
-        public int Random_DiceSlotsReward(out bool isGold)
+        public int Random_DiceSlotsReward(out bool isGold,out float mutiple)
         {
             int rewardRangeIndex = Get_Config_DiceRewardRangeIndex();
             MG_Dice_JackpotConfig _Dice_JackpotConfig = MG_Config.MG_Dice_JackpotConfigs[rewardRangeIndex];
@@ -356,23 +354,22 @@ namespace MiddleGround
             if (result < _Dice_JackpotConfig.noRewardRate)
             {
                 isGold = true;
+                mutiple = 0;
                 return 0;
             }
             else if (result < _Dice_JackpotConfig.noRewardRate + _Dice_JackpotConfig.goldRewardRate)
             {
                 isGold = true;
-                MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.Gold;
-                MG_PopDiceReward_Num = _Dice_JackpotConfig.goldPool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.goldPool.Count)];
-                MG_PopDiceReward_Mutiple = _Dice_JackpotConfig.mutiplePool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.mutiplePool.Count)];
-                return MG_PopDiceReward_Num;
+                int rewardGoldNum = _Dice_JackpotConfig.goldPool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.goldPool.Count)];
+                mutiple = _Dice_JackpotConfig.mutiplePool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.mutiplePool.Count)];
+                return rewardGoldNum;
             }
             else
             {
                 isGold = false;
-                MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.Cash;
-                MG_PopDiceReward_Num = _Dice_JackpotConfig.cashPool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.cashPool.Count)];
-                MG_PopDiceReward_Mutiple = _Dice_JackpotConfig.mutiplePool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.mutiplePool.Count)];
-                return MG_PopDiceReward_Num;
+                int rewardCashNum = _Dice_JackpotConfig.cashPool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.cashPool.Count)];
+                mutiple = _Dice_JackpotConfig.mutiplePool[UnityEngine.Random.Range(0, _Dice_JackpotConfig.mutiplePool.Count)];
+                return rewardCashNum;
             }
         }
         public int Random_ScratchCardReward(out int rewardType)
@@ -719,11 +716,6 @@ namespace MiddleGround
             }
             return RewardSS_Other(out num);
         }
-        public void Show_PopCashPanel_Reward(int rewardNum)
-        {
-            MG_PopCashPanel_Num = rewardNum;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.CashoutPanel);
-        }
         public int MG_SignRewardNum = 0;
         public float MG_SignRewardMutiple = 1;
         public void Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType _rewardType,int _rewardNum,float _rewardMutiple)
@@ -765,7 +757,7 @@ namespace MiddleGround
             return MG_SaveManager.DiceLife;
         }
 
-        Dictionary<int, Sprite> dic_rewardType_sp = new Dictionary<int, Sprite>();
+        readonly Dictionary<int, Sprite> dic_rewardType_sp = new Dictionary<int, Sprite>();
         SpriteAtlas rewardSA = null;
         public MG_RewardType RewardType = MG_RewardType.Gold;
         public MG_RewardPanelType RewardPanelType = MG_RewardPanelType.AdClaim;
@@ -780,19 +772,27 @@ namespace MiddleGround
             else
             {
                 if (rewardSA is null)
-                    rewardSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.RewardPanel);
+                    rewardSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.MostRewardPanel);
                 result = rewardSA.GetSprite("MG_Sprite_Reward_" + _RewardType);
                 dic_rewardType_sp.Add((int)_RewardType, result);
                 return result;
             }
         }
-        public void Show_RewardPanel(MG_RewardPanelType _RewardPanelType, MG_RewardType _RewardType, int rewardNum, float rewardMutiple = 1)
+        public void Show_MostRewardPanel(MG_RewardPanelType _RewardPanelType, MG_RewardType _RewardType, int rewardNum, float rewardMutiple = 1)
         {
             RewardPanelType = _RewardPanelType;
             RewardType = _RewardType;
             RewardNum = rewardNum;
             RewardMutiple = rewardMutiple;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.RewardPanel);
+            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.MostRewardPanel);
+        }
+        public void Show_CashRewardPanel(MG_RewardPanelType _RewardPanelType, int rewardNum, float rewardMutiple = 1)
+        {
+            RewardPanelType = _RewardPanelType;
+            RewardType = MG_RewardType.Cash;
+            RewardNum = rewardNum;
+            RewardMutiple = rewardMutiple;
+            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.CashRewardPanel);
         }
 
 
@@ -1024,6 +1024,7 @@ namespace MiddleGround
     public enum MG_RewardType
     {
         Gold,
+        Cash,
         Diamond,
         Amazon,
         Cherry,
@@ -1038,6 +1039,7 @@ namespace MiddleGround
         AdRandom,
         AdClaim,
         AdDouble,
-        MutipleClaim,
+        FreeMutipleClaim,
+        FreeClaim,
     }
 }

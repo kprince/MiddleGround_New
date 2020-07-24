@@ -22,13 +22,14 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.BuyDiceEnergy,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceBuyEnergy" },
             {(int)MG_PopPanelType.DiceSlotsPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceSlots" },
             //{(int) MG_PopPanelType.DoublePanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Double"},
-            {(int)MG_PopPanelType.CashoutPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Cashout" },
+            //{(int)MG_PopPanelType.CashoutPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Cashout" },
             {(int)MG_PopPanelType.Tips,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Tips" },
             {(int)MG_PopPanelType.ShopPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Shop" },
             {(int)MG_PopPanelType.Rateus,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Rateus" },
             {(int)MG_PopPanelType.WheelPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Wheel" },
             {(int)MG_PopPanelType.SignPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Sign" },
-            {(int)MG_PopPanelType.RewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Reward" },
+            {(int)MG_PopPanelType.MostRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Reward" },
+            {(int)MG_PopPanelType.CashRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_CashReward" },
         };
         readonly Dictionary<int, MG_UIBase> LoadedPanel_Dic = new Dictionary<int, MG_UIBase>();
 
@@ -43,7 +44,8 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.WheelPanel,"MG_SpriteAltas/MG_PopPanel_Wheel" },
             {(int)MG_PopPanelType.SignPanel ,"MG_SpriteAltas/MG_PopPanel_Sign"},
             {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
-            {(int)MG_PopPanelType.RewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
+            {(int)MG_PopPanelType.MostRewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
+            {(int)MG_PopPanelType.CashRewardPanel,"MG_SpriteAltas/MG_PopPanel_CashReward" },
         };
         readonly Dictionary<int, SpriteAtlas> LoadedSpriteAtlas_Dic = new Dictionary<int, SpriteAtlas>();
         const string MenuPanelPath = "MG_Prefabs/MG_MenuPanel";
@@ -528,10 +530,11 @@ namespace MiddleGround.UI
         Random = 11,
         BuyDiceEnergy = 12,
         //DoublePanel = 13,
-        CashoutPanel = 14,
+        //CashoutPanel = 14,
         Tips = 15,
         Rateus = 16,
-        RewardPanel = 17,
+        MostRewardPanel = 17,
+        CashRewardPanel = 18,
     }
     public enum MG_GamePanelType
     {

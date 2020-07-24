@@ -313,11 +313,11 @@ namespace MiddleGround.UI
                         break;
                     case MG_Dice_BrickType.Scratch:
                         //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Scratch, 1);
-                        MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.ScratchTicket, 1);
+                        MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.ScratchTicket, 1);
                         break;
                     case MG_Dice_BrickType.Amazon:
                         //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Amazon,1);
-                        MG_Manager.Instance.Show_RewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Amazon, 1);
+                        MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Amazon, 1);
                         break;
                     default:
                         if (MG_SaveManager.TodayExtraRewardTimes > 0 && MG_Manager.Instance.hasGift)
