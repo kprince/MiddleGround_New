@@ -55,7 +55,7 @@ namespace MiddleGround.UI
             while (spreadTime<=0.2f)
             {
                 yield return null;
-                spreadTime += Time.deltaTime;
+                spreadTime += Time.unscaledDeltaTime;
                 float progress = spreadTime * 5;
                 for(int i = 0; i < flyNum; i++)
                 {
@@ -72,7 +72,7 @@ namespace MiddleGround.UI
             while (spreadTime<=0.3f)
             {
                 yield return null;
-                spreadTime += Time.deltaTime;
+                spreadTime += Time.unscaledDeltaTime;
                 for (int i = 0; i < flyNum; i++)
                 {
                     list_allFly[i].position = list_allEndPos[i] + new Vector3(0, -(spreadTime - 0.25f) * (spreadTime - 0.25f) * 8000 + 20, 0);
@@ -85,7 +85,7 @@ namespace MiddleGround.UI
             while (startIndex<=flyNum-1)
             {
                 yield return null;
-                flyTime += Time.deltaTime*5;
+                flyTime += Time.unscaledDeltaTime*5;
                 float progress;
                 for(int i = startIndex; i < flyNum; i++)
                 {

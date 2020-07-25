@@ -16,13 +16,10 @@ namespace MiddleGround.UI
             {(int)MG_GamePanelType.DicePanel,"MG_Prefabs/MG_GamePanels/MG_GamePanel_Dice" },
             {(int)MG_GamePanelType.ScratchPanel,"MG_Prefabs/MG_GamePanels/MG_GamePanel_Scratch" },
             {(int)MG_GamePanelType.SlotsPanel,"MG_Prefabs/MG_GamePanels/MG_GamePanel_Slots" },
-            {(int)MG_PopPanelType.DiceRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceReward" },
             {(int)MG_PopPanelType.ExtraRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_ExtraReward" },
             {(int)MG_PopPanelType.SettingPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Setting" },
             {(int)MG_PopPanelType.BuyDiceEnergy,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceBuyEnergy" },
             {(int)MG_PopPanelType.DiceSlotsPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceSlots" },
-            //{(int) MG_PopPanelType.DoublePanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Double"},
-            //{(int)MG_PopPanelType.CashoutPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Cashout" },
             {(int)MG_PopPanelType.Tips,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Tips" },
             {(int)MG_PopPanelType.ShopPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Shop" },
             {(int)MG_PopPanelType.Rateus,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Rateus" },
@@ -30,6 +27,7 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.SignPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Sign" },
             {(int)MG_PopPanelType.MostRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Reward" },
             {(int)MG_PopPanelType.CashRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_CashReward" },
+            {(int)MG_PopPanelType.GiftPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Gift" },
         };
         readonly Dictionary<int, MG_UIBase> LoadedPanel_Dic = new Dictionary<int, MG_UIBase>();
 
@@ -40,7 +38,6 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.Random,"MG_SpriteAltas/MG_PopPanel_Random" },
             {(int)MG_PopPanelType.SettingPanel,"MG_SpriteAltas/MG_PopPanel_Setting" },
             {(int)MG_GamePanelType.ScratchPanel,"MG_SpriteAltas/MG_GamePanel_Scratch" },
-            {(int)MG_PopPanelType.DiceRewardPanel,"MG_SpriteAltas/MG_PopPanel_DiceReward" },
             {(int)MG_PopPanelType.WheelPanel,"MG_SpriteAltas/MG_PopPanel_Wheel" },
             {(int)MG_PopPanelType.SignPanel ,"MG_SpriteAltas/MG_PopPanel_Sign"},
             {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
@@ -117,12 +114,14 @@ namespace MiddleGround.UI
                                     {
                                         MG_UIBase outPanel = Panel_Stack.Pop();
                                         yield return outPanel.OnExit();
-                                        if (MG_Manager.Instance.next_GuidType != MG_Guid_Type.Null)
-                                            MG_Manager.Instance.isGuid = true;
                                         if (Panel_Stack.Count > 0)
                                             Panel_Stack.Peek().OnResume();
                                         else
+                                        {
                                             MenuPanel.OnResume();
+                                            if (Current_GamePanel is object)
+                                                Current_GamePanel.OnResume();
+                                        }
                                         if (outPanel == loadedPopPanel)
                                             break;
                                     }
@@ -144,7 +143,11 @@ namespace MiddleGround.UI
                                 if (Panel_Stack.Count > 0)
                                     Panel_Stack.Peek().OnPause();
                                 else
+                                {
                                     MenuPanel.OnPause();
+                                    if (Current_GamePanel is object)
+                                        Current_GamePanel.OnPause();
+                                }
                                 loadedPopPanel.transform.SetAsLastSibling();
                                 Panel_Stack.Push(loadedPopPanel);
                                 yield return loadedPopPanel.OnEnter();
@@ -179,7 +182,11 @@ namespace MiddleGround.UI
                                 if (Panel_Stack.Count > 0)
                                     Panel_Stack.Peek().OnPause();
                                 else
+                                {
                                     MenuPanel.OnPause();
+                                    if (Current_GamePanel is object)
+                                        Current_GamePanel.OnPause();
+                                }
                                 MG_UIBase nextShowPanel = Instantiate(Resources.Load<GameObject>(panelPath), PopPanelRoot).GetComponent<MG_UIBase>();
                                 nextShowPanel.transform.SetAsLastSibling();
                                 Panel_Stack.Push(nextShowPanel);
@@ -457,7 +464,7 @@ namespace MiddleGround.UI
         }
         public void UpdateSignRP()
         {
-            MenuPanel.UpdateSingRP();
+            MenuPanel.UpdateSignRP();
         }
         public SpriteAtlas GetSpriteAtlas(int index)
         {
@@ -523,18 +530,16 @@ namespace MiddleGround.UI
         SignPanel = 4,
         SettingPanel = 5,
         ExchangePanel = 6,
-        DiceRewardPanel = 7,
-        DiceSlotsPanel = 8,
-        ExtraRewardPanel = 9,
-        ShopPanel = 10,
-        Random = 11,
-        BuyDiceEnergy = 12,
-        //DoublePanel = 13,
-        //CashoutPanel = 14,
-        Tips = 15,
-        Rateus = 16,
-        MostRewardPanel = 17,
-        CashRewardPanel = 18,
+        DiceSlotsPanel = 7,
+        ExtraRewardPanel = 8,
+        ShopPanel = 9,
+        Random = 10,
+        BuyDiceEnergy = 11,
+        Tips = 12,
+        Rateus = 13,
+        MostRewardPanel = 14,
+        CashRewardPanel = 15,
+        GiftPanel = 16,
     }
     public enum MG_GamePanelType
     {

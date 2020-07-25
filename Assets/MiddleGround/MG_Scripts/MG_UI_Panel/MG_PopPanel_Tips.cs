@@ -38,7 +38,7 @@ namespace MiddleGround.UI
             while (time>0)
             {
                 yield return null;
-                time -= Time.deltaTime;
+                time -= Time.unscaledDeltaTime;
                 text_content.text = MG_Manager.Instance.str_Tips;
             }
             MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.Tips);

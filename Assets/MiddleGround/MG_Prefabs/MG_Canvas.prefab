@@ -255,7 +255,7 @@ RectTransform:
   - {fileID: 795929287894118693}
   - {fileID: 795929286993393178}
   - {fileID: 795929287008145344}
-  - {fileID: 5928791119472913047}
+  - {fileID: 2502929337580505932}
   m_Father: {fileID: 795929288257737099}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -314,6 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text_loading: {fileID: 795929287008145347}
+  text_notice: {fileID: 8199484942843769026}
   slider_loading: {fileID: 795929286993393181}
 --- !u!1 &795929286853285255
 GameObject:
@@ -419,7 +420,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0.52
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.52
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -713,7 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1270,11 +1271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canChangeGame: 1
-  MG_PopDiceReward_Type: 0
-  MG_PopDiceReward_Num: 0
-  MG_PopDiceReward_Mutiple: 0
-  MG_PopDoublePanel_Type: 0
-  MG_PopDoublePanel_Num: 0
   MG_PopCashPanel_Num: 0
   hasGift: 0
   MG_Fly: {fileID: 795929287319032964}
@@ -1286,8 +1282,6 @@ MonoBehaviour:
   willRateus: 0
   isGuid: 0
   next_GuidType: 0
-  MG_SignRewardNum: 0
-  MG_SignRewardMutiple: 1
   RewardType: 0
   RewardPanelType: 1
   RewardNum: 1
@@ -1352,7 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.6}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1367,7 +1361,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3151096292947159888
+--- !u!1 &3355329485068083712
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1375,23 +1369,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5928791119472913047}
-  - component: {fileID: 1396599540120305206}
-  - component: {fileID: 3645574619917943514}
+  - component: {fileID: 2502929337580505932}
+  - component: {fileID: 1903580897860563282}
+  - component: {fileID: 8199484942843769026}
   m_Layer: 5
-  m_Name: MG_loadingPanel_LoadingProgress (1)
+  m_Name: MG_loadingPanel_Notice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5928791119472913047
+--- !u!224 &2502929337580505932
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151096292947159888}
+  m_GameObject: {fileID: 3355329485068083712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1401,31 +1395,31 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -787}
-  m_SizeDelta: {x: 757.9686, y: 92.92207}
+  m_AnchoredPosition: {x: 0, y: -798.9}
+  m_SizeDelta: {x: 1080, y: 126.840836}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1396599540120305206
+--- !u!222 &1903580897860563282
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151096292947159888}
+  m_GameObject: {fileID: 3355329485068083712}
   m_CullTransparentMesh: 0
---- !u!114 &3645574619917943514
+--- !u!114 &8199484942843769026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3151096292947159888}
+  m_GameObject: {fileID: 3355329485068083712}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.45490196}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1433,20 +1427,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3f01f0451151d7742844404bed99cb3b, type: 3}
-    m_FontSize: 27
+    m_FontSize: 34
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 41
+    m_MaxSize: 43
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1.32
-  m_Text: 'The first loading time is slightly longer,
-
-    please be patient.'
+    m_LineSpacing: 1
+  m_Text: 
 --- !u!1 &3484512362761182422
 GameObject:
   m_ObjectHideFlags: 0

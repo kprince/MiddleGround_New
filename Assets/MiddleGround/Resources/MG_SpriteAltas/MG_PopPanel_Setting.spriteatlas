@@ -33,6 +33,18 @@ SpriteAtlas:
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -43,46 +55,42 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: fffd8aa9cea80ba41a38e51ad46000bb, type: 3}
-    totalSpriteSurfaceArea: 957027
+    totalSpriteSurfaceArea: 347452
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: f599a6309db87094f842fb14f9229a31, type: 3}
-  - {fileID: 21300000, guid: c6ffe7015d63d294f9345e618a27cfcb, type: 3}
-  - {fileID: 21300000, guid: 81e41722171bc64438940368b15e41fa, type: 3}
-  - {fileID: 21300000, guid: 439707e206182fc4e99c1dfb13f564d7, type: 3}
+  - {fileID: 21300000, guid: 4816354130e4138409b750aa09479119, type: 3}
+  - {fileID: 21300000, guid: 1de4cd61a4c81f940aa44053dec04d87, type: 3}
+  - {fileID: 21300000, guid: 1d187842f1d32174e8c40169e9f689fa, type: 3}
+  - {fileID: 21300000, guid: b9a48f4287200b0488b5786de47020d2, type: 3}
+  - {fileID: 21300000, guid: be8e58a2587237342acee58675717312, type: 3}
+  - {fileID: 21300000, guid: 12011a23f117cf644a7244be6664ef9a, type: 3}
   - {fileID: 21300000, guid: 44f34383ee0679d46aa22821550456c6, type: 3}
+  - {fileID: 21300000, guid: b488d8c49f295de4a9d6e3243d05aab6, type: 3}
   - {fileID: 21300000, guid: 833b1e856dc27f94b90668606b600f5a, type: 3}
-  - {fileID: 21300000, guid: 0c1680b5a76fb254796b5d563ae0e0c8, type: 3}
-  - {fileID: 21300000, guid: f3c79fd5c80990c40adb8b554d84adbe, type: 3}
   - {fileID: 21300000, guid: e958f4f6daaa4aa4b8e5863db42fa062, type: 3}
-  - {fileID: 21300000, guid: e20dc0a73228c11428b537518961018d, type: 3}
-  - {fileID: 21300000, guid: 0d4d371813be63c4cb3dd00450a0d842, type: 3}
-  - {fileID: 21300000, guid: e97ecd28a71b27c428951e0e1f8483d3, type: 3}
-  - {fileID: 21300000, guid: 46a3db99d0ba6ab4aa754b195d496aa0, type: 3}
-  - {fileID: 21300000, guid: b4207aa9d0c1c574496842c6f609a383, type: 3}
-  - {fileID: 21300000, guid: 38163cacf192ec948a802d5746d46ed7, type: 3}
-  - {fileID: 21300000, guid: 84fc325d04ab3f84c92c2dd061e033f7, type: 3}
-  - {fileID: 21300000, guid: 6b0ae3ce6d474ed4c88534394bd67c13, type: 3}
-  - {fileID: 21300000, guid: 093cd8af0f6521940834595c5e1e3df4, type: 3}
+  - {fileID: 21300000, guid: 8b8f3729a8802a04ba2340d2aac94942, type: 3}
+  - {fileID: 21300000, guid: 59cefc293055a214ebaf5f71d7d55150, type: 3}
+  - {fileID: 21300000, guid: 0039b94a365b1a84da7bf30bb940a4e1, type: 3}
+  - {fileID: 21300000, guid: f4f50d5d309c4e14cbce3cd79ec7ad7b, type: 3}
+  - {fileID: 21300000, guid: ff0d2cbd53daa2a4096ed93750530ab1, type: 3}
+  - {fileID: 21300000, guid: caf3092e090d0ca48b25f3a046eeee57, type: 3}
   m_PackedSpriteNamesToIndex:
-  - MG_Sprite_Setting_Sound
-  - MG_Sprite_Setting_Close
-  - MG_Sprite_BuyEnergy_Icon
-  - MG_Sprite_Setting_SwitchOff
+  - MG_Sprite_Setting_Wheel
+  - MG_Sprite_Setting_Menu
+  - MG_Sprite_Setting_MenuIcon
+  - MG_Sprite_Setting_Slots
+  - MG_Sprite_Setting_Shop
+  - MG_Sprite_Setting_Scratch
   - MG_Sprite_Setting_Desbg
+  - MG_Sprite_Setting_ShopE
   - MG_Sprite_Setting_TopBG
-  - MG_Sprite_Setting_SwitchOn
-  - MG_Sprite_Setting_Head
   - MG_Sprite_Setting_SwitchBG
-  - Img_SetBg3
-  - MG_ScratchDouble_BG
-  - MG_Sprite_BuyEnergy_Button
-  - MG_Sprite_Setting_BG
-  - MG_Sprite_Common_BlackalphaBG 1
+  - MG_Sprite_Setting_Sound
+  - MG_Sprite_Setting_SwitchOn
+  - MG_Sprite_Setting_ContentBG
   - MG_Sprite_Setting_Music
-  - MG_Sprite_Common_Gold 1
-  - MG_Sprite_Common_Cash 1
-  - MG_Sprite_BuyEnergy_AlphaBase
+  - MG_Sprite_Setting_SwitchOff
+  - MG_Sprite_Setting_Dice
   m_Tag: MG_PopPanel_Setting
   m_IsVariant: 0

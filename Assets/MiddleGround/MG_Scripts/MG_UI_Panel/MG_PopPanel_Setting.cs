@@ -13,22 +13,60 @@ namespace MiddleGround.UI
         public Button btn_Close;
         public Button btn_Sound;
         public Button btn_Music;
+        public Button btn_Shop;
+        public Button btn_Wheel;
+        public Button btn_Slots;
+        public Button btn_Scratch;
+        public Button btn_Dice;
+        public Button btn_Close2;
         public Image img_SoundSwitch;
         public Image img_MusicSwitch;
-        public Text text_goldNum;
-        public Text text_cashNum;
-        SpriteAtlas settingSA;
         Sprite sp_SwitchOn;
         Sprite sp_SwitchOff;
         protected override void Awake()
         {
             base.Awake();
             btn_Close.onClick.AddListener(OnCloseButtonClick);
+            btn_Close2.onClick.AddListener(OnCloseButtonClick);
             btn_Sound.onClick.AddListener(OnSoundButtonClick);
             btn_Music.onClick.AddListener(OnMusicButtonClick);
-            settingSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.SettingPanel);
-            sp_SwitchOn = settingSA.GetSprite("MG_Sprite_Setting_SwitchOn");
-            sp_SwitchOff = settingSA.GetSprite("MG_Sprite_Setting_SwitchOff");
+            btn_Shop.onClick.AddListener(OnShopButtonClick);
+            btn_Wheel.onClick.AddListener(OnWheelButtonClick);
+            btn_Slots.onClick.AddListener(OnSlotsButtonClick);
+            btn_Scratch.onClick.AddListener(OnScratchButtonClick);
+            btn_Dice.onClick.AddListener(OnDiceButtonClick);
+            btn_Shop.gameObject.SetActive(MG_Manager.Instance.Get_Save_PackB());
+            sp_SwitchOn = img_SoundSwitch.sprite;
+            sp_SwitchOff = img_MusicSwitch.sprite;
+        }
+        void OnShopButtonClick()
+        {
+            MG_Manager.Play_ButtonClick();
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SettingPanel);
+            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
+        }
+        void OnWheelButtonClick()
+        {
+            MG_Manager.Play_ButtonClick();
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SettingPanel);
+            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.WheelPanel);
+        }
+        void OnSlotsButtonClick()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SettingPanel);
+            MG_UIManager.Instance.MenuPanel.OnSlotsButtonClick();
+        }
+        void OnScratchButtonClick()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SettingPanel);
+            MG_UIManager.Instance.MenuPanel.OnScratchButtonClick();
+
+        }
+        void OnDiceButtonClick()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SettingPanel);
+            MG_UIManager.Instance.MenuPanel.OnDiceButtonClick();
+
         }
         void OnCloseButtonClick()
         {
@@ -53,13 +91,11 @@ namespace MiddleGround.UI
         }
         Vector3 startPos = new Vector3(-1395.205f, 0);
         Vector3 endPos = new Vector3(-540f, 0);
-        const float offsetAlpha = 0.6f;
+        const float offsetAlpha = 0.9f;
         public override IEnumerator OnEnter()
         {
             img_MusicSwitch.sprite = MG_SaveManager.MusicOn ? sp_SwitchOn : sp_SwitchOff;
             img_SoundSwitch.sprite = MG_SaveManager.SoundOn ? sp_SwitchOn : sp_SwitchOff;
-            text_cashNum.text = MG_Manager.Get_CashShowText(MG_Manager.Instance.Get_Save_Cash());
-            text_goldNum.text = MG_Manager.Instance.Get_Save_Gold().ToString();
             yield return null;
             Transform transAll = transform.GetChild(1);
             Image img_BG = transform.GetChild(0).GetComponent<Image>();

@@ -10,11 +10,13 @@ namespace MiddleGround.UI
     {
         public Button btn_Close;
         public Button btn_Buy;
+        Image img_Close;
         protected override void Awake()
         {
             base.Awake();
             btn_Close.onClick.AddListener(OnCloseClick);
             btn_Buy.onClick.AddListener(OnBuyClick);
+            img_Close = btn_Close.image;
         }
         void OnCloseClick()
         {
@@ -37,6 +39,9 @@ namespace MiddleGround.UI
         public override IEnumerator OnEnter()
         {
             clickTime = 0;
+            img_Close.color = Color.clear;
+            img_Close.raycastTarget = false;
+
             Transform transAll = transform.GetChild(1);
             transAll.localScale = new Vector3(0.8f, 0.8f, 1);
             canvasGroup.alpha = 0.8f;
@@ -44,13 +49,14 @@ namespace MiddleGround.UI
             while (transAll.localScale.x < 1)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale += new Vector3(addValue, addValue);
                 canvasGroup.alpha += addValue;
             }
             transAll.localScale = Vector3.one;
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
+            StartCoroutine("WaitShowNothanks");
         }
 
         public override IEnumerator OnExit()
@@ -60,13 +66,14 @@ namespace MiddleGround.UI
             while (transAll.localScale.x > 0.8f)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale -= new Vector3(addValue, addValue);
                 canvasGroup.alpha -= addValue;
             }
             transAll.localScale = new Vector3(0.8f, 0.8f, 1);
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
+            StopCoroutine("WaitShowNothanks");
         }
 
         public override void OnPause()
@@ -75,6 +82,19 @@ namespace MiddleGround.UI
 
         public override void OnResume()
         {
+        }
+        IEnumerator WaitShowNothanks()
+        {
+            if (img_Close.color.a > 0)
+                yield break;
+            yield return new WaitForSeconds(Time.timeScale);
+            while (img_Close.color.a < 1)
+            {
+                yield return null;
+                img_Close.color += Color.white * Time.unscaledDeltaTime * 2;
+            }
+            img_Close.color = Color.white;
+            img_Close.raycastTarget = true;
         }
     }
 }

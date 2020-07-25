@@ -10,19 +10,24 @@ namespace MiddleGround.UI
     public class MG_PopPanel_Sign : MG_UIBase
     {
         public List<MG_PopPanel_Sign_Day> list_alldays = new List<MG_PopPanel_Sign_Day>();
-        int[] rewards = new int[7] { 2000, 100, 2000, 2000, 100, 100, 100 };
-        bool[] isGold = new bool[7] { true, false, true, true, false, false, false };
-        float[] rewardmutiples = new float[7] { 3, 1.5f, 1.5f, 5, 1.5f, 1.5f, 5 };
+        readonly int[] rewards = new int[7] { 2000, 100, 2000, 2000, 100, 100, 100 };
+        readonly bool[] isGold = new bool[7] { true, false, true, true, false, false, false };
+        readonly float[] rewardmutiples = new float[7] { 3, 1.5f, 1.5f, 5, 1.5f, 1.5f, 5 };
         Sprite sp_gold;
         Sprite sp_cash;
         Sprite sp_reawrd7;
+        Sprite sp_today7Bg;
+        Sprite sp_tomorrow7Bg;
         Sprite sp_scratchTicket;
-        Sprite sp_lastBg;
-        Sprite sp_thisBg;
-        Sprite sp_nextBg;
+        Sprite sp_yestodayBg;
+        Sprite sp_todayBg;
+        Sprite sp_tomorrowBg;
         SpriteAtlas signSA;
         public Button btn_Sign;
         public Button btn_Nothanks;
+        public Button btn_Close;
+        public CanvasGroup cg_nothanks;
+        Image img_close;
         protected override void Awake()
         {
             base.Awake();
@@ -30,12 +35,16 @@ namespace MiddleGround.UI
             sp_gold = signSA.GetSprite("MG_Sprite_Sign_Gold");
             sp_cash = signSA.GetSprite("MG_Sprite_Sign_Cash");
             sp_scratchTicket = signSA.GetSprite("MG_Sprite_Sign_ScratchTicket");
-            sp_lastBg = signSA.GetSprite("MG_Sprite_Sign_Signed");
-            sp_thisBg = signSA.GetSprite("MG_Sprite_Sign_Signing");
+            sp_yestodayBg = signSA.GetSprite("MG_Sprite_Sign_Yestoday");
+            sp_todayBg = signSA.GetSprite("MG_Sprite_Sign_Today");
+            sp_tomorrowBg = signSA.GetSprite("MG_Sprite_Sign_Tomorrow");
             sp_reawrd7 = signSA.GetSprite("MG_Sprite_Sign_DayFinalReward");
-            sp_nextBg = sp_thisBg;
+            sp_today7Bg = signSA.GetSprite("MG_Sprite_Sign_Today7");
+            sp_tomorrow7Bg = signSA.GetSprite("MG_Sprite_Sign_Tomorrow7");
             btn_Sign.onClick.AddListener(OnSignButtonClick);
             btn_Nothanks.onClick.AddListener(OnNothanksClick);
+            btn_Close.onClick.AddListener(OnCloseClick);
+            img_close = btn_Close.image;
         }
         int clickTime = 0;
         void OnSignButtonClick()
@@ -63,7 +72,6 @@ namespace MiddleGround.UI
                 if (isGold[day])
                     MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.Gold, rewards[day], rewardmutiples[day]);
                 else
-                    //MG_Manager.Instance.Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType.SignCash, rewards[day], rewardmutiples[day]);
                     MG_Manager.Instance.Show_CashRewardPanel(MG_RewardPanelType.FreeMutipleClaim, rewards[day], rewardmutiples[day]);
             }
             else
@@ -85,7 +93,7 @@ namespace MiddleGround.UI
                     if (isGold[day])
                         MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.Gold, rewards[day]);
                     else
-                        MG_Manager.Instance.Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType.SignCash, rewards[day], 1);
+                        MG_Manager.Instance.Show_CashRewardPanel(MG_RewardPanelType.FreeMutipleClaim, rewards[day], 1);
                 }
                 else
                     MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.FreeMutipleClaim, MG_RewardType.ScratchTicket, 1, 1);
@@ -94,7 +102,14 @@ namespace MiddleGround.UI
                 MG_SaveManager.SignState = MG_SaveManager.SignState.Remove(day, 1).Insert(day, "0");
             }
             else
+            {
                 MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SignPanel);
+                MG_Manager.Instance.Show_PopTipsPanel("You have signed today.");
+            }
+        }
+        void OnCloseClick()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SignPanel);
         }
         public override IEnumerator OnEnter()
         {
@@ -115,39 +130,57 @@ namespace MiddleGround.UI
                 for (int i = 0; i < 7; i++)
                 {
                     Sprite bg;
+                    Sprite reward;
+                    string numDes;
                     char state = signState[i];
                     bool getAd = state == '1';
-                    if (i == lastSignDay&&canSign)
-                        bg = sp_thisBg;
+                    bool hasGet;
+                    if (i == lastSignDay && canSign)
+                    {
+                        bg = i == 6 ? sp_today7Bg : sp_todayBg;
+                        hasGet = false;
+                    }
                     else if (i < lastSignDay)
-                        bg = sp_lastBg;
+                    {
+                        bg = sp_yestodayBg;
+                        hasGet = true;
+                    }
                     else
-                        bg = sp_nextBg;
+                    {
+                        bg = i == 6 ? sp_tomorrow7Bg : sp_tomorrowBg;
+                        hasGet = false;
+                    }
+
                     if (changeScratchTicket)
                     {
-                        if (i < lastSignDay)
-                            list_alldays[i].SetDay(i + 1, lastSignDay, bg,  sp_scratchTicket, getAd ? "5" : "1", canSign);
-                        else
-                            list_alldays[i].SetDay(i + 1, lastSignDay, bg,  sp_scratchTicket, "?", canSign);
+                        numDes = i < lastSignDay ? (getAd ? "5" : "1") : "?";
+                        reward = sp_scratchTicket;
                     }
                     else
                     {
+                        reward = (i == 6 ? sp_reawrd7 : (isGold[i] ? sp_gold : sp_cash));
                         if (isGold[i])
-                        {
-                            if (i < lastSignDay)
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_gold, getAd ? (rewards[i] * rewardmutiples[i]).ToString() : rewards[i].ToString(), canSign);
-                            else
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_gold, rewards[i].ToString(), canSign);
-                        }
+                            numDes = i < lastSignDay && getAd ? (rewards[i] * rewardmutiples[i]).ToString() : rewards[i].ToString();
                         else
-                        {
-                            if (i < lastSignDay)
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_cash, MG_Manager.Get_CashShowText(getAd ? (int)(rewards[i] * rewardmutiples[i]) : (int)rewards[i]), canSign);
-                            else
-                                list_alldays[i].SetDay(i + 1, lastSignDay, bg, i == 6 ? sp_reawrd7 : sp_cash, "?", canSign);
-                        }
+                            numDes = i < lastSignDay ? (MG_Manager.Get_CashShowText(getAd ? (int)(rewards[i] * rewardmutiples[i]) : (int)rewards[i])) : "?";
                     }
+                    list_alldays[i].SetDay(i + 1, hasGet, bg, reward, numDes);
+
                 }
+            }
+            if (canSign)
+            {
+                cg_nothanks.alpha = 0;
+                cg_nothanks.blocksRaycasts = false;
+                img_close.color = Color.clear;
+                img_close.raycastTarget = false;
+            }
+            else
+            {
+                cg_nothanks.alpha = 1;
+                cg_nothanks.blocksRaycasts = true;
+                img_close.color = Color.white;
+                img_close.raycastTarget = true;
             }
 
             Transform transAll = transform.GetChild(1);
@@ -157,7 +190,7 @@ namespace MiddleGround.UI
             while (transAll.localScale.x < 1)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale += new Vector3(addValue, addValue);
                 canvasGroup.alpha += addValue;
             }
@@ -165,16 +198,19 @@ namespace MiddleGround.UI
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
 
+            if (canSign)
+                StartCoroutine("WaitShowNothanks");
         }
 
         public override IEnumerator OnExit()
         {
+            clickTime = 0;
             Transform transAll = transform.GetChild(1);
             canvasGroup.interactable = false;
             while (transAll.localScale.x > 0.8f)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale -= new Vector3(addValue, addValue);
                 canvasGroup.alpha -= addValue;
             }
@@ -182,6 +218,7 @@ namespace MiddleGround.UI
             MG_UIManager.Instance.UpdateWheelRP();
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
+            StopCoroutine("WaitShowNothanks");
         }
 
         public override void OnPause()
@@ -190,6 +227,23 @@ namespace MiddleGround.UI
 
         public override void OnResume()
         {
+        }
+        IEnumerator WaitShowNothanks()
+        {
+            if (cg_nothanks.alpha > 0 || img_close.color.a > 0)
+                yield break;
+            yield return new WaitForSeconds(Time.timeScale);
+            while (cg_nothanks.alpha < 1)
+            {
+                yield return null;
+                float offset = Time.unscaledDeltaTime * 2;
+                cg_nothanks.alpha += offset;
+                img_close.color += Color.white * offset;
+            }
+            cg_nothanks.alpha = 1;
+            cg_nothanks.blocksRaycasts = true;
+            img_close.color = Color.white;
+            img_close.raycastTarget = true;
         }
     }
 }

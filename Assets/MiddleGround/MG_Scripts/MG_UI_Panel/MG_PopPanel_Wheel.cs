@@ -121,7 +121,7 @@ namespace MiddleGround.UI
             while (!isStop)
             {
                 yield return null;
-                time -= Time.deltaTime;
+                time -= Time.unscaledDeltaTime;
                 if (time <= 0)
                 {
                     if (!isRight)
@@ -132,14 +132,14 @@ namespace MiddleGround.UI
                     if (!isBack)
                     {
                         rotateBackSpeed -= 40;
-                        rect_wheel.Rotate(new Vector3(0, 0, -Time.deltaTime * rotateBackSpeed));
+                        rect_wheel.Rotate(new Vector3(0, 0, -Time.unscaledDeltaTime * rotateBackSpeed));
                         if (rotateBackSpeed <= 0)
                             isBack = true;
                     }
                     else
                     {
                         rotateBackSpeed += 20;
-                        rect_wheel.Rotate(new Vector3(0, 0, Time.deltaTime * rotateBackSpeed));
+                        rect_wheel.Rotate(new Vector3(0, 0, Time.unscaledDeltaTime * rotateBackSpeed));
                         float angleZ = rect_wheel.localEulerAngles.z % 360;
                         if (angleZ < 0)
                             angleZ += 360;
@@ -151,7 +151,7 @@ namespace MiddleGround.UI
                     }
                 }
                 else
-                    rect_wheel.Rotate(new Vector3(0, 0, -Time.deltaTime * rotateSpeed));
+                    rect_wheel.Rotate(new Vector3(0, 0, -Time.unscaledDeltaTime * rotateSpeed));
             }
             spinAS.Stop();
             yield return null;
@@ -213,7 +213,7 @@ namespace MiddleGround.UI
             while (transAll.localScale.x < 1)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale += new Vector3(addValue, addValue);
                 canvasGroup.alpha += addValue;
             }
@@ -229,7 +229,7 @@ namespace MiddleGround.UI
             while (transAll.localScale.x > 0.8f)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale -= new Vector3(addValue, addValue);
                 canvasGroup.alpha -= addValue;
             }

@@ -33,6 +33,18 @@ SpriteAtlas:
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -43,16 +55,24 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 14451749b1b7e2b43b70bd99a8b1d66d, type: 3}
-    totalSpriteSurfaceArea: 349268
+    totalSpriteSurfaceArea: 243277
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: bd107452723bfbd4eb1b9502c697bc4f, type: 3}
+  - {fileID: 21300000, guid: fd0652d2c4417d343ae80bb9f2f3a436, type: 3}
   - {fileID: 21300000, guid: d6915ae276963344891dde2eab2be528, type: 3}
-  - {fileID: 21300000, guid: c0b7bba4f99b96448bec0b519aab2a2d, type: 3}
+  - {fileID: 21300000, guid: a03685749b1714b47b00878f0f1ffda0, type: 3}
+  - {fileID: 21300000, guid: eb2559455afce744fb8590191e965b89, type: 3}
+  - {fileID: 21300000, guid: 994a8f26ef0532c4199eb903662be11f, type: 3}
+  - {fileID: 21300000, guid: 374f850d4d9984e468dc4245e910519b, type: 3}
   m_PackedSpriteNamesToIndex:
   - MG_Sprite_RateusYes
-  - MG_Sprite_RateusNo
   - MG_Sprite_RateusBase
+  - MG_Sprite_RateusNo
+  - MG_Sprite_RateusStar
+  - MG_Sprite_Rateus_Title
+  - MG_Sprite_Common_ShortButton 1
+  - MG_Sprite_RateusGood
   m_Tag: MG_PopPanel_Rateus
   m_IsVariant: 0

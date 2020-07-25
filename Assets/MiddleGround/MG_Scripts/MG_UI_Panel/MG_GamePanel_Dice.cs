@@ -73,9 +73,9 @@ namespace MiddleGround.UI
             if (MG_Manager.Instance.Get_Save_DiceLife() > 0)
             {
                 ac_Dice.enabled = true;
+                MG_Manager.Instance.Add_Save_DiceLife(-1);
                 ac_Dice.SetBool("RollStart", true);
                 nextStep = RandomStep();
-                MG_Manager.Instance.Add_Save_DiceLife(-1);
                 if (MG_SaveManager.TodayExtraRewardTimes > 0)
                     MG_SaveManager.DiceNextGiftTime--;
                 MG_Manager.Instance.canChangeGame = false;
@@ -273,7 +273,7 @@ namespace MiddleGround.UI
                 while (progress < 1)
                 {
                     yield return null;
-                    progress += Time.deltaTime * 4;
+                    progress += Time.unscaledDeltaTime * 4;
                     trans_CurrentStep.localPosition = Vector3.Lerp(startPos, endPos, progress) + new Vector3(0, progress <= 0.5f ? upMaxY * progress : upMaxY * (1 - progress));
                 }
                 if (currentStep + i + 1 <= img_Bricks.Length - 1)
@@ -300,6 +300,7 @@ namespace MiddleGround.UI
             else
             {
                 MG_SaveManager.DiceCurrentStep += nextStep;
+                //MG_UIManager.Instance.MenuPanel.CheckGuid();
                 switch (_moveOverReward)
                 {
                     case MG_Dice_BrickType.Gold:
@@ -312,11 +313,9 @@ namespace MiddleGround.UI
                         MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.DiceSlotsPanel);
                         break;
                     case MG_Dice_BrickType.Scratch:
-                        //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Scratch, 1);
                         MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdDouble, MG_RewardType.ScratchTicket, 1);
                         break;
                     case MG_Dice_BrickType.Amazon:
-                        //MG_Manager.Instance.Show_PopDoublePanel_Reward(MG_PopDoublePanel_RewardType.Amazon,1);
                         MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.Amazon, 1);
                         break;
                     default:
@@ -326,11 +325,7 @@ namespace MiddleGround.UI
                             MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
                         }
                         else
-                        {
-                            if (MG_SaveManager.DiceTotalPlayTimes == 3)
-                                MG_Manager.Instance.next_GuidType = MG_Guid_Type.DiceGuid;
                             MG_UIManager.Instance.MenuPanel.CheckGuid();
-                        }
                         break;
                 }
             }

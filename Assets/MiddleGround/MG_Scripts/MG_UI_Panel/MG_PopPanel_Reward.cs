@@ -11,15 +11,16 @@ namespace MiddleGround.UI
         public Image img_rewardIcon;
         public Text text_rewardNum;
         public Text text_buttonText;
-        public Text text_rewardMutiple;
         public Text text_claim;
         public Text text_claimUnderline;
         public Text text_title;
         public Button btn_;
         public Button btn_claim;
-        public GameObject go_mutiple;
         public GameObject go_adIcon;
-        public GameObject go_claim;
+        public CanvasGroup cg_nothanks;
+        Transform trans_btn;
+        readonly Vector2 v2_nogiveup_btnPos = new Vector2(0, -284);
+        readonly Vector2 v2_giveup_btnPos = new Vector2(0, -238);
 
         MG_RewardType RewardType = MG_RewardType.Gold;
         MG_RewardPanelType RewardPanelType = MG_RewardPanelType.AdClaim;
@@ -30,10 +31,12 @@ namespace MiddleGround.UI
             base.Awake();
             btn_.onClick.AddListener(OnButtonClick);
             btn_claim.onClick.AddListener(OnClaim);
+            trans_btn = btn_.transform;
         }
         int clickAdTime = 0;
         void OnButtonClick()
         {
+            MG_Manager.Play_ButtonClick();
             if (needAd)
             {
                 switch (RewardPanelType)
@@ -44,9 +47,15 @@ namespace MiddleGround.UI
                         MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
                         break;
                     case MG_RewardPanelType.AdClaim:
-                    case MG_RewardPanelType.AdRandom:
                         clickAdTime++;
                         MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                        break;
+                    case MG_RewardPanelType.AdRandom:
+                        clickAdTime++;
+                        if (RewardType == MG_RewardType.Gold)
+                            MG_Manager.ShowRV(OnAdCallback, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                        else
+                            MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
                         break;
                 }
             }
@@ -66,8 +75,21 @@ namespace MiddleGround.UI
                 }
             }
         }
+        void OnAdCallback()
+        {
+            StopCoroutine("WaitShowNothanks");
+            needAd = false;
+            text_buttonText.text = "Claim";
+            text_rewardNum.text = "+" + (int)(RewardNum * RewardMutiple);
+            cg_nothanks.alpha = 0;
+            cg_nothanks.blocksRaycasts = false;
+            trans_btn.localPosition = v2_nogiveup_btnPos;
+            go_adIcon.SetActive(false);
+        }
+        bool hasLookAd = false;
         void GetReward()
         {
+            hasLookAd = true;
             clickAdTime = 0;
             int finalRewardNum = (int)(RewardNum * RewardMutiple);
             Vector3 flyStartPos = img_rewardIcon.transform.position;
@@ -110,26 +132,20 @@ namespace MiddleGround.UI
                     MG_UIManager.Instance.FlyEffectTo_MenuTarget(flyStartPos, MG_MenuFlyTarget.SSS, finalRewardNum);
                     break;
             }
-            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
+            if(hasLookAd)
+                MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
         }
         void OnClaim()
         {
+            MG_Manager.Play_ButtonClick();
             MG_Manager.ShowIV(GiveupReward, "Givp up " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
         }
         void GiveupReward()
         {
-            switch (RewardPanelType)
-            {
-                case MG_RewardPanelType.AdDouble:
-                case MG_RewardPanelType.AdRandom:
-                    RewardMutiple = 1;
-                    GetReward();
-                    break;
-                default:
-                    MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
-                    break;
-            }
+            RewardMutiple = 1;
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
         }
+        bool needShowNothanks = false;
         public override IEnumerator OnEnter()
         {
             RewardType = MG_Manager.Instance.RewardType;
@@ -137,8 +153,12 @@ namespace MiddleGround.UI
             RewardNum = MG_Manager.Instance.RewardNum;
             RewardMutiple = MG_Manager.Instance.RewardMutiple;
 
+            hasLookAd = false;
+
             img_rewardIcon.sprite = MG_Manager.Instance.Get_RewardSprite(RewardType);
-            text_claim.gameObject.SetActive(true);
+            cg_nothanks.alpha = 0;
+            cg_nothanks.blocksRaycasts = false;
+            needShowNothanks = false;
             switch (RewardPanelType)
             {
                 case MG_RewardPanelType.AdClaim:
@@ -146,9 +166,9 @@ namespace MiddleGround.UI
                     text_buttonText.text = "    Claim";
                     text_claim.text = "Give up";
                     text_claimUnderline.text = "─────";
-                    go_claim.SetActive(true);
                     go_adIcon.SetActive(true);
-                    go_mutiple.SetActive(false);
+                    trans_btn.localPosition = v2_giveup_btnPos;
+                    text_rewardNum.text = "+" + RewardNum;
                     SetSpecialTokenInfo();
                     break;
                 case MG_RewardPanelType.AdDouble:
@@ -156,31 +176,31 @@ namespace MiddleGround.UI
                     text_buttonText.text = "    Claim x2";
                     text_claim.text = "Claim Reward!";
                     text_claimUnderline.text = "─────────";
-                    go_claim.SetActive(true);
+                    needShowNothanks = true;
                     go_adIcon.SetActive(true);
-                    go_mutiple.SetActive(false);
-                    if(RewardType==MG_RewardType.Diamond&& !MG_SaveManager.GuidSlots)
+                    trans_btn.localPosition = v2_giveup_btnPos;
+                    if (RewardType==MG_RewardType.Diamond&& !MG_SaveManager.GuidSlots)
                         MG_Manager.Instance.next_GuidType = MG_Guid_Type.SlotsGuid;
+                    text_rewardNum.text = "+" + RewardNum;
                     break;
                 case MG_RewardPanelType.AdRandom:
                     needAd = true;
                     text_buttonText.text = "    Random x1~5";
                     text_claim.text = "Claim Reward!";
                     text_claimUnderline.text = "─────────";
-                    go_claim.SetActive(true);
+                    needShowNothanks = true;
                     go_adIcon.SetActive(true);
-                    go_mutiple.SetActive(false);
+                    trans_btn.localPosition = v2_giveup_btnPos;
+                    text_rewardNum.text = "+" + RewardNum;
                     break;
                 case MG_RewardPanelType.FreeMutipleClaim:
                     needAd = false;
                     text_buttonText.text = "Claim";
-                    text_rewardMutiple.text = "x" + RewardMutiple;
-                    go_claim.SetActive(false);
                     go_adIcon.SetActive(false);
-                    go_mutiple.SetActive(true);
+                    trans_btn.localPosition = v2_nogiveup_btnPos;
+                    text_rewardNum.text = "+" + (int)(RewardNum * RewardMutiple);
                     break;
             }
-            text_rewardNum.text = RewardNum.ToString();
 
             Transform transAll = transform.GetChild(1);
             transAll.localScale = new Vector3(0.8f, 0.8f, 1);
@@ -189,13 +209,16 @@ namespace MiddleGround.UI
             while (transAll.localScale.x < 1)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale += new Vector3(addValue, addValue);
                 canvasGroup.alpha += addValue;
             }
             transAll.localScale = Vector3.one;
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
+
+            if (needShowNothanks)
+                StartCoroutine("WaitShowNothanks");
         }
         bool needAd = false;
         void SetSpecialTokenInfo()
@@ -215,6 +238,9 @@ namespace MiddleGround.UI
                 case MG_RewardType.Watermalen:
                     SetSpecialShowTextButton(MG_SaveManager.GetFruitsTimes);
                     break;
+                default:
+                    needShowNothanks = true;
+                    break;
             }
         }
         void SetSpecialShowTextButton(int times)
@@ -225,7 +251,7 @@ namespace MiddleGround.UI
                 RewardNum = 3;
                 text_buttonText.text = "Claim";
                 needAd = false;
-                text_claim.gameObject.SetActive(false);
+                trans_btn.localPosition = v2_nogiveup_btnPos;
             }
             else if (times == 1)
             {
@@ -233,7 +259,7 @@ namespace MiddleGround.UI
                 RewardNum = 2;
                 text_buttonText.text = "Claim";
                 needAd = false;
-                text_claim.gameObject.SetActive(false);
+                trans_btn.localPosition = v2_nogiveup_btnPos;
             }
             else if (times == 2)
             {
@@ -241,33 +267,58 @@ namespace MiddleGround.UI
                 RewardNum = 2;
                 text_buttonText.text = "    Claim";
                 needAd = true;
-                text_claim.gameObject.SetActive(true);
+                needShowNothanks = true;
             }
             else
             {
                 go_adIcon.SetActive(true);
                 text_buttonText.text = "    Random x1~2";
                 needAd = true;
-                text_claim.gameObject.SetActive(true);
+                needShowNothanks = true;
             }
         }
 
         public override IEnumerator OnExit()
         {
             clickAdTime = 0;
+            if(!hasLookAd)
+                switch (RewardPanelType)
+                {
+                    case MG_RewardPanelType.AdDouble:
+                    case MG_RewardPanelType.AdRandom:
+                        RewardMutiple = 1;
+                        GetReward();
+                        break;
+                }
+
+            if (MG_Manager.Instance.hasGift)
+            {
+                MG_Manager.Instance.hasGift = false;
+                MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
+            }
+            else if (MG_Manager.Instance.willRateus)
+            {
+                MG_Manager.Instance.willRateus = false;
+                MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.Rateus);
+            }
+            else
+            {
+                MG_UIManager.Instance.MenuPanel.CheckGuid();
+            }
 
             Transform transAll = transform.GetChild(1);
             canvasGroup.interactable = false;
             while (transAll.localScale.x > 0.8f)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale -= new Vector3(addValue, addValue);
                 canvasGroup.alpha -= addValue;
             }
             transAll.localScale = new Vector3(0.8f, 0.8f, 1);
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
+            StopCoroutine("WaitShowNothanks");
         }
 
         public override void OnPause()
@@ -276,6 +327,19 @@ namespace MiddleGround.UI
 
         public override void OnResume()
         {
+        }
+        IEnumerator WaitShowNothanks()
+        {
+            if (cg_nothanks.alpha > 0)
+                yield break;
+            yield return new WaitForSeconds(Time.timeScale);
+            while (cg_nothanks.alpha < 1)
+            {
+                yield return null;
+                cg_nothanks.alpha += Time.unscaledDeltaTime * 2;
+            }
+            cg_nothanks.alpha = 1;
+            cg_nothanks.blocksRaycasts = true;
         }
     }
 }

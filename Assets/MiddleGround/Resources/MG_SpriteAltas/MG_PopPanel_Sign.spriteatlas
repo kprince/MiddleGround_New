@@ -33,6 +33,18 @@ SpriteAtlas:
       m_Overridden: 1
       m_AndroidETC2FallbackOverride: 0
       m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 100
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -43,42 +55,40 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: f52dcf32b3f4a004dbfbaea940bdcbce, type: 3}
-    totalSpriteSurfaceArea: 522440
+    totalSpriteSurfaceArea: 527665
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 110433f1891adb04db07fe12fab3dc06, type: 3}
-  - {fileID: 21300000, guid: 93d66032fb2ae6449ad21b60a07d06c7, type: 3}
   - {fileID: 21300000, guid: c46695b267fe3354685b90de59458bab, type: 3}
   - {fileID: 21300000, guid: e26836a4e6f87ed4eb84cd7ed67a6041, type: 3}
-  - {fileID: 21300000, guid: 7fd09e35199f5354bb35fb5bef281d40, type: 3}
   - {fileID: 21300000, guid: 33b75465273ea6e4788340bc838b9f30, type: 3}
-  - {fileID: 21300000, guid: 498cc1e5095eebd46b59971164dea326, type: 3}
-  - {fileID: 21300000, guid: 7b8bd947aaf425246bb73ce14315d0fc, type: 3}
+  - {fileID: 21300000, guid: e8f2ddb5563e88c408d06d833074945a, type: 3}
+  - {fileID: 21300000, guid: 6af86517eef1c384faecab5f3e0cfe0e, type: 3}
   - {fileID: 21300000, guid: 9ce10c58edd698141b1c1c7050f2dfd2, type: 3}
   - {fileID: 21300000, guid: 66ef695ac80ac0e40bdfab5abce9f7ba, type: 3}
-  - {fileID: 21300000, guid: 5e51837a5dfe6404cacbd5871e63fdc9, type: 3}
   - {fileID: 21300000, guid: a0e6548a700e7994eb43a1fa2b883aa0, type: 3}
+  - {fileID: 21300000, guid: 4485e5abaa6710e45893bf262fd2f04f, type: 3}
   - {fileID: 21300000, guid: 4443c6bba3579cd42a6808b285eebbd8, type: 3}
+  - {fileID: 21300000, guid: be8c627c40e954b4d85073c1e2e3d3a4, type: 3}
   - {fileID: 21300000, guid: 3017488cb58ace940b5cd0abd5c64d20, type: 3}
   - {fileID: 21300000, guid: e9ae29bc7dd5c824582a9b07049fbdfe, type: 3}
   - {fileID: 21300000, guid: 28b8213fe91ffa54892f3053defa41f9, type: 3}
   m_PackedSpriteNamesToIndex:
-  - MG_Sprite_Sign_Signing
-  - MG_Sprite_Sign_DayFinalReward
+  - MG_Sprite_Sign_Tomorrow
   - MG_Sprite_Sign_ScratchTicket
-  - MG_Sprite_Sign_Signed
-  - MG_Sprite_Common_BlackalphaBG 1
+  - MG_Sprite_Sign_Yestoday
   - MG_Sprite_Sign_Title
-  - MG_Sprite_Sign_Sure
-  - MG_Sprite_Sign_Select
+  - MG_Sprite_Sign_Tomorrow7
+  - MG_Sprite_Common_Close 1
   - MG_Sprite_Sign_Check
   - MG_Sprite_Sign_Gold
-  - "\u7EC4 44 \u62F7\u8D1D 4"
+  - MG_Sprite_Sign_DayFinalReward
   - MG_Sprite_Sign_Cash
   - MG_Sprite_Common_LongButton 1
+  - MG_Sprite_Sign_Today
   - MG_Sprite_Sign_Base
-  - "\u7EC4 44 \u62F7\u8D1D 5"
+  - MG_Sprite_Sign_Today7
   - MG_Sprite_Sign_Nothanks
   m_Tag: MG_PopPanel_Sign
   m_IsVariant: 0

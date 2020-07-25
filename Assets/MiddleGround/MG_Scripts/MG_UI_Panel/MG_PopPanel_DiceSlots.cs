@@ -10,13 +10,16 @@ namespace MiddleGround.UI
     public class MG_PopPanel_DiceSlots : MG_UIBase
     {
         public Button btn_Spin;
-        public GameObject go_adicon;
-        Image img_Spinbutton;
+        public Image img_buttonText;
         public Image img_L;
         public Image img_M;
         public Image img_R;
-        Sprite sp_spinUp;
-        Sprite sp_spinDown;
+        public Image img_Light;
+        public Transform trans_spinbutton;
+        Sprite sp_spin;
+        Sprite sp_adAgain;
+        Sprite sp_LightA;
+        Sprite sp_LightB;
         static readonly Dictionary<string, float> dic_name_offsetY = new Dictionary<string, float>()
         {
             {"Cash5",0.848f },
@@ -42,10 +45,10 @@ namespace MiddleGround.UI
             bool packB = MG_Manager.Instance.Get_Save_PackB();
             finalOffsetX = packB ? offsetXB : offsetXA;
             slotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_GamePanelType.SlotsPanel);
-            sp_spinDown = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinDown");
-            sp_spinUp = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinUp");
-            img_Spinbutton = btn_Spin.GetComponent<Image>();
-            img_Spinbutton.sprite = sp_spinUp;
+            sp_spin = slotsSA.GetSprite("MG_Sprite_Slots_Spin");
+            sp_adAgain = slotsSA.GetSprite("MG_Sprite_Slots_Again");
+            sp_LightA = slotsSA.GetSprite("MG_Sprite_Slots_LightA");
+            sp_LightB = slotsSA.GetSprite("MG_Sprite_Slots_LightB");
             text_nothanks.GetComponent<Button>().onClick.AddListener(OnNothanksClick);
         }
         bool isSpining = false;
@@ -92,7 +95,7 @@ namespace MiddleGround.UI
         bool needAd = false;
         IEnumerator StartSpin()
         {
-            img_Spinbutton.sprite = sp_spinDown;
+            trans_spinbutton.localPosition = new Vector2(0, -236);
             Material mt_L = img_L.material;
             Material mt_M = img_M.material;
             Material mt_R = img_R.materialForRendering;
@@ -161,12 +164,13 @@ namespace MiddleGround.UI
             bool back_M = false;
             bool stop_R = false;
             bool back_R = false;
+            StartCoroutine("AutoShiningLight");
             AudioSource as_Spin = MG_Manager.Play_SpinSlots();
             while (!stop_R || !stop_M || !stop_L)
             {
                 yield return null;
-                timer += Time.deltaTime * 2;
-                spinSpeed = Time.deltaTime * 2.6f;
+                timer += Time.unscaledDeltaTime * 2;
+                spinSpeed = Time.unscaledDeltaTime * 2.6f;
                 startOffsetY_L += spinSpeed;
                 startOffsetY_M += spinSpeed;
                 startOffsetY_R += spinSpeed;
@@ -247,10 +251,10 @@ namespace MiddleGround.UI
                     }
             }
             as_Spin.Stop();
-            img_Spinbutton.sprite = sp_spinUp;
-            if(!go_adicon.activeSelf)
-            go_adicon.SetActive(true);
+            trans_spinbutton.localPosition = new Vector2(0, -211.1f);
+            img_buttonText.sprite = sp_adAgain;
             yield return new WaitForSeconds(0.5f * Time.timeScale);
+            StopCoroutine("AutoShiningLight");
             if (rewardNum == 0)
             {
                 isSpining = false;
@@ -270,10 +274,11 @@ namespace MiddleGround.UI
         {
             if (text_nothanks.color.a > 0)
                 yield break;
+            yield return new WaitForSeconds(Time.timeScale);
             while (text_nothanks.color.a<1)
             {
                 yield return null;
-                text_nothanks.color += Color.white * Time.deltaTime * 2;
+                text_nothanks.color += Color.white * Time.unscaledDeltaTime * 2;
             }
             text_nothanks.color = Color.white;
             text_nothanks.raycastTarget = true;
@@ -283,7 +288,7 @@ namespace MiddleGround.UI
             clickTime = 0;
             isSpining = false;
             needAd = false;
-            go_adicon.SetActive(false);
+            img_buttonText.sprite = sp_spin;
             img_L.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
             img_M.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
             img_R.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
@@ -297,7 +302,7 @@ namespace MiddleGround.UI
             while (transAll.localScale.x < 1)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale += new Vector3(addValue, addValue);
                 canvasGroup.alpha += addValue;
             }
@@ -306,6 +311,17 @@ namespace MiddleGround.UI
             canvasGroup.interactable = true;
 
         }
+        IEnumerator AutoShiningLight()
+        {
+            bool isA = false;
+            WaitForSeconds wait = new WaitForSeconds(0.1f * Time.timeScale);
+            while (true)
+            {
+                yield return wait;
+                isA = !isA;
+                img_Light.sprite = isA ? sp_LightA : sp_LightB;
+            }
+        }
         public override IEnumerator OnExit()
         {
             Transform transAll = transform.GetChild(1);
@@ -313,7 +329,7 @@ namespace MiddleGround.UI
             while (transAll.localScale.x > 0.8f)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale -= new Vector3(addValue, addValue);
                 canvasGroup.alpha -= addValue;
             }
@@ -321,13 +337,21 @@ namespace MiddleGround.UI
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
 
-            if (MG_Manager.Instance.hasGift && !isSpining)
+            if (!isSpining)
             {
-                MG_Manager.Instance.hasGift = false;
-                MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
+                if (MG_Manager.Instance.hasGift)
+                {
+                    MG_Manager.Instance.hasGift = false;
+                    MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
+                }
+                else
+                    MG_UIManager.Instance.MenuPanel.CheckGuid();
             }
             else
+            {
                 MG_Manager.Instance.canChangeGame = true;
+            }
+            StopCoroutine("WaitShowNothanks");
         }
         public override void OnPause()
         {

@@ -15,13 +15,6 @@ namespace MiddleGround
         public static MG_Manager Instance;
         public bool canChangeGame = true;
 
-        public MG_PopRewardPanel_RewardType MG_PopDiceReward_Type;
-        public int MG_PopDiceReward_Num;
-        public float MG_PopDiceReward_Mutiple;
-
-        public MG_PopDoublePanel_RewardType MG_PopDoublePanel_Type;
-        public int MG_PopDoublePanel_Num;
-
         public int MG_PopCashPanel_Num;
         public bool hasGift = false;
 
@@ -196,7 +189,7 @@ namespace MiddleGround
         public void Add_Save_DiceTotalTimes(int value = 1)
         {
             MG_SaveManager.DiceTotalPlayTimes += value;
-            if (MG_SaveManager.DiceTotalPlayTimes == 3)
+            if (MG_SaveManager.DiceTotalPlayTimes >= 3&&!MG_SaveManager.GuidDice)
                 next_GuidType = MG_Guid_Type.DiceGuid;
         }
         public int Get_Save_ScratchTotalTimes()
@@ -316,7 +309,6 @@ namespace MiddleGround
             switch (_Dice_RewardType)
             {
                 case MG_PopRewardPanel_RewardType.Cash:
-                    MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.Cash;
                     MG_Dice_SpecialPropsConfig _SpecialPropsCashConfig = MG_Config.MG_Dice_SpecialPropsConfigs[rewardRangeIndex];
                     int rewardCashNum = UnityEngine.Random.Range(_SpecialPropsCashConfig.minCashReward, _SpecialPropsCashConfig.maxCashReward);
                     float rewardCashMutiple = _SpecialPropsCashConfig.cashMutiple[UnityEngine.Random.Range(0, _SpecialPropsCashConfig.cashMutiple.Count)];
@@ -333,16 +325,16 @@ namespace MiddleGround
                     float result = UnityEngine.Random.Range(0, _ExtraBonusConfig.goldBonusRate + _ExtraBonusConfig.cashBonusRate);
                     if (result < _ExtraBonusConfig.goldBonusRate)
                     {
-                        MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.ExtraGold;
-                        MG_PopDiceReward_Num = UnityEngine.Random.Range(_ExtraBonusConfig.minGoldBonus, _ExtraBonusConfig.maxGoldBonus);
+                        RewardType = MG_RewardType.Gold;
+                        RewardNum = UnityEngine.Random.Range(_ExtraBonusConfig.minGoldBonus, _ExtraBonusConfig.maxGoldBonus);
                     }
                     else
                     {
-                        MG_PopDiceReward_Type = MG_PopRewardPanel_RewardType.ExtraCash;
-                        MG_PopDiceReward_Num = UnityEngine.Random.Range(_ExtraBonusConfig.minCashBonus, _ExtraBonusConfig.maxCashBonus);
+                        RewardType = MG_RewardType.Cash;
+                        RewardNum = UnityEngine.Random.Range(_ExtraBonusConfig.minCashBonus, _ExtraBonusConfig.maxCashBonus);
                     }
-                    MG_PopDiceReward_Mutiple = 1;
-                    MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ExtraRewardPanel);
+                    RewardMutiple = 1;
+                    MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.GiftPanel);
                     break;
             }
         }
@@ -715,15 +707,6 @@ namespace MiddleGround
                 return RewardNull(out num);
             }
             return RewardSS_Other(out num);
-        }
-        public int MG_SignRewardNum = 0;
-        public float MG_SignRewardMutiple = 1;
-        public void Show_SignRewardPanel_Reward(MG_PopRewardPanel_RewardType _rewardType,int _rewardNum,float _rewardMutiple)
-        {
-            MG_PopDiceReward_Type = _rewardType;
-            MG_SignRewardNum = _rewardNum;
-            MG_SignRewardMutiple = _rewardMutiple;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ExtraRewardPanel);
         }
         public void Show_PopTipsPanel(string content, float time = 1)
         {

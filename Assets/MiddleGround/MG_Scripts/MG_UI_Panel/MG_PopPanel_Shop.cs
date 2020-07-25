@@ -73,10 +73,12 @@ namespace MiddleGround.UI
         }
         void OnBackButtonClick()
         {
+            MG_Manager.Play_ButtonClick();
             MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.ShopPanel);
         }
         void OnGetButtonClick()
         {
+            MG_Manager.Play_ButtonClick();
             MG_Manager.Instance.Show_PopTipsPanel("Not enough money to exchange.");
         }
         public override IEnumerator OnEnter()

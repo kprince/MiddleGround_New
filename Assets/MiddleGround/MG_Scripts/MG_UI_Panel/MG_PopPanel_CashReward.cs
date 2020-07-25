@@ -10,7 +10,6 @@ namespace MiddleGround.UI
     {
         public Image img_cashIcon;
         public Text text_rewardnum;
-        public Text text_rewardmutiple;
         public Text text_get;
         public Text text_reaminTime;
         public Transform trans_light;
@@ -18,6 +17,7 @@ namespace MiddleGround.UI
         public GameObject go_redeem;
         public Button btn_get;
         public Button btn_giveup;
+        Image img_giveup;
         bool isPackB;
 
         MG_RewardType RewardType = MG_RewardType.Gold;
@@ -30,6 +30,7 @@ namespace MiddleGround.UI
             base.Awake();
             btn_get.onClick.AddListener(OnGet);
             btn_giveup.onClick.AddListener(OnGiveup);
+            img_giveup = btn_giveup.image;
             isPackB = MG_Manager.Instance.Get_Save_PackB();
             Sprite sp_manyCash;
             if (isPackB)
@@ -42,6 +43,7 @@ namespace MiddleGround.UI
         int clikcAdTime = 0;
         void OnGet()
         {
+            MG_Manager.Play_ButtonClick();
             switch (RewardPanelType)
             {
                 case MG_RewardPanelType.AdClaim:
@@ -77,10 +79,12 @@ namespace MiddleGround.UI
         }
         void OnGiveup()
         {
+            MG_Manager.Play_ButtonClick();
             MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.CashRewardPanel);
         }
         public override IEnumerator OnEnter()
         {
+            bool needShowNothanks = false;
             RewardType = MG_Manager.Instance.RewardType;
             RewardPanelType = MG_Manager.Instance.RewardPanelType;
             RewardNum = MG_Manager.Instance.RewardNum;
@@ -90,41 +94,35 @@ namespace MiddleGround.UI
 
             text_reaminTime.text = "Remaining:" + MG_SaveManager.TodayExtraRewardTimes;
             if (isPackB)
-                text_rewardnum.text = "$" + MG_Manager.Get_CashShowText(RewardNum);
+                text_rewardnum.text = "$" + MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
             else
-                text_rewardnum.text = MG_Manager.Get_CashShowText(RewardNum);
+                text_rewardnum.text = MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
             switch (RewardPanelType)
             {
                 case MG_RewardPanelType.AdClaim:
                     go_adicon.SetActive(true);
-                    btn_giveup.gameObject.SetActive(false);
                     text_get.text = "      Save in wallet";
-                    text_rewardmutiple.gameObject.SetActive(false);
                     break;
                 case MG_RewardPanelType.AdRandom:
                     go_adicon.SetActive(true);
-                    btn_giveup.gameObject.SetActive(true);
+                    needShowNothanks = true;
                     text_get.text = "      Random x1~5";
-                    text_rewardmutiple.gameObject.SetActive(false);
                     break;
                 case MG_RewardPanelType.FreeMutipleClaim:
                     go_adicon.SetActive(false);
-                    btn_giveup.gameObject.SetActive(false);
                     text_get.text = "Save in wallet";
-                    text_rewardmutiple.gameObject.SetActive(true);
-                    text_rewardmutiple.text = "x" + RewardMutiple;
                     break;
                 case MG_RewardPanelType.FreeClaim:
                     go_adicon.SetActive(false);
-                    btn_giveup.gameObject.SetActive(false);
                     text_get.text = "Save in wallet";
-                    text_rewardmutiple.gameObject.SetActive(false);
                     break;
                 default:
                     Debug.LogError("Show MG_CashReward Panel Error : panelType is error.");
                     break;
             }
             StartCoroutine("AutoScaleLight");
+            img_giveup.raycastTarget = false;
+            img_giveup.color = Color.clear;
 
             Transform transAll = transform.GetChild(1);
             transAll.localScale = new Vector3(0.8f, 0.8f, 1);
@@ -133,25 +131,41 @@ namespace MiddleGround.UI
             while (transAll.localScale.x < 1)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale += new Vector3(addValue, addValue);
                 canvasGroup.alpha += addValue;
             }
             transAll.localScale = Vector3.one;
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
+            if (needShowNothanks)
+                StartCoroutine("WaitShowNothanks");
         }
 
         public override IEnumerator OnExit()
         {
             clikcAdTime = 0;
+            if (MG_Manager.Instance.hasGift)
+            {
+                MG_Manager.Instance.hasGift = false;
+                MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
+            }
+            else if (MG_Manager.Instance.willRateus)
+            {
+                MG_Manager.Instance.willRateus = false;
+                MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.Rateus);
+            }
+            else
+            {
+                MG_UIManager.Instance.MenuPanel.CheckGuid();
+            }
 
             Transform transAll = transform.GetChild(1);
             canvasGroup.interactable = false;
             while (transAll.localScale.x > 0.8f)
             {
                 yield return null;
-                float addValue = Time.deltaTime * 2;
+                float addValue = Time.unscaledDeltaTime * 2;
                 transAll.localScale -= new Vector3(addValue, addValue);
                 canvasGroup.alpha -= addValue;
             }
@@ -159,6 +173,7 @@ namespace MiddleGround.UI
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
             StopCoroutine("AutoScaleLight");
+            StopCoroutine("WaitShowNothanks");
         }
         IEnumerator AutoScaleLight()
         {
@@ -175,6 +190,19 @@ namespace MiddleGround.UI
                 if (trans_light.localScale.x <= 1)
                     isUp = true;
             }
+        }
+        IEnumerator WaitShowNothanks()
+        {
+            if (img_giveup.color.a > 0)
+                yield break;
+            yield return new WaitForSeconds(Time.timeScale);
+            while (img_giveup.color.a < 1)
+            {
+                yield return null;
+                img_giveup.color += Color.white * Time.unscaledDeltaTime * 2;
+            }
+            img_giveup.color = Color.white;
+            img_giveup.raycastTarget = true;
         }
 
         public override void OnPause()

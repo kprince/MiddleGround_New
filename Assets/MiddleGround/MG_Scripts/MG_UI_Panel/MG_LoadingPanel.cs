@@ -10,16 +10,22 @@ namespace MiddleGround.UI
     public class MG_LoadingPanel : MonoBehaviour
     {
         public Text text_loading;
+        public Text text_notice;
         public Slider slider_loading;
         private void Start()
         {
             slider_loading.value = 0;
             text_loading.text = "Loading...0%";
-            MG_SaveManager.PackB = !MG_SaveManager.PackB;
             StartCoroutine("WaitLoad");
         }
         IEnumerator WaitLoad()
         {
+            string noticeContent;
+#if UNITY_ANDROID
+            noticeContent = "Google is not a sponsor nor is involved in any way\n  with these contests or sweepstakes.";
+#elif UNITY_IOS
+            noticeContent = "Apple is not a sponsor nor is involved in any way\n  with these contests or sweepstakes.";
+#endif
 #if UNITY_IOS
         Coroutine getCor = null;
         if(!MG_Manager.Instance.Get_Save_PackB())
@@ -28,6 +34,7 @@ namespace MiddleGround.UI
             int progress = 0;
             int speed = 1;
             float maxWaitTime = 5;
+            bool hasB = false;
             while (true)
             {
                 yield return null;
@@ -37,9 +44,13 @@ namespace MiddleGround.UI
                     progress = Mathf.Clamp(progress, 0, 1000);
                     slider_loading.value = progress * 0.001f;
                     text_loading.text = "Loading..." + progress / 10 + "%";
-                    if (MG_Manager.Instance.Get_Save_PackB())
+                    if (!hasB && MG_Manager.Instance.Get_Save_PackB())
+                    {
+                        hasB = true;
+                        text_notice.text = noticeContent;
                         speed = 10;
-                    maxWaitTime -= Time.deltaTime / Time.timeScale;
+                    }
+                    maxWaitTime -= Time.unscaledDeltaTime;
                     if (maxWaitTime <= 0)
                         speed = 50;
                 }
@@ -59,7 +70,7 @@ namespace MiddleGround.UI
         }
         IEnumerator WaitFor()
         {
-            UnityWebRequest webRequest = new UnityWebRequest("");
+            UnityWebRequest webRequest = new UnityWebRequest("luckyclub1.fengwan8.com");
             yield return webRequest.SendWebRequest();
             if (webRequest.responseCode == 200)
             {

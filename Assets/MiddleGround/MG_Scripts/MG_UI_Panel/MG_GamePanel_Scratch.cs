@@ -72,6 +72,8 @@ namespace MiddleGround.UI
             f_halfW = rect_Mask.sizeDelta.x * 0.5f;
             f_halfH = rect_Mask.sizeDelta.y * 0.5f;
             cam_brush.aspect = rect_Mask.sizeDelta.x / rect_Mask.sizeDelta.y;
+            Material maskMat = img_Mask.material;
+            maskMat.SetFloat(Mat_Alpha_Key, 1);
 
         }
         private Vector3 VectorTransfer(Vector2 point)
@@ -170,6 +172,9 @@ namespace MiddleGround.UI
 
         public override void OnResume()
         {
+            Material maskMat = img_Mask.material;
+            maskMat.SetFloat(Mat_Alpha_Key, 1);
+            OnRefresh();
         }
         Sprite GetTargetSprite(int index)
         {
@@ -330,7 +335,7 @@ namespace MiddleGround.UI
                     while (alpha > 0)
                     {
                         yield return null;
-                        alpha -= Time.deltaTime*5;
+                        alpha -= Time.unscaledDeltaTime*5;
                         if (alpha < 0)
                             alpha = 0;
                         maskMat.SetFloat(Mat_Alpha_Key, alpha);
@@ -348,9 +353,7 @@ namespace MiddleGround.UI
                             MG_Manager.Instance.Show_MostRewardPanel(MG_RewardPanelType.AdClaim, MG_RewardType.SSS, rewardNum);
                             break;
                     }
-                    maskMat.SetFloat(Mat_Alpha_Key, 1);
                     MG_Manager.Instance.Add_Save_ScratchTicket(-1);
-                    OnRefresh();
                     break;
                 }
             }
@@ -581,7 +584,7 @@ namespace MiddleGround.UI
                     trans_Handle.gameObject.SetActive(true);
                     angle = -3.8f;
                 }
-                angle += Time.deltaTime*4;
+                angle += Time.unscaledDeltaTime*4;
                trans_Handle.localPosition = new Vector2(angle*100, Mathf.Sin(angle) * r);
             }
         }

@@ -10,13 +10,13 @@ using UnityEngine.UI;
 public class Ads : MonoBehaviour
 {
 #if UNITY_ANDROID
-	private const string APP_KEY = "";
+	private const string APP_KEY = "ce674e95";
 #elif UNITY_IOS
-	private const string APP_KEY = "";
+	private const string APP_KEY = "ce67c1a5";
 #endif
 	public static Ads _instance;
 	public string adDes = string.Empty;
-	public const string AppName = "";
+	public const string AppName = "A031_luckyclub";
 	private void Awake()
 	{
 		_instance = this;
@@ -43,7 +43,7 @@ public class Ads : MonoBehaviour
 		rewardCallback = rewardedCallback;
 #if UNITY_EDITOR
 		rewardedCallback();
-		Debug.LogError("Show RV : 【" + des + "】");
+		Debug.Log("Show RV : 【" + des + "】");
 		return true;
 #endif
 #if UNITY_IOS
@@ -70,7 +70,7 @@ public class Ads : MonoBehaviour
 		popCallback = callback;
 #if UNITY_EDITOR
 		callback();
-		Debug.LogError("Show IV : 【" + des + "】");
+		Debug.Log("Show IV : 【" + des + "】");
 		return;
 #endif
 		adDes = des;
@@ -128,7 +128,7 @@ public class Ads : MonoBehaviour
 			}
 		}
 		MG_Manager.Instance.SendAdjustPlayAdEvent(false, true, adDes);
-		if (clickAdTime >= 2)
+		if (clickAdTime >= 1)
 		{
 			MG_UIManager.Instance.CloseTopPopPanelAsync();
 			noticeText.text = text;

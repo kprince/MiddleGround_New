@@ -16,25 +16,22 @@ namespace MiddleGround.UI
         public Image img_L;
         public Image img_M;
         public Image img_R;
-        public Image img_LightUp;
-        public Image img_LightDown;
+        public Image img_Light;
+        public Image img_ButtonText;
         public Text text_FruitNum;
-        public GameObject go_ad;
-        public GameObject go_use;
         public GameObject go_lock;
-        public RectTransform rect_spin;
+        public Transform trans_spin;
 
-        Image img_button;
         Sprite sp_LightA;
         Sprite sp_LightB;
-        Sprite sp_spinUp;
-        Sprite sp_spinDown;
+        Sprite sp_spin;
+        Sprite sp_adSpin;
+        Sprite sp_adSpeedup;
 
         SpriteAtlas slotsSA;
 
         public Text text_SpinGoldNum;
         public Text text_X10;
-        public Text text_btn;
         public Text text_Locktime;
         static readonly Dictionary<int, float> dic_type_offsetY = new Dictionary<int, float>()
         {
@@ -55,7 +52,6 @@ namespace MiddleGround.UI
         protected override void Awake()
         {
             base.Awake();
-            img_button = btn_Spin.image;
 
             btn_Spin.onClick.AddListener(OnSpinButtonClick);
             btn_addMutiple.onClick.AddListener(OnX10ButtonClick);
@@ -66,12 +62,12 @@ namespace MiddleGround.UI
             mutiplesIndex = 0;
             text_X10.text = "x" + mutiples[mutiplesIndex];
             finalOffsetX = packB ? offsetXB : offsetXA;
-            sp_LightA = img_LightUp.sprite;
-            sp_LightB = img_LightDown.sprite;
             slotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_GamePanelType.SlotsPanel);
-            sp_spinDown = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinDown");
-            sp_spinUp = slotsSA.GetSprite("MG_Sprite_Slots_ButtonSpinUp");
-            img_button.sprite = sp_spinUp;
+            sp_adSpeedup = slotsSA.GetSprite("MG_Sprite_Slots_Speedup");
+            sp_adSpin = slotsSA.GetSprite("MG_Sprite_Slots_AdSpin");
+            sp_spin = slotsSA.GetSprite("MG_Sprite_Slots_Spin");
+            sp_LightA = slotsSA.GetSprite("MG_Sprite_Slots_LightA");
+            sp_LightB = slotsSA.GetSprite("MG_Sprite_Slots_LightB");
         }
         int clickTime = 0;
         void OnSpinButtonClick()
@@ -109,7 +105,6 @@ namespace MiddleGround.UI
         {
             clickTime = 0;
             isLocked = false;
-            text_btn.text = "SPIN";
             MG_SaveManager.SlotsLockDate = System.DateTime.Now.AddSeconds(-3601);
             CheckIsLock();
             UpdateSpinButtonState(MG_Manager.Instance.Get_Save_Gold());
@@ -139,7 +134,7 @@ namespace MiddleGround.UI
         {
             MG_Manager.Instance.SendAdjustSlotsEvent();
             MG_Manager.Instance.canChangeGame = false;
-            img_button.sprite = sp_spinDown;
+            trans_spin.localPosition = new Vector2(0, -290);
             Material mt_L = img_L.material;
             Material mt_M = img_M.material;
             Material mt_R = img_R.materialForRendering;
@@ -223,8 +218,8 @@ namespace MiddleGround.UI
             while (!stop_R || !stop_M || !stop_L)
             {
                 yield return null;
-                timer += Time.deltaTime*2;
-                spinSpeed = Time.deltaTime * 2.6f;
+                timer += Time.unscaledDeltaTime*2;
+                spinSpeed = Time.unscaledDeltaTime * 2.6f;
                 startOffsetY_L += spinSpeed;
                 startOffsetY_M += spinSpeed;
                 startOffsetY_R += spinSpeed;
@@ -305,7 +300,7 @@ namespace MiddleGround.UI
                     }
             }
             as_Spin.Stop();
-            img_button.sprite = sp_spinUp;
+            trans_spin.localPosition = new Vector2(0, -267);
             yield return new WaitForSeconds(0.5f * Time.timeScale);
             StopCoroutine("AutoShiningLight");
             switch (rewardType)
@@ -389,20 +384,12 @@ namespace MiddleGround.UI
                 btn_addMutiple.gameObject.SetActive(false);
             if (gold >= baseNum * mutiples[0])
             {
-                if (go_ad.activeSelf)
-                    go_ad.SetActive(false);
-                if (!go_use.activeSelf)
-                    go_use.SetActive(true);
-                rect_spin.localPosition = new Vector2(0, 40);
+                img_ButtonText.sprite = sp_spin;
                 needAd = false;
             }
             else
             {
-                if (!go_ad.activeSelf)
-                    go_ad.SetActive(true);
-                if (go_use.activeSelf)
-                    go_use.SetActive(false);
-                rect_spin.localPosition = new Vector2(44, 0);
+                img_ButtonText.sprite = sp_adSpin;
                 needAd = true;
             }
         }
@@ -417,18 +404,8 @@ namespace MiddleGround.UI
             while (true)
             {
                 yield return wait;
-                if (isA)
-                {
-                    img_LightDown.sprite = sp_LightA;
-                    img_LightUp.sprite = sp_LightB;
-                    isA = false;
-                }
-                else
-                {
-                    img_LightDown.sprite = sp_LightB;
-                    img_LightUp.sprite = sp_LightA;
-                    isA = true;
-                }
+                isA = !isA;
+                img_Light.sprite = isA ? sp_LightA : sp_LightB;
             }
         }
         bool isLocked = false;
@@ -466,24 +443,14 @@ namespace MiddleGround.UI
             {
                 if (!go_lock.activeSelf)
                     go_lock.SetActive(true);
-                if (!go_ad.activeSelf)
-                    go_ad.SetActive(true);
-                if (go_use.activeSelf)
-                    go_use.SetActive(false);
-                rect_spin.localPosition = new Vector2(62.971f, 0);
-                text_btn.text = "SPEED UP";
+                img_ButtonText.sprite = sp_adSpeedup;
                 btn_addMutiple.gameObject.SetActive(false);
             }
             else
             {
                 if (go_lock.activeSelf)
                     go_lock.SetActive(false);
-                if (go_ad.activeSelf)
-                    go_ad.SetActive(false);
-                if (!go_use.activeSelf)
-                    go_use.SetActive(true);
-                rect_spin.localPosition = new Vector2(0, 40);
-                text_btn.text = "SPIN";
+                img_ButtonText.sprite = sp_spin;
             }
         }
         IEnumerator WaitForUnlock(int seconds)
