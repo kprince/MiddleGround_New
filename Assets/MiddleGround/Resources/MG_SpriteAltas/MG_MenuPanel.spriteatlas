@@ -55,12 +55,11 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e5fccc039d1d8074ea92a3c4fe5150f6, type: 3}
-    totalSpriteSurfaceArea: 568373
+    totalSpriteSurfaceArea: 516025
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: e00fef00b9f00b64aa0ce0f981a0e0d1, type: 3}
-  - {fileID: 21300000, guid: a0e2a640b43cc254ca4651f1753092ab, type: 3}
   - {fileID: 21300000, guid: 14cc2960944b71c438c1f237756f6b57, type: 3}
   - {fileID: 21300000, guid: 59746e6087c023d48ad9dc5ed9e96c98, type: 3}
   - {fileID: 21300000, guid: 6fd8e8b0ba51d704cb81fbf3fa09050c, type: 3}
@@ -70,14 +69,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 992679c3da3457d4cb93104266d1b3d3, type: 3}
   - {fileID: 21300000, guid: fad57ac35aa94a84cb0e168bf9baa0fe, type: 3}
   - {fileID: 21300000, guid: 1a8fc4e3ab2e13045bf99088ad9c57cc, type: 3}
-  - {fileID: 21300000, guid: 50f6f8e3653352b4abd3c0839cddf7e9, type: 3}
   - {fileID: 21300000, guid: 944ce3a4a8a44f943b51703217231fcd, type: 3}
   - {fileID: 21300000, guid: ea8839a47bcbb6041a3c5f975c1a4b7f, type: 3}
   - {fileID: 21300000, guid: a71254d415de0664687da46fb22b3478, type: 3}
-  - {fileID: 21300000, guid: f63f3815767316d4082cd6f2b7165284, type: 3}
   - {fileID: 21300000, guid: 2b01f7951fb364847a96e5c35ba73e59, type: 3}
   - {fileID: 21300000, guid: 793f2c564b699284596f2a4c1fa8d9e9, type: 3}
-  - {fileID: 21300000, guid: 1779e7662230ff24c84fadd3897eb3ae, type: 3}
   - {fileID: 21300000, guid: 1056703831f08034a9b2a7cd8b63b359, type: 3}
   - {fileID: 21300000, guid: 2815edc89b1831e458fe53649dca49a9, type: 3}
   - {fileID: 21300000, guid: 9642ace8c9ff1cf478ffdb6dcb7ad499, type: 3}
@@ -91,7 +87,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 2ff0745e75ac10046a464cfe580b73bd, type: 3}
   m_PackedSpriteNamesToIndex:
   - MG_Sprite_Menu_SlotsOff
-  - Btn_Redeem_H
   - MG_Sprite_Menu_Guid_Amazon
   - MG_Sprite_Menu_ScratchToken
   - MG_Sprite_Menu_DiceToken
@@ -101,14 +96,11 @@ SpriteAtlas:
   - MG_Sprite_Menu_SlotsToken
   - MG_Sprite_Menu_ScratchTicketBG
   - MG_Sprite_Menu_ScratchOff
-  - Btn_LukyWheel_N
   - MG_Sprite_Menu_Guid_Paypal
   - MG_Sprite_Menu_ScratchOn
   - MG_Sprite_Menu_Guid_O
-  - Btn_LukyWheel_H
   - MG_Sprite_Menu_Guid_G
   - MG_Sprite_Menu_TokenBg
-  - MG_Sprite_Menu_CashOut
   - MG_Sprite_Menu_DiceOff
   - MG_Sprite_Menu_CashoutNotice
   - MG_Sprite_Menu_Signin

@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c36a4a68159acc14cada900b03800649, type: 3}
-    totalSpriteSurfaceArea: 2739313
+    totalSpriteSurfaceArea: 2704429
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -71,10 +71,8 @@ SpriteAtlas:
   - {fileID: 21300000, guid: fbd1e1b2e1e388c47bdeac894a200abc, type: 3}
   - {fileID: 21300000, guid: e69d8503bf844954bb03817e778381a2, type: 3}
   - {fileID: 21300000, guid: b7c774040d2bd664da8637a839348380, type: 3}
-  - {fileID: 21300000, guid: cf4c5bc41d4b7ee449490ed35003cdb7, type: 3}
   - {fileID: 21300000, guid: 604b94d4b95c48a41908ecf382a90d80, type: 3}
   - {fileID: 21300000, guid: 19c058b5c11f16e4fbccaa741ebee237, type: 3}
-  - {fileID: 21300000, guid: 7fc2d5061c2f4e6478c2e32993ded450, type: 3}
   - {fileID: 21300000, guid: 12e5f91783ecde347bc7360d8ae3f605, type: 3}
   - {fileID: 21300000, guid: 50f87e67429a0764896418b25e6b2df2, type: 3}
   - {fileID: 21300000, guid: 4bdc86b7b2ac1a94cbb052b50be19e0f, type: 3}
@@ -103,10 +101,8 @@ SpriteAtlas:
   - MG_Sprite_Scratch_CardBG
   - MG_Sprite_Scratch_N1
   - MG_Sprite_Scratch_N4
-  - MG_Sprite_Scratch_PrizeTitle
   - MG_Sprite_Scratch_CardBase
   - MG_Sprite_Common_Lock 1
-  - MG_Sprite_Scratch_Notice
   - MG_Sprite_Scratch_N3
   - MG_Sprite_Scratch_N2
   - MG_Sprite_Scratch_CardMask
