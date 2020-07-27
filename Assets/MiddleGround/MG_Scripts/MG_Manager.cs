@@ -708,11 +708,12 @@ namespace MiddleGround
             }
             return RewardSS_Other(out num);
         }
+        public MG_PopPanel_Tips _Tips;
         public void Show_PopTipsPanel(string content, float time = 1)
         {
             str_Tips = content;
             time_Tips = time;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.Tips);
+            _Tips.OnEnter();
         }
 
         public void Play_Effect()

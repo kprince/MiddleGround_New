@@ -5,31 +5,26 @@ using UnityEngine.UI;
 
 namespace MiddleGround.UI
 {
-    public class MG_PopPanel_Tips : MG_UIBase
+    public class MG_PopPanel_Tips : MonoBehaviour
     {
         public Text text_content;
-        public override IEnumerator OnEnter()
+        CanvasGroup canvasGroup;
+        private void Awake()
+        {
+            canvasGroup = GetComponent<CanvasGroup>();
+        }
+        public void OnEnter()
         {
             canvasGroup.alpha = 1;
             canvasGroup.blocksRaycasts = true;
             text_content.text = MG_Manager.Instance.str_Tips;
             StartCoroutine(AutoClose());
-            yield return null;
         }
 
-        public override IEnumerator OnExit()
+        public void OnExit()
         {
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
-            yield return null;
-        }
-
-        public override void OnPause()
-        {
-        }
-
-        public override void OnResume()
-        {
         }
 
         IEnumerator AutoClose()
@@ -41,7 +36,7 @@ namespace MiddleGround.UI
                 time -= Time.unscaledDeltaTime;
                 text_content.text = MG_Manager.Instance.str_Tips;
             }
-            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.Tips);
+            OnExit();
         }
     }
 }

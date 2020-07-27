@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 7bed8251ae419c246922ede17800b265, type: 3}
-    totalSpriteSurfaceArea: 3357985
+    totalSpriteSurfaceArea: 3350632
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -71,7 +71,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e9903a231349a6f45828de667d8b00a3, type: 3}
   - {fileID: 21300000, guid: 81c852339be680e47a4a1f4b7618e018, type: 3}
   - {fileID: 21300000, guid: 4c93124348d47e940947a6a8b1421116, type: 3}
-  - {fileID: 21300000, guid: f41584435e0a039448917a5fb8aca6fe, type: 3}
   - {fileID: 21300000, guid: e0a682935b2a6ef438cd77126f8aebd1, type: 3}
   - {fileID: 21300000, guid: 79e107b39a27b5643b2d9ce612c00664, type: 3}
   - {fileID: 21300000, guid: 4ad270f37a9b65d45aea9e20fbbbbb13, type: 3}
@@ -80,6 +79,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e4927ca490e433347aec9995339e8e3e, type: 3}
   - {fileID: 21300000, guid: 3c7648b4f322c8149a50e11bab0fcc10, type: 3}
   - {fileID: 21300000, guid: d6be28c440b067f409ed1dcb52659a0f, type: 3}
+  - {fileID: 21300000, guid: 53d0f155e2d444844b6683921e8f8171, type: 3}
   - {fileID: 21300000, guid: f296a307bc295ca47b6fa4e392e79b7b, type: 3}
   - {fileID: 21300000, guid: 5681ba37ab9b6a34cb19feb41a0b3574, type: 3}
   - {fileID: 21300000, guid: cabcb1478c3b1ce41960ca92c48e119b, type: 3}
@@ -87,7 +87,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: da399c8903f7c1a41a820f8c699834c8, type: 3}
   - {fileID: 21300000, guid: fbf7322aa433a674fafe9c256aa71299, type: 3}
   - {fileID: 21300000, guid: 0df4123ad07ba274ab85f49ee0130768, type: 3}
-  - {fileID: 21300000, guid: 48bb0c6bd042cc14db7d464b7681fa2b, type: 3}
   - {fileID: 21300000, guid: 441881bbabc2f1e4697e9aa0f52ff2a2, type: 3}
   - {fileID: 21300000, guid: 571720bcc6bab2944877364b5d3eaec1, type: 3}
   - {fileID: 21300000, guid: 1b2153cce5c55714aa3b84fe246255e0, type: 3}
@@ -106,7 +105,6 @@ SpriteAtlas:
   - MG_Sprites_Dice2
   - MG_Sprites_DiceAniamtion10
   - MG_Sprite_Common_BlackalphaBG 1
-  - MG_Sprite_DiceCashB
   - MG_Sprites_DiceAniamtion3
   - MG_Sprite_DicePath
   - MG_Sprites_Dice5
@@ -115,6 +113,7 @@ SpriteAtlas:
   - MG_Sprites_DiceAniamtion9
   - MG_Sprites_DiceOldBrick
   - MG_Sprites_DiceAniamtion0
+  - MG_Sprite_DiceCash
   - MG_Sprite_DiceSlots
   - MG_Sprites_DiceAniamtion8
   - MG_Sprites_Dice0
@@ -122,7 +121,6 @@ SpriteAtlas:
   - MG_Sprites_Dice3
   - MG_Sprites_DiceAniamtion5
   - MG_Sprites_DiceAniamtion2
-  - MG_Sprite_DiceCashA
   - MG_Sprite_DiceScratch
   - MG_Sprites_DiceAniamtion6
   - MG_Sprites_DiceAniamtion11

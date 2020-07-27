@@ -42,7 +42,7 @@ namespace MiddleGround.UI
             btn_back.onClick.AddListener(OnBackButtonClick);
 
             shopAtlas = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.ShopPanel);
-            sp_cash = shopAtlas.GetSprite("MG_Sprite_Shop_CashB");
+            sp_cash = shopAtlas.GetSprite("MG_Sprite_Shop_Cash");
             sp_diamond = shopAtlas.GetSprite("MG_Sprite_Shop_Diamond");
             sp_amazon = shopAtlas.GetSprite("MG_Sprite_Shop_Amazon");
             sp_sss = shopAtlas.GetSprite("MG_Sprite_Shop_SSS");

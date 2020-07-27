@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using MiddleGround.UI.ButtonAnimation;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace MiddleGround.UI
         public Image img_R;
         public Image img_Light;
         public Transform trans_spinbutton;
+        public MG_Slots_ButtonAnimation _ButtonAnimation;
         Sprite sp_spin;
         Sprite sp_adAgain;
         Sprite sp_LightA;
@@ -50,6 +52,7 @@ namespace MiddleGround.UI
             sp_LightA = slotsSA.GetSprite("MG_Sprite_Slots_LightA");
             sp_LightB = slotsSA.GetSprite("MG_Sprite_Slots_LightB");
             text_nothanks.GetComponent<Button>().onClick.AddListener(OnNothanksClick);
+            _ButtonAnimation.Init(() => { img_buttonText.transform.localPosition = new Vector2(0, -11); }, () => { img_buttonText.transform.localPosition = new Vector2(0, 15); });
         }
         bool isSpining = false;
         int rewardNum = 0;
@@ -95,7 +98,6 @@ namespace MiddleGround.UI
         bool needAd = false;
         IEnumerator StartSpin()
         {
-            trans_spinbutton.localPosition = new Vector2(0, -236);
             Material mt_L = img_L.material;
             Material mt_M = img_M.material;
             Material mt_R = img_R.materialForRendering;
@@ -251,7 +253,6 @@ namespace MiddleGround.UI
                     }
             }
             as_Spin.Stop();
-            trans_spinbutton.localPosition = new Vector2(0, -211.1f);
             img_buttonText.sprite = sp_adAgain;
             yield return new WaitForSeconds(0.5f * Time.timeScale);
             StopCoroutine("AutoShiningLight");
@@ -270,17 +271,21 @@ namespace MiddleGround.UI
             }
         }
         public Text text_nothanks;
+        Color32 color_EndThanks = new Color32(154, 154, 154, 255);
+        Color32 color_StartThanks = new Color32(154, 154, 154, 0);
         IEnumerator WaitShowNothanks()
         {
             if (text_nothanks.color.a > 0)
                 yield break;
             yield return new WaitForSeconds(Time.timeScale);
-            while (text_nothanks.color.a<1)
+            float progress = 0;
+            while (progress<1)
             {
                 yield return null;
-                text_nothanks.color += Color.white * Time.unscaledDeltaTime * 2;
+                progress+= Time.unscaledDeltaTime * 2;
+                text_nothanks.color = new Color32(color_EndThanks.r, color_EndThanks.g, color_EndThanks.b, (byte)(255 * progress));
             }
-            text_nothanks.color = Color.white;
+            text_nothanks.color = color_EndThanks;
             text_nothanks.raycastTarget = true;
         }
         public override IEnumerator OnEnter()
@@ -292,7 +297,7 @@ namespace MiddleGround.UI
             img_L.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
             img_M.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
             img_R.material.SetTextureOffset(mat_mainTex_Key, new Vector2(finalOffsetX, dic_name_offsetY["7"]));
-            text_nothanks.color = Color.clear;
+            text_nothanks.color = color_StartThanks;
             text_nothanks.raycastTarget = false;
 
             Transform transAll = transform.GetChild(1);

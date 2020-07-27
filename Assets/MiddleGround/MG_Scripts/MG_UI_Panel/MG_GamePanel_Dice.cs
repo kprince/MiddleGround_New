@@ -41,10 +41,7 @@ namespace MiddleGround.UI
                 sp_DiceResults[i] = DiceAltas.GetSprite("MG_Sprites_Dice" + i);
             }
             bool packB = MG_Manager.Instance.Get_Save_PackB();
-            if (packB)
-                sp_BrickTypes.Add(DiceAltas.GetSprite("MG_Sprite_DiceCashB"));
-            else
-                sp_BrickTypes.Add(DiceAltas.GetSprite("MG_Sprite_DiceCashA"));
+            sp_BrickTypes.Add(DiceAltas.GetSprite("MG_Sprite_DiceCash"));
             sp_BrickTypes.Add(DiceAltas.GetSprite("MG_Sprite_DiceGold"));
             sp_BrickTypes.Add(DiceAltas.GetSprite("MG_Sprite_DiceSlots"));
             sp_BrickTypes.Add(DiceAltas.GetSprite("MG_Sprite_DiceScratch"));

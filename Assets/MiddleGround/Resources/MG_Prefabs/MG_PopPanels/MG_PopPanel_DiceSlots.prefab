@@ -762,6 +762,7 @@ GameObject:
   - component: {fileID: 8795990637637026914}
   - component: {fileID: 8795990637637026913}
   - component: {fileID: 8795990637637026912}
+  - component: {fileID: 4030992545248032061}
   m_Layer: 5
   m_Name: MG_DiceSlotsPanel_Spin
   m_TagString: Untagged
@@ -844,7 +845,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -855,7 +856,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 5a7997c6e597ac64bb30956f20923cce, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -869,6 +870,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4030992545248032061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8795990637637026918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a6623b6628aad44aa9db18f317c415, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8795990637920216811
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,6 +952,7 @@ MonoBehaviour:
   img_R: {fileID: 2084526006025227681}
   img_Light: {fileID: 3244359820238250867}
   trans_spinbutton: {fileID: 8795990637637026919}
+  _ButtonAnimation: {fileID: 4030992545248032061}
   text_nothanks: {fileID: 6686059658829698799}
 --- !u!1 &8795990638424315892
 GameObject:

@@ -128,11 +128,10 @@ public class Ads : MonoBehaviour
 			}
 		}
 		MG_Manager.Instance.SendAdjustPlayAdEvent(false, true, adDes);
-		if (clickAdTime >= 1)
+		if (clickAdTime >= 2)
 		{
 			MG_UIManager.Instance.CloseTopPopPanelAsync();
-			noticeText.text = text;
-			yield return new WaitForSeconds(2 * Time.timeScale);
+			MG_Manager.Instance.Show_PopTipsPanel(text);
 		}
 		notice.SetActive(false);
 	}

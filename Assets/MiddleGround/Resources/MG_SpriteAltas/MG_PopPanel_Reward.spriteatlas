@@ -55,18 +55,18 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 3e31762f42532a84fa2a170fb08a16a4, type: 3}
-    totalSpriteSurfaceArea: 412599
+    totalSpriteSurfaceArea: 812599
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: ebf0b34046c47dc45b0129673b4e0bc0, type: 3}
   - {fileID: 21300000, guid: 03161880da2d4c74eb6ca7e547ca40a9, type: 3}
-  - {fileID: 21300000, guid: be954a217e4b04e4bafa8dac645b7672, type: 3}
   - {fileID: 21300000, guid: 17a07a64f5ec4534099818f775b44f9e, type: 3}
   - {fileID: 21300000, guid: 1474e935665f70d4097f12ab2953e32a, type: 3}
   - {fileID: 21300000, guid: 4fc01b366c961f54a85ee313a9afda53, type: 3}
   - {fileID: 21300000, guid: 4d740cc7d37606243a3141958a75bb32, type: 3}
   - {fileID: 21300000, guid: 926018f814d128e45889321a201f8484, type: 3}
+  - {fileID: 21300000, guid: 82871c39324b556449989ca1b2ccb0d5, type: 3}
   - {fileID: 21300000, guid: b4e697e9495539b4f8e1c06a5a243501, type: 3}
   - {fileID: 21300000, guid: 72d0303bf17c44c479802a785cc9f5df, type: 3}
   - {fileID: 21300000, guid: 5ef7fe5b9e33f6d4c8110a3952c4ed1d, type: 3}
@@ -80,12 +80,12 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - MG_Sprite_Reward_Base
   - MG_Sprite_Common_AdIcon 1
-  - MG_Sprite_Reward_Gold
   - MG_Sprite_Common_Close 1
   - MG_Sprite_Common_ShortButton 1
   - MG_Sprite_Reward_ScratchTicket
   - MG_Sprite_Reward_PinkBG
   - MG_Sprite_Common_LongButton 1
+  - MG_Sprite_Reward_Gold
   - MG_Sprite_Reward_Title
   - MG_Sprite_Reward_GiftBG
   - MG_Sprite_Reward_Diamond

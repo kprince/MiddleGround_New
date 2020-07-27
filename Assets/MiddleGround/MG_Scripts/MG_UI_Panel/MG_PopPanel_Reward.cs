@@ -217,6 +217,7 @@ namespace MiddleGround.UI
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
 
+            MG_Manager.Instance.Play_Effect();
             if (needShowNothanks)
                 StartCoroutine("WaitShowNothanks");
         }
@@ -250,6 +251,7 @@ namespace MiddleGround.UI
                 go_adIcon.SetActive(false);
                 RewardNum = 3;
                 text_buttonText.text = "Claim";
+                text_rewardNum.text = "+" + RewardNum;
                 needAd = false;
                 trans_btn.localPosition = v2_nogiveup_btnPos;
             }
@@ -258,6 +260,7 @@ namespace MiddleGround.UI
                 go_adIcon.SetActive(false);
                 RewardNum = 2;
                 text_buttonText.text = "Claim";
+                text_rewardNum.text = "+" + RewardNum;
                 needAd = false;
                 trans_btn.localPosition = v2_nogiveup_btnPos;
             }
@@ -266,6 +269,7 @@ namespace MiddleGround.UI
                 go_adIcon.SetActive(true);
                 RewardNum = 2;
                 text_buttonText.text = "    Claim";
+                text_rewardNum.text = "+" + RewardNum;
                 needAd = true;
                 needShowNothanks = true;
             }

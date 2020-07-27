@@ -138,6 +138,7 @@ namespace MiddleGround.UI
             transAll.localScale = Vector3.one;
             canvasGroup.alpha = 1;
             canvasGroup.interactable = true;
+            MG_Manager.Instance.Play_Effect();
             if (needShowNothanks)
                 StartCoroutine("WaitShowNothanks");
         }

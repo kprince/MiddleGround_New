@@ -54,17 +54,8 @@ namespace MiddleGround.UI
             menuAtlas = MG_UIManager.Instance.GetMenuSpriteAtlas();
             sp_sss = shopAtlas.GetSprite("MG_Sprite_Shop_SSS");
             sp_gold = shopAtlas.GetSprite("MG_Sprite_Shop_Gold");
-            bool isPackB = MG_Manager.Instance.Get_Save_PackB();
-            if (isPackB)
-            {
-                sp_cash = shopAtlas.GetSprite("MG_Sprite_Shop_CashB");
-                sp_dollar = menuAtlas.GetSprite("MG_Sprite_Menu_CashB");
-            }
-            else
-            {
-                sp_cash = shopAtlas.GetSprite("MG_Sprite_Shop_CashA");
-                sp_dollar = menuAtlas.GetSprite("MG_Sprite_Menu_CashA");
-            }
+            sp_cash = shopAtlas.GetSprite("MG_Sprite_Shop_Cash");
+            sp_dollar = menuAtlas.GetSprite("MG_Sprite_Menu_Cash");
             img_BigPrizeIcon.sprite = sp_dollar;
             StartAwake();
 
@@ -110,7 +101,7 @@ namespace MiddleGround.UI
             {
                 btn_AD.gameObject.SetActive(false);
                 go_Lock.SetActive(false);
-                cor_guidHandle = StartCoroutine(AutoMoveHandle());
+                StartCoroutine("AutoMoveHandle");
                 text_btn.text = "FREE";
             }
             else
@@ -129,7 +120,7 @@ namespace MiddleGround.UI
             btn_AD.gameObject.SetActive(false);
             go_Lock.SetActive(false);
             isLock = false;
-            cor_guidHandle = StartCoroutine(AutoMoveHandle());
+            StartCoroutine("AutoMoveHandle");
         }
         void ClearBrush()
         {
@@ -143,7 +134,6 @@ namespace MiddleGround.UI
         }
         bool isLock = false;
         bool isNoTicket = false;
-        Coroutine cor_guidHandle;
         public override IEnumerator OnEnter()
         {
             CheckWehtherLock();
@@ -152,7 +142,7 @@ namespace MiddleGround.UI
             canvasGroup.alpha = 1;
             canvasGroup.blocksRaycasts = true;
             if (notTouch && !isNoTicket && !isLock)
-                cor_guidHandle = StartCoroutine(AutoMoveHandle());
+                StartCoroutine("AutoMoveHandle");
             yield return null;
             clickTime = 0;
         }
@@ -161,8 +151,7 @@ namespace MiddleGround.UI
         {
             canvasGroup.alpha = 0;
             canvasGroup.blocksRaycasts = false;
-            if (cor_guidHandle is object)
-                StopCoroutine(cor_guidHandle);
+            StopCoroutine("AutoMoveHandle");
             yield return null;
         }
 
@@ -287,7 +276,7 @@ namespace MiddleGround.UI
         {
             if (isClearing) return;
             notTouch = false;
-            StopCoroutine(cor_guidHandle);
+            StopCoroutine("AutoMoveHandle");
             if (trans_Handle.gameObject.activeSelf)
                 trans_Handle.gameObject.SetActive(false);
             pos.z = 0;
@@ -481,7 +470,7 @@ namespace MiddleGround.UI
             CheckWetherNoTickets();
             notTouch = true;
             if (notTouch && !isNoTicket && !isLock)
-                cor_guidHandle = StartCoroutine(AutoMoveHandle());
+                StartCoroutine("AutoMoveHandle");
         }
         void StartAwake()
         {

@@ -95,11 +95,9 @@ namespace MiddleGround.UI
             sp_ScratchToken = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchToken");
             sp_SlotsToken = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsToken");
             sp_DiceToken = MenuAtlas.GetSprite("MG_Sprite_Menu_DiceToken");
+            img_CashIcon.sprite = MenuAtlas.GetSprite("MG_Sprite_Menu_Cash");
             packB = MG_Manager.Instance.Get_Save_PackB();
-            if (packB)
-                img_CashIcon.sprite = MenuAtlas.GetSprite("MG_Sprite_Menu_CashB");
-            else
-                img_CashIcon.sprite = MenuAtlas.GetSprite("MG_Sprite_Menu_CashA");
+
             go_cashoutTips_cash.SetActive(packB);
             go_cashoutTips_special.SetActive(packB);
             btn_shop.gameObject.SetActive(packB);

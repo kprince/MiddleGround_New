@@ -43,10 +43,6 @@ namespace MiddleGround.UI
             for(int i = 0; i < typeCount; i++)
             {
                 string name = ((MG_Wheel_RewardType)i).ToString();
-                if (i == (int)MG_Wheel_RewardType.Cash)
-                {
-                    name += packB ? "B" : "A";
-                }
                 dic_type_sprite.Add(i, wheelSA.GetSprite("MG_Sprite_Wheel_" + name));
             }
 

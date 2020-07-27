@@ -158,8 +158,6 @@ namespace MiddleGround.UI
             if (targetSprite is null)
             {
                 string sp_name = "MG_Sprite_Shop_" + flyType;
-                if (flyType == MG_MenuFlyTarget.Cash)
-                    sp_name += packB ? "B" : "A";
                 targetSprite = shopSA.GetSprite(sp_name);
                 dic_flytype_sp.Add((int)flyType, targetSprite);
             }

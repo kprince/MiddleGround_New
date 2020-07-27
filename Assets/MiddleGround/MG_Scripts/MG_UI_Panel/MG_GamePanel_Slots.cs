@@ -1,5 +1,6 @@
 ﻿using MiddleGround.GameConfig;
 using MiddleGround.Save;
+using MiddleGround.UI.ButtonAnimation;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace MiddleGround.UI
         public Text text_FruitNum;
         public GameObject go_lock;
         public Transform trans_spin;
+        public MG_Slots_ButtonAnimation _ButtonAnimation;
 
         Sprite sp_LightA;
         Sprite sp_LightB;
@@ -68,6 +70,7 @@ namespace MiddleGround.UI
             sp_spin = slotsSA.GetSprite("MG_Sprite_Slots_Spin");
             sp_LightA = slotsSA.GetSprite("MG_Sprite_Slots_LightA");
             sp_LightB = slotsSA.GetSprite("MG_Sprite_Slots_LightB");
+            _ButtonAnimation.Init(() => { img_ButtonText.transform.localPosition = new Vector2(0, -11); }, () => { img_ButtonText.transform.localPosition = new Vector2(0, 15); });
         }
         int clickTime = 0;
         void OnSpinButtonClick()
@@ -134,7 +137,6 @@ namespace MiddleGround.UI
         {
             MG_Manager.Instance.SendAdjustSlotsEvent();
             MG_Manager.Instance.canChangeGame = false;
-            trans_spin.localPosition = new Vector2(0, -290);
             Material mt_L = img_L.material;
             Material mt_M = img_M.material;
             Material mt_R = img_R.materialForRendering;
@@ -300,7 +302,6 @@ namespace MiddleGround.UI
                     }
             }
             as_Spin.Stop();
-            trans_spin.localPosition = new Vector2(0, -267);
             yield return new WaitForSeconds(0.5f * Time.timeScale);
             StopCoroutine("AutoShiningLight");
             switch (rewardType)
@@ -337,6 +338,7 @@ namespace MiddleGround.UI
             isSpining = false;
             MG_Manager.Instance.canChangeGame = true;
         }
+        bool spinAnimationPlaying = false;
         public override IEnumerator OnEnter()
         {
             canvasGroup.alpha = 1;
