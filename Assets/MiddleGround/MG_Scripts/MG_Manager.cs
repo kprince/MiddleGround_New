@@ -539,8 +539,7 @@ namespace MiddleGround
             };
             MG_Slots_RewardType RewardCash(out int needNum)
             {
-                //needNum = (int)(useNum * UnityEngine.Random.Range(_SlotsCash.rewardPercentRangeMin, _SlotsCash.rewardPercentRangeMax));
-                needNum = UnityEngine.Random.Range(5, 11);
+                needNum = UnityEngine.Random.Range((int)(_SlotsCash.rewardPercentRangeMin * 100), (int)(_SlotsCash.rewardPercentRangeMax * 100));
                 return MG_Slots_RewardType.Cash;
             };
             MG_Slots_RewardType RewardDiamond(out int needNum)

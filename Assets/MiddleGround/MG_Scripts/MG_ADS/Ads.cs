@@ -155,3 +155,5 @@ public class Ads : MonoBehaviour
 		popCallback();
     }
 }
+//FB A:774613690010415
+//FB IOS:308946513807140
