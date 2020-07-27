@@ -82,6 +82,7 @@ namespace MiddleGround.UI
             else
                 f_guidY = 513;
             trans_guidBase.localPosition = new Vector2(0, f_guidY);
+            packB = MG_Manager.Instance.Get_Save_PackB();
 
             MenuAtlas = MG_UIManager.Instance.GetMenuSpriteAtlas();
 
@@ -95,7 +96,7 @@ namespace MiddleGround.UI
             sp_ScratchToken = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchToken");
             sp_SlotsToken = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsToken");
             sp_DiceToken = MenuAtlas.GetSprite("MG_Sprite_Menu_DiceToken");
-            img_CashIcon.sprite = MenuAtlas.GetSprite("MG_Sprite_Menu_Cash");
+            img_CashIcon.sprite = MenuAtlas.GetSprite("MG_Sprite_Menu_Cash" + (packB ? "B" : "A"));
             packB = MG_Manager.Instance.Get_Save_PackB();
 
             go_cashoutTips_cash.SetActive(packB);

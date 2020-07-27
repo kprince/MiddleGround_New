@@ -45,7 +45,7 @@ namespace MiddleGround.UI
             base.Awake();
             btn_Spin.onClick.AddListener(OnSpinButtonClick);
             bool packB = MG_Manager.Instance.Get_Save_PackB();
-            finalOffsetX = packB ? offsetXB : offsetXA;
+            finalOffsetX = 0;
             slotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_GamePanelType.SlotsPanel);
             sp_spin = slotsSA.GetSprite("MG_Sprite_Slots_Spin");
             sp_adAgain = slotsSA.GetSprite("MG_Sprite_Slots_Again");

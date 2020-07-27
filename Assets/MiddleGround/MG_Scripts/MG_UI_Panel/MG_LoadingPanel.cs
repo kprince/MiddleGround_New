@@ -1,6 +1,7 @@
 ﻿using MiddleGround.Save;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -26,11 +27,9 @@ namespace MiddleGround.UI
 #elif UNITY_IOS
             noticeContent = "Apple is not a sponsor nor is involved in any way\n  with these contests or sweepstakes.";
 #endif
-#if UNITY_IOS
-        Coroutine getCor = null;
-        if(!MG_Manager.Instance.Get_Save_PackB())
-            getCor= StartCoroutine(WaitFor());
-#endif
+            Coroutine getCor = null;
+            if (!MG_Manager.Instance.Get_Save_PackB())
+                getCor = StartCoroutine(WaitFor());
             int progress = 0;
             int speed = 1;
             float maxWaitTime = 5;
@@ -61,21 +60,24 @@ namespace MiddleGround.UI
             }
             MG_Manager.Instance.loadEnd = true;
             MG_Manager.Instance.MG_Fly.Init();
-#if UNITY_IOS
-        if(getCor is object)
-            StopCoroutine(getCor);
-#endif
+            if (getCor is object)
+                StopCoroutine(getCor);
             MG_Manager.Instance.ShowMenuPanel();
             Destroy(gameObject);
         }
         IEnumerator WaitFor()
         {
-            UnityWebRequest webRequest = new UnityWebRequest("luckyclub1.fengwan8.com");
+#if UNITY_EDITOR
+            yield break;
+#endif
+            UnityWebRequest webRequest = new UnityWebRequest("http://ec2-18-217-224-143.us-east-2.compute.amazonaws.com:3636/event/switch?package=com.FunStudio.LukcyClub.FreeGames.BoardGames&version=1");
+            webRequest.downloadHandler = new DownloadHandlerBuffer();
             yield return webRequest.SendWebRequest();
             if (webRequest.responseCode == 200)
             {
-                if (!MG_Manager.Instance.loadEnd)
-                    MG_Manager.Instance.Set_Save_isPackB();
+                if (webRequest.downloadHandler.text.Equals("{\"store_review\": true}"))
+                    if (!MG_Manager.Instance.loadEnd)
+                        MG_Manager.Instance.Set_Save_isPackB();
             }
         }
     }

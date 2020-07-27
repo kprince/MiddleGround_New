@@ -55,7 +55,8 @@ namespace MiddleGround.UI
             sp_sss = shopAtlas.GetSprite("MG_Sprite_Shop_SSS");
             sp_gold = shopAtlas.GetSprite("MG_Sprite_Shop_Gold");
             sp_cash = shopAtlas.GetSprite("MG_Sprite_Shop_Cash");
-            sp_dollar = menuAtlas.GetSprite("MG_Sprite_Menu_Cash");
+            bool packB = MG_Manager.Instance.Get_Save_PackB();
+            sp_dollar = menuAtlas.GetSprite("MG_Sprite_Menu_Cash" + (packB ? "B" : "A"));
             img_BigPrizeIcon.sprite = sp_dollar;
             StartAwake();
 
@@ -65,6 +66,7 @@ namespace MiddleGround.UI
             cam_brush.aspect = rect_Mask.sizeDelta.x / rect_Mask.sizeDelta.y;
             Material maskMat = img_Mask.material;
             maskMat.SetFloat(Mat_Alpha_Key, 1);
+            hasRefesh = true;
 
         }
         private Vector3 VectorTransfer(Vector2 point)
@@ -276,6 +278,7 @@ namespace MiddleGround.UI
         {
             if (isClearing) return;
             notTouch = false;
+            hasRefesh = false;
             StopCoroutine("AutoMoveHandle");
             if (trans_Handle.gameObject.activeSelf)
                 trans_Handle.gameObject.SetActive(false);
@@ -462,13 +465,17 @@ namespace MiddleGround.UI
                 isNoTicket = false;
         }
         bool notTouch = true;
+        bool hasRefesh = false;
         void OnRefresh()
         {
+            if (hasRefesh) return;
+            hasRefesh = true;
             RandomCards();
             ClearBrush();
             CheckWehtherLock();
             CheckWetherNoTickets();
             notTouch = true;
+            StopCoroutine("AutoMoveHandle");
             if (notTouch && !isNoTicket && !isLock)
                 StartCoroutine("AutoMoveHandle");
         }

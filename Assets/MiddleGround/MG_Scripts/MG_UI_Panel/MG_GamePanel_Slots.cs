@@ -63,7 +63,7 @@ namespace MiddleGround.UI
             bool packB = MG_Manager.Instance.Get_Save_PackB();
             mutiplesIndex = 0;
             text_X10.text = "x" + mutiples[mutiplesIndex];
-            finalOffsetX = packB ? offsetXB : offsetXA;
+            finalOffsetX = 0;
             slotsSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_GamePanelType.SlotsPanel);
             sp_adSpeedup = slotsSA.GetSprite("MG_Sprite_Slots_Speedup");
             sp_adSpin = slotsSA.GetSprite("MG_Sprite_Slots_AdSpin");

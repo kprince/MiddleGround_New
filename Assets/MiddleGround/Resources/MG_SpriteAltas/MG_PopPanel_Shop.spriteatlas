@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 0bbf4ebad9d1a3d46a12cbafceaaad93, type: 3}
-    totalSpriteSurfaceArea: 649365
+    totalSpriteSurfaceArea: 1658167
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -79,7 +79,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e8c16e5ac2731924fa32877113b143e0, type: 3}
   - {fileID: 21300000, guid: 5fea1aca689ea2c46ac41ed3706f59f7, type: 3}
   - {fileID: 21300000, guid: c5b4badadb3d4c946a992cf64851a201, type: 3}
-  - {fileID: 21300000, guid: e2d685fab10443c4cb35c654f9943784, type: 3}
   - {fileID: 21300000, guid: f63f043becefb864ab4dd1f2f77ff6da, type: 3}
   - {fileID: 21300000, guid: bc1f96cbb2ddfbb47812879e8e7ca4c3, type: 3}
   - {fileID: 21300000, guid: 5ccde19c841248b41a004fe3dee7e3e0, type: 3}
@@ -108,7 +107,6 @@ SpriteAtlas:
   - MG_Sprite_Shop_Scratch
   - MG_Sprite_Shop_SliderBG
   - MG_Sprite_Shop_ScratchTicket
-  - MG_Sprite_Shop_Gfit
   - MG_Sprite_Shop_Top
   - Img_ZheZhao
   - MG_Sprite_Shop_WheelTicket
