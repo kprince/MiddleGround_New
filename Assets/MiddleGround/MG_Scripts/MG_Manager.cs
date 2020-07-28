@@ -371,7 +371,7 @@ namespace MiddleGround
             int cash = Get_Save_Cash();
             int sss = Get_Save_777();
             int scratchedTimes = MG_SaveManager.ScratchRewardCashAsTimeIndex - 1;
-            if (MG_SaveManager.ScratchedTimes == MG_SaveManager.ScratchRewardCashAsTimeIndex - 1 && MG_SaveManager.TodayExtraRewardTimes > 0)
+            if (MG_SaveManager.ScratchedTimes >= MG_SaveManager.ScratchRewardCashAsTimeIndex - 1 && MG_SaveManager.TodayExtraRewardTimes > 0)
             {
                 for (int i = 0; i < configCount; i++)
                 {

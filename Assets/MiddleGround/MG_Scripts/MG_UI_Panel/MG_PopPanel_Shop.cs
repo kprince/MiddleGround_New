@@ -63,7 +63,7 @@ namespace MiddleGround.UI
             item1.Init(sp_cash, sp_amazon100, "100 Dollar=$100");
             item2.Init(sp_amazon, sp_amazon500, "100 Cards=$500");
             item3.Init(sp_sss, sp_amazon1000, "150 Lukcy=$1000");
-            item4.Init(sp_fruit, sp_amazon10000, "200 Fruits\n=$10,000");
+            item4.Init(sp_fruit, sp_amazon10000, "200 Fruits=$10,000");
 
             btn_get0.onClick.AddListener(OnGetButtonClick);
             btn_get1.onClick.AddListener(OnGetButtonClick);
