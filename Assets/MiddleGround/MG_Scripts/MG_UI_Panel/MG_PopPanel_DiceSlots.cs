@@ -36,8 +36,6 @@ namespace MiddleGround.UI
             {"7",0.948f}
         };
         const string mat_mainTex_Key = "_MainTex";
-        const float offsetXA = 0.5f;
-        const float offsetXB = 0;
         float finalOffsetX = 0.25f;
         SpriteAtlas slotsSA;
         protected override void Awake()

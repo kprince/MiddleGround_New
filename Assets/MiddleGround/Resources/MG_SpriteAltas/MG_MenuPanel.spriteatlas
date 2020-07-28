@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e5fccc039d1d8074ea92a3c4fe5150f6, type: 3}
-    totalSpriteSurfaceArea: 519625
+    totalSpriteSurfaceArea: 543625
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -72,6 +72,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 944ce3a4a8a44f943b51703217231fcd, type: 3}
   - {fileID: 21300000, guid: ea8839a47bcbb6041a3c5f975c1a4b7f, type: 3}
   - {fileID: 21300000, guid: a71254d415de0664687da46fb22b3478, type: 3}
+  - {fileID: 21300000, guid: 2ffdc0559901f8f449afb8ee93ff9247, type: 3}
   - {fileID: 21300000, guid: 2b01f7951fb364847a96e5c35ba73e59, type: 3}
   - {fileID: 21300000, guid: 793f2c564b699284596f2a4c1fa8d9e9, type: 3}
   - {fileID: 21300000, guid: 1056703831f08034a9b2a7cd8b63b359, type: 3}
@@ -85,6 +86,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 6c7e04bcdbe18c54c909a539bfe35746, type: 3}
   - {fileID: 21300000, guid: 6b3d57bcc84a3144aae1567862002440, type: 3}
   - {fileID: 21300000, guid: c6d345cc92c42bd409ec9cdc4d5cbcc2, type: 3}
+  - {fileID: 21300000, guid: 2b205beda1b1c3645b474b40a6ec9d57, type: 3}
   - {fileID: 21300000, guid: 2ff0745e75ac10046a464cfe580b73bd, type: 3}
   m_PackedSpriteNamesToIndex:
   - MG_Sprite_Menu_SlotsOff
@@ -100,6 +102,7 @@ SpriteAtlas:
   - MG_Sprite_Menu_Guid_Paypal
   - MG_Sprite_Menu_ScratchOn
   - MG_Sprite_Menu_Guid_O
+  - MG_Sprite_Menu_WheelOff
   - MG_Sprite_Menu_Guid_G
   - MG_Sprite_Menu_TokenBg
   - MG_Sprite_Menu_DiceOff
@@ -113,6 +116,7 @@ SpriteAtlas:
   - MG_Sprite_Menu_RedPoint
   - MG_Sprite_Menu_Bottom
   - MG_Sprite_Menu_Wheel
+  - MG_Sprite_Menu_WheelOn
   - MG_Sprite_Menu_Guid_B
   m_Tag: MG_MenuPanel
   m_IsVariant: 0

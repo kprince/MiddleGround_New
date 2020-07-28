@@ -49,8 +49,6 @@ namespace MiddleGround.UI
 
         const string mat_mainTex_Key = "_MainTex";
         float finalOffsetX = 0.25f;
-        const float offsetXA = 0.5f;
-        const float offsetXB = 0;
         protected override void Awake()
         {
             base.Awake();
@@ -380,10 +378,6 @@ namespace MiddleGround.UI
                 mutiplesIndex = 0;
                 text_X10.text = "x" + mutiples[0];
             }
-            if (gold >= baseNum * mutiples[1])
-                btn_addMutiple.gameObject.SetActive(true);
-            else
-                btn_addMutiple.gameObject.SetActive(false);
             if (gold >= baseNum * mutiples[0])
             {
                 img_ButtonText.sprite = sp_spin;
@@ -446,7 +440,6 @@ namespace MiddleGround.UI
                 if (!go_lock.activeSelf)
                     go_lock.SetActive(true);
                 img_ButtonText.sprite = sp_adSpeedup;
-                btn_addMutiple.gameObject.SetActive(false);
             }
             else
             {

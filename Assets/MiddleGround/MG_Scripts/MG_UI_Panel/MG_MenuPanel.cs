@@ -11,11 +11,9 @@ namespace MiddleGround.UI
     {
         public Button btn_Setting;
         public Button btn_Wheel;
-        public Button btn_Sign;
         public Button btn_Scratch;
         public Button btn_Dice;
         public Button btn_Slots;
-        public Button btn_shop;
         public Button btn_Gold;
         public Button btn_Cash;
         public Button btn_SpecialToken;
@@ -37,7 +35,6 @@ namespace MiddleGround.UI
         public Text text_guidDes;
 
         public GameObject go_wheelRP;
-        public GameObject go_signRP;
         public GameObject go_scratchRP;
         public GameObject go_cashoutTips_cash;
         public GameObject go_cashoutTips_special;
@@ -48,8 +45,11 @@ namespace MiddleGround.UI
         Sprite sp_diceOff;
         Sprite sp_slotsOn;
         Sprite sp_slotsOff;
+        Sprite sp_wheelOn;
+        Sprite sp_wheelOff;
         Image img_scratchbutton;
         Image img_dicebutton;
+        Image img_wheelbutton;
         Image img_slotsbutton;
 
         SpriteAtlas MenuAtlas;
@@ -58,15 +58,14 @@ namespace MiddleGround.UI
             base.Awake();
             img_scratchbutton = btn_Scratch.image;
             img_dicebutton = btn_Dice.image;
+            img_wheelbutton = btn_Wheel.image;
             img_slotsbutton = btn_Slots.image;
 
             btn_Setting.onClick.AddListener(OnSettingButtonClick);
             btn_Wheel.onClick.AddListener(OnWheelButtonClick);
-            btn_Sign.onClick.AddListener(OnSignButtonClick);
             btn_Scratch.onClick.AddListener(OnScratchButtonClick);
             btn_Dice.onClick.AddListener(OnDiceButtonClick);
             btn_Slots.onClick.AddListener(OnSlotsButtonClick);
-            btn_shop.onClick.AddListener(OnShopButtonClick);
             btn_Gold.onClick.AddListener(OnGoldButtonClick);
             btn_Cash.onClick.AddListener(OnCashButtonClick);
             btn_SpecialToken.onClick.AddListener(OnSpecialButtonClick);
@@ -92,6 +91,8 @@ namespace MiddleGround.UI
             sp_scratchOn = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchOn");
             sp_slotsOff = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsOff");
             sp_slotsOn = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsOn");
+            sp_wheelOff = MenuAtlas.GetSprite("MG_Sprite_Menu_WheelOff");
+            sp_wheelOn = MenuAtlas.GetSprite("MG_Sprite_Menu_WheelOn");
 
             sp_ScratchToken = MenuAtlas.GetSprite("MG_Sprite_Menu_ScratchToken");
             sp_SlotsToken = MenuAtlas.GetSprite("MG_Sprite_Menu_SlotsToken");
@@ -101,7 +102,6 @@ namespace MiddleGround.UI
 
             go_cashoutTips_cash.SetActive(packB);
             go_cashoutTips_special.SetActive(packB);
-            btn_shop.gameObject.SetActive(packB);
 
             dic_flytarget_transform.Add((int)MG_MenuFlyTarget.OneGold, btn_Gold.transform);
             dic_flytarget_transform.Add((int)MG_MenuFlyTarget.Cash, btn_Cash.transform);
@@ -121,17 +121,12 @@ namespace MiddleGround.UI
             if (!MG_Manager.Instance.canChangeGame) return;
             MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.SettingPanel);
         }
-        void OnWheelButtonClick()
+        public void OnWheelButtonClick()
         {
             MG_Manager.Play_ButtonClick();
             if (!MG_Manager.Instance.canChangeGame) return;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.WheelPanel);
-        }
-        void OnSignButtonClick()
-        {
-            MG_Manager.Play_ButtonClick();
-            if (!MG_Manager.Instance.canChangeGame) return;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.SignPanel);
+            MG_UIManager.Instance.ShowGamePanel(MG_GamePanelType.WheelPanel);
+            UpdateBottomButtonState(MG_GamePanelType.WheelPanel);
         }
         public void OnScratchButtonClick()
         {
@@ -158,12 +153,6 @@ namespace MiddleGround.UI
             MG_UIManager.Instance.ShowGamePanel(MG_GamePanelType.SlotsPanel);
             UpdateBottomButtonState(MG_GamePanelType.SlotsPanel);
             SetSpecialToken(MG_SpecialTokenType.SlotsToken);
-        }
-        void OnShopButtonClick()
-        {
-            MG_Manager.Play_ButtonClick();
-            if (!MG_Manager.Instance.canChangeGame) return;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
         }
         void OnGoldButtonClick()
         {
@@ -199,7 +188,6 @@ namespace MiddleGround.UI
             UpdateScratchTicketText();
             UpdateSpecialTokenText();
             UpdateWheelRP();
-            UpdateSignRP();
         }
         Sprite sp_ScratchToken = null;
         Sprite sp_SlotsToken = null;
@@ -257,10 +245,6 @@ namespace MiddleGround.UI
         {
             go_wheelRP.SetActive(MG_Manager.Instance.Get_Save_WheelTickets() > 0);
         }
-        public void UpdateSignRP()
-        {
-            go_signRP.SetActive(MG_Manager.Instance.Get_Save_WetherSign());
-        }
         public void UpdateSpecialTokenText()
         {
             int panelIndex = MG_SaveManager.Current_GamePanel;
@@ -285,16 +269,25 @@ namespace MiddleGround.UI
                     img_scratchbutton.sprite = sp_scratchOff;
                     img_dicebutton.sprite = sp_diceOn;
                     img_slotsbutton.sprite = sp_slotsOff;
+                    img_wheelbutton.sprite = sp_wheelOff;
                     break;
                 case MG_GamePanelType.ScratchPanel:
                     img_scratchbutton.sprite = sp_scratchOn;
                     img_dicebutton.sprite = sp_diceOff;
                     img_slotsbutton.sprite = sp_slotsOff;
+                    img_wheelbutton.sprite = sp_wheelOff;
                     break;
                 case MG_GamePanelType.SlotsPanel:
                     img_scratchbutton.sprite = sp_scratchOff;
                     img_dicebutton.sprite = sp_diceOff;
                     img_slotsbutton.sprite = sp_slotsOn;
+                    img_wheelbutton.sprite = sp_wheelOff;
+                    break;
+                case MG_GamePanelType.WheelPanel:
+                    img_scratchbutton.sprite = sp_scratchOff;
+                    img_dicebutton.sprite = sp_diceOff;
+                    img_slotsbutton.sprite = sp_slotsOff;
+                    img_wheelbutton.sprite = sp_wheelOn;
                     break;
             }
         }

@@ -46,7 +46,8 @@ namespace MiddleGround
         }
         private void Start()
         {
-            //ShowMenuPanel();
+            MG_Fly.Init();
+            ShowMenuPanel();
         }
         public void ShowMenuPanel()
         {
@@ -219,28 +220,6 @@ namespace MiddleGround
         public int Get_Save_TotalTimes()
         {
             return MG_SaveManager.TotalPlayTimes;
-        }
-        public int Get_Save_NextSignDay()
-        {
-            return MG_SaveManager.LastSignDay;
-        }
-        public bool Get_Save_WetherSign()
-        {
-            DateTime now = DateTime.Now;
-            DateTime lastSign = MG_SaveManager.LastSignDate;
-            if (now.Year > lastSign.Year)
-                return true;
-            else if (now.Year == lastSign.Year)
-            {
-                if (now.Month > lastSign.Month)
-                    return true;
-                else if (now.Month == lastSign.Month)
-                {
-                    if (now.Day > lastSign.Day)
-                        return true;
-                }
-            }
-            return false;
         }
         public int Get_Config_NextGiftStep()
         {

@@ -73,7 +73,6 @@ namespace MiddleGround.Save
         const string Save_GetFruitsTimes_Key = "MG_GetFruitsTimes";
         const string Save_GetAmazonTimes_Key = "MG_GetAmazonTimes";
 
-        const string Save_SignState_Key = "MG_SignState";
         public static int Current_GamePanel
         {
             get
@@ -111,37 +110,6 @@ namespace MiddleGround.Save
                 if (value < 0)
                     value = 0;
                 PlayerPrefs.SetInt(Save_Cash_Key, value);
-                PlayerPrefs.Save();
-            }
-        }
-        public static int LastSignDay
-        {
-            get
-            {
-                return PlayerPrefs.GetInt(Save_CurrentSignDay_Key, 0);
-            }
-        }
-        public static DateTime LastSignDate
-        {
-            get
-            {
-                string saveValue = PlayerPrefs.GetString(Save_LastSignDate, string.Empty);
-                if (string.IsNullOrEmpty(saveValue))
-                {
-                    DateTime now = DateTime.Now.AddDays(-1);
-                    PlayerPrefs.SetString(Save_LastSignDate, now.ToString());
-                    PlayerPrefs.Save();
-                    return now;
-                }
-                else
-                {
-                    return DateTime.Parse(saveValue);
-                }
-            }
-            set
-            {
-                PlayerPrefs.SetString(Save_LastSignDate, value.ToString());
-                PlayerPrefs.SetInt(Save_CurrentSignDay_Key, LastSignDay + 1);
                 PlayerPrefs.Save();
             }
         }
@@ -853,18 +821,6 @@ namespace MiddleGround.Save
                     PlayerPrefs.SetInt(Save_GetAmazonTimes_Key, value);
                     PlayerPrefs.Save();
                 }
-            }
-        }
-        public static string SignState
-        {
-            get
-            {
-                return PlayerPrefs.GetString(Save_SignState_Key, "0000000");
-            }
-            set
-            {
-                PlayerPrefs.SetString(Save_SignState_Key, value);
-                PlayerPrefs.Save();
             }
         }
     }

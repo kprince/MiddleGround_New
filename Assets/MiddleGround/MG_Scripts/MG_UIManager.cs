@@ -22,8 +22,7 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.DiceSlotsPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceSlots" },
             {(int)MG_PopPanelType.ShopPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Shop" },
             {(int)MG_PopPanelType.Rateus,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Rateus" },
-            {(int)MG_PopPanelType.WheelPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Wheel" },
-            {(int)MG_PopPanelType.SignPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Sign" },
+            {(int)MG_GamePanelType.WheelPanel,"MG_Prefabs/MG_GamePanels/MG_GamePanel_Wheel" },
             {(int)MG_PopPanelType.MostRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Reward" },
             {(int)MG_PopPanelType.CashRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_CashReward" },
             {(int)MG_PopPanelType.GiftPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Gift" },
@@ -37,8 +36,7 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.Random,"MG_SpriteAltas/MG_PopPanel_Random" },
             {(int)MG_PopPanelType.SettingPanel,"MG_SpriteAltas/MG_PopPanel_Setting" },
             {(int)MG_GamePanelType.ScratchPanel,"MG_SpriteAltas/MG_GamePanel_Scratch" },
-            {(int)MG_PopPanelType.WheelPanel,"MG_SpriteAltas/MG_PopPanel_Wheel" },
-            {(int)MG_PopPanelType.SignPanel ,"MG_SpriteAltas/MG_PopPanel_Sign"},
+            {(int)MG_GamePanelType.WheelPanel,"MG_SpriteAltas/MG_GamePanel_Wheel" },
             {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
             {(int)MG_PopPanelType.MostRewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
             {(int)MG_PopPanelType.CashRewardPanel,"MG_SpriteAltas/MG_PopPanel_CashReward" },
@@ -439,7 +437,7 @@ namespace MiddleGround.UI
         }
         public void UpdateWheelTicketText()
         {
-            MG_PopPanel_Wheel _PopPanel_Wheel = Get_UIPanel((int)MG_PopPanelType.WheelPanel) as MG_PopPanel_Wheel;
+            MG_PopPanel_Wheel _PopPanel_Wheel = Get_UIPanel((int)MG_GamePanelType.WheelPanel) as MG_PopPanel_Wheel;
             if (_PopPanel_Wheel is null)
                 return;
             _PopPanel_Wheel.UpdateWheelTicketShow();
@@ -460,10 +458,6 @@ namespace MiddleGround.UI
         public void UpdateWheelRP()
         {
             MenuPanel.UpdateWheelRP();
-        }
-        public void UpdateSignRP()
-        {
-            MenuPanel.UpdateSignRP();
         }
         public SpriteAtlas GetSpriteAtlas(int index)
         {
@@ -525,26 +519,24 @@ namespace MiddleGround.UI
     }
     public enum MG_PopPanelType
     {
-        WheelPanel = 3,
-        SignPanel = 4,
-        SettingPanel = 5,
-        ExchangePanel = 6,
-        DiceSlotsPanel = 7,
-        ExtraRewardPanel = 8,
-        ShopPanel = 9,
-        Random = 10,
-        BuyDiceEnergy = 11,
-        //Tips = 12,
-        Rateus = 13,
-        MostRewardPanel = 14,
-        CashRewardPanel = 15,
-        GiftPanel = 16,
+        SettingPanel = 4,
+        ExchangePanel = 5,
+        DiceSlotsPanel = 6,
+        ExtraRewardPanel = 7,
+        ShopPanel = 8,
+        Random = 9,
+        BuyDiceEnergy = 10,
+        Rateus = 11,
+        MostRewardPanel = 12,
+        CashRewardPanel = 13,
+        GiftPanel = 14,
     }
     public enum MG_GamePanelType
     {
         ScratchPanel = 0,
         DicePanel = 1,
-        SlotsPanel = 2
+        SlotsPanel = 2,
+        WheelPanel = 3,
     }
     public enum MG_MenuFlyTarget
     {
