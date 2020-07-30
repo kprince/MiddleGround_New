@@ -15,33 +15,33 @@ public class AdjustEventLogger : MonoBehaviour
     private static extern string Getidfa();
 #endif
 #if UNITY_IOS
-    public const string APP_TOKEN = "sjy8jy6mznk0";
-    public const string TOKEN_open = "c6mv1l";
-    public const string TOKEN_ad = "iwuess";
-    public const string TOKEN_noads = "uey5x5";
-    public const string TOKEN_stage_end = "e3lkke";
-    public const string TOKEN_wheel="f1o9hb";
-    public const string TOKEN_slots="lqz7mo";
-    public const string TOKEN_ggl = "60pyfl";
-    public const string TOKEN_deeplink = "5180ad";
-    public const string TOKEN_packb = "l940uc";
+    public const string APP_TOKEN = "";
+    public const string TOKEN_open = "";
+    public const string TOKEN_ad = "";
+    public const string TOKEN_noads = "";
+    public const string TOKEN_stage_end = "";
+    public const string TOKEN_wheel="";
+    public const string TOKEN_slots="";
+    public const string TOKEN_ggl = "";
+    public const string TOKEN_deeplink = "";
+    public const string TOKEN_packb = "";
 #elif UNITY_ANDROID
-    public const string APP_TOKEN = "uzi58v7b4z5s";
-    public const string TOKEN_open = "yk9drl";
-    public const string TOKEN_ad = "tcxo4z";
-    public const string TOKEN_noads = "ucrgoe";
+    public const string APP_TOKEN = "";
+    public const string TOKEN_open = "";
+    public const string TOKEN_ad = "";
+    public const string TOKEN_noads = "";
     /// <summary>
     /// dice
     /// </summary>
-    public const string TOKEN_stage_end = "5b3uml";
-    public const string TOKEN_wheel = "9v09at";
-    public const string TOKEN_slots = "i6sdn9";
+    public const string TOKEN_stage_end = "";
+    public const string TOKEN_wheel = "";
+    public const string TOKEN_slots = "";
     /// <summary>
     /// scratch
     /// </summary>
-    public const string TOKEN_ggl = "a3anx8";
-    public const string TOKEN_deeplink = "2vfwqp";
-    public const string TOKEN_packb = "52azy0";
+    public const string TOKEN_ggl = "";
+    public const string TOKEN_deeplink = "";
+    public const string TOKEN_packb = "";
 #endif
     public static AdjustEventLogger Instance;
     private void Awake()

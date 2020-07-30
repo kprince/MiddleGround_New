@@ -10,13 +10,13 @@ using UnityEngine.UI;
 public class Ads : MonoBehaviour
 {
 #if UNITY_ANDROID
-	private const string APP_KEY = "ce674e95";
+	private const string APP_KEY = "";
 #elif UNITY_IOS
-	private const string APP_KEY = "ce67c1a5";
+	private const string APP_KEY = "";
 #endif
 	public static Ads _instance;
 	public string adDes = string.Empty;
-	public const string AppName = "A031_luckyclub";
+	public const string AppName = "";
 	private void Awake()
 	{
 		_instance = this;
