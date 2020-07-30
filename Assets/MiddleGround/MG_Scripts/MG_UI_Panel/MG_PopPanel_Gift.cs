@@ -27,7 +27,7 @@ namespace MiddleGround.UI
         void OnOpen()
         {
             MG_Manager.Play_ButtonClick();
-            if (MG_SaveManager.FirstCome)
+            if (MG_SaveManager.FirstCome && MG_Manager.Instance.NeedFirstComeReward)
             {
                 MG_SaveManager.FirstCome = false;
                 OpenGift();
@@ -74,7 +74,7 @@ namespace MiddleGround.UI
             img_giveup.raycastTarget = false;
             text_remaining.text = "Remaining : " + MG_SaveManager.TodayExtraRewardTimes;
             StartCoroutine("AutoRotateGiftLight");
-            if (MG_SaveManager.FirstCome)
+            if (MG_SaveManager.FirstCome && MG_Manager.Instance.NeedFirstComeReward)
             {
                 go_adIcon.SetActive(false);
                 text_remaining.gameObject.SetActive(false);

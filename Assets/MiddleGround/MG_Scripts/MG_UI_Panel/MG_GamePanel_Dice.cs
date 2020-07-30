@@ -285,12 +285,12 @@ namespace MiddleGround.UI
                 if (MG_SaveManager.TodayExtraRewardTimes > 0)
                 {
                     MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
-                    if (!MG_SaveManager.HasRateus && MG_Manager.Instance.Get_Save_PackB())
+                    if (!MG_SaveManager.HasRateus && MG_Manager.Instance.Get_Save_PackB() && MG_Manager.Instance.NeedRateusGuid)
                         MG_Manager.Instance.willRateus = true;
                 }
                 else
                 {
-                    if (!MG_SaveManager.HasRateus && MG_Manager.Instance.Get_Save_PackB())
+                    if (!MG_SaveManager.HasRateus && MG_Manager.Instance.Get_Save_PackB() && MG_Manager.Instance.NeedRateusGuid)
                         MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.Rateus);
                 }
             }

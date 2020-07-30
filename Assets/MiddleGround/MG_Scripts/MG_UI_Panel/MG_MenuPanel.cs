@@ -374,7 +374,8 @@ namespace MiddleGround.UI
             UpdateAllContent();
             if (MG_SaveManager.FirstCome)
             {
-                MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
+                if (MG_Manager.Instance.NeedFirstComeReward)
+                    MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
             }
             UpdateBottomButtonState((MG_GamePanelType)MG_SaveManager.Current_GamePanel);
             yield return null;
@@ -397,7 +398,7 @@ namespace MiddleGround.UI
         }
         public void CheckGuid()
         {
-            if (MG_Manager.Instance.next_GuidType != MG_Guid_Type.Null)
+            if (MG_Manager.Instance.next_GuidType != MG_Guid_Type.Null && MG_Manager.Instance.NeedForceCashoutGuid)
             {
                 MG_Manager.Instance.isGuid = true;
                 if (!MG_Manager.Instance.Get_Save_PackB())

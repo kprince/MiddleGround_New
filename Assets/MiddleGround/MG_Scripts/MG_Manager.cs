@@ -29,6 +29,9 @@ namespace MiddleGround
         public bool willRateus = false;
         public bool isGuid = false;
         public MG_Guid_Type next_GuidType = MG_Guid_Type.Null;
+        public bool NeedForceCashoutGuid = true;
+        public bool NeedRateusGuid = true;
+        public bool NeedFirstComeReward = true;
 
         MG_Config MG_Config;
         CanvasGroup canvasGroup;
