@@ -23,11 +23,9 @@ namespace MiddleGround.UI
             f_OffsetX_EachPart = Screen.width * 0.1f;
 
         }
-        bool packB;
-        public void Init()
+        private void Start()
         {
             shopSA = MG_UIManager.Instance.GetSpriteAtlas((int)MG_PopPanelType.ShopPanel);
-            packB = MG_Manager.Instance.Get_Save_PackB();
         }
         Vector3 StartPos = Vector3.zero;
         Vector3 TargetPos = Vector3.zero;

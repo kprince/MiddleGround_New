@@ -10,7 +10,6 @@ namespace MiddleGround.Audio
         public static MG_AudioManager Instance;
         static readonly Dictionary<int, string> dic_type_Path = new Dictionary<int, string>()
         {
-            {(int)MG_PlayAudioType.BGM,"MG_AudioClips/MG_AC_BGM" },
             {(int)MG_PlayAudioType.Button,"MG_AudioClips/MG_AC_Button" },
             {(int)MG_PlayAudioType.SpinDice,"MG_AudioClips/MG_AC_SpinDice" },
             {(int)MG_PlayAudioType.SpinSlots,"MG_AudioClips/MG_AC_SpinSlots" },
@@ -18,20 +17,11 @@ namespace MiddleGround.Audio
         };
         readonly Dictionary<int, AudioClip> dic_type_ac = new Dictionary<int, AudioClip>();
         readonly List<AudioSource> as_all = new List<AudioSource>();
-        AudioSource as_bgm;
         GameObject go_root;
         public void Init(GameObject asRoot)
         {
             Instance = this;
             go_root = asRoot;
-            as_bgm = asRoot.AddComponent<AudioSource>();
-            AudioClip ac_bgm = Resources.Load<AudioClip>(dic_type_Path[(int)MG_PlayAudioType.BGM]);
-            dic_type_ac.Add((int)MG_PlayAudioType.BGM, ac_bgm);
-            as_bgm.clip = ac_bgm;
-            as_bgm.loop = true;
-            as_bgm.playOnAwake = false;
-            as_bgm.mute = !MG_SaveManager.MusicOn;
-            as_bgm.Play();
         }
         public AudioSource PlayOneShot(MG_PlayAudioType audioType)
         {
@@ -53,7 +43,7 @@ namespace MiddleGround.Audio
                         tempAS.clip = tempAC;
                         tempAS.loop = false;
                         tempAS.playOnAwake = false;
-                        tempAS.mute = !MG_SaveManager.SoundOn;
+                        tempAS.mute = !MG_Manager.Instance.Get_Save_SoundOn();
                         tempAS.Play();
                         hasPlayed = true;
                         return tempAS;
@@ -65,7 +55,7 @@ namespace MiddleGround.Audio
                     tempAS.clip = tempAC;
                     tempAS.loop = false;
                     tempAS.playOnAwake = false;
-                    tempAS.mute = !MG_SaveManager.SoundOn;
+                    tempAS.mute = !MG_Manager.Instance.Get_Save_SoundOn();
                     tempAS.Play();
                     as_all.Add(tempAS);
                     return tempAS;
@@ -100,7 +90,6 @@ namespace MiddleGround.Audio
         }
         public void SetMusicState(bool oldState)
         {
-            as_bgm.mute = oldState;
         }
         public void SetSoundState(bool oldState)
         {
@@ -111,15 +100,10 @@ namespace MiddleGround.Audio
         }
         public void PauseBgm(bool pause)
         {
-            if (pause)
-                as_bgm.Pause();
-            else
-                as_bgm.Play();
         }
     }
     public enum MG_PlayAudioType
     {
-        BGM,
         Button,
         SpinDice,
         SpinSlots,

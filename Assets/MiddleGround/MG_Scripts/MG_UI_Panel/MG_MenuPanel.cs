@@ -9,7 +9,7 @@ namespace MiddleGround.UI
 {
     public class MG_MenuPanel : MG_UIBase
     {
-        public Button btn_Setting;
+        public Button btn_Back;
         public Button btn_Wheel;
         public Button btn_Scratch;
         public Button btn_Dice;
@@ -61,7 +61,7 @@ namespace MiddleGround.UI
             img_wheelbutton = btn_Wheel.image;
             img_slotsbutton = btn_Slots.image;
 
-            btn_Setting.onClick.AddListener(OnSettingButtonClick);
+            btn_Back.onClick.AddListener(OnBackButtonClick);
             btn_Wheel.onClick.AddListener(OnWheelButtonClick);
             btn_Scratch.onClick.AddListener(OnScratchButtonClick);
             btn_Dice.onClick.AddListener(OnDiceButtonClick);
@@ -115,11 +115,12 @@ namespace MiddleGround.UI
             go_scratchRP.SetActive(false);
         }
         bool packB = false;
-        void OnSettingButtonClick()
+        void OnBackButtonClick()
         {
             MG_Manager.Play_ButtonClick();
             if (!MG_Manager.Instance.canChangeGame) return;
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.SettingPanel);
+            //MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.SettingPanel);
+            MG_Manager.Instance.CloseMGPanel();
         }
         public void OnWheelButtonClick()
         {

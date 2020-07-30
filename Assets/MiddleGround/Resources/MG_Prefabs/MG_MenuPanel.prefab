@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 3864022052514633537}
   - component: {fileID: 3864022052514633542}
   m_Layer: 5
-  m_Name: MG_Menu_Setting
+  m_Name: MG_Menu_Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,7 +420,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -455, y: -184}
+  m_AnchoredPosition: {x: -455, y: -72}
   m_SizeDelta: {x: 85.94339, y: 85.94339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3864022052514633536
@@ -450,7 +450,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9985c842e3eb429488932e68c9ff57ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 46eb4332fc162f044863b0f932575ce5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -685,12 +685,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e4aed10919d9147b86178bfc205edf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btn_Setting: {fileID: 3864022052514633542}
+  btn_Back: {fileID: 3864022052514633542}
   btn_Wheel: {fileID: 8926777333247177752}
   btn_Scratch: {fileID: 3864022053697495770}
   btn_Dice: {fileID: 3864022054192826015}
   btn_Slots: {fileID: 3864022052612152996}
-  btn_shop: {fileID: 0}
   btn_Gold: {fileID: 3864022053530892468}
   btn_Cash: {fileID: 3864022054074841628}
   btn_SpecialToken: {fileID: 7066028838753792733}
@@ -1048,7 +1047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 69, y: -184}
+  m_AnchoredPosition: {x: 69, y: -72}
   m_SizeDelta: {x: 286.85522, y: 81.95863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3864022053530892470
@@ -1393,7 +1392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -238, y: -184}
+  m_AnchoredPosition: {x: -238, y: -72}
   m_SizeDelta: {x: 286.85522, y: 81.95863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3864022054074841630
@@ -2140,7 +2139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 383, y: -184}
+  m_AnchoredPosition: {x: 383, y: -72}
   m_SizeDelta: {x: 286.85522, y: 81.95863}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4228094657858164681

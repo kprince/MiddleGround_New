@@ -71,8 +71,7 @@ namespace MiddleGround.UI
         }
         private Vector3 VectorTransfer(Vector2 point)
         {
-            Vector2 screenpos;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect_Mask, point, null, out screenpos);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rect_Mask, point, null, out Vector2 screenpos);
             var viewPos = new Vector2((screenpos.x + f_halfW) / (2 * f_halfW), (screenpos.y + f_halfH) / (2 * f_halfH));
             var pos = cam_brush.ViewportToWorldPoint(viewPos);
             return pos + Vector3.forward;
@@ -287,7 +286,16 @@ namespace MiddleGround.UI
             trans_brush.position = VectorTransfer(pos);
             lastPos = pos;
             trans_brush.gameObject.SetActive(true);
-            CheckAllCardShow(pos);
+            CheckAllCardShowWithPoint(pos);
+            if (trans_UnShow.Count <= 2)
+            {
+                isClearing = true;
+                MG_Manager.Instance.SendAdjustScratchEvent();
+                if (MG_SaveManager.ScratchTotalPlayTimes > 0 && MG_SaveManager.ScratchTotalPlayTimes % 2 == 0)
+                    MG_Manager.ShowIV(OnPopAdCallback, "scratch per 2 time iv");
+                else
+                    OnPopAdCallback();
+            }
         }
         Vector3 lastPos = Vector3.zero;
         public void SetBrushPos(Vector3 pos)
@@ -391,6 +399,27 @@ namespace MiddleGround.UI
             for(int i = 0; i < count; i++)
             {
                 float distance = DistancePoint2Line(trans_UnShow[i].position, pos, lastPos, k, c);
+                if (distance < 130)
+                {
+                    willRemoveTrans.Add(trans_UnShow[i]);
+                }
+            }
+            foreach (Transform index in willRemoveTrans)
+                trans_UnShow.Remove(index);
+            if (trans_UnShow.Count == 0)
+            {
+                showAll = true;
+            }
+            return showAll;
+        }
+        bool CheckAllCardShowWithPoint(Vector3 pos)
+        {
+            bool showAll = false;
+            int count = trans_UnShow.Count;
+            List<Transform> willRemoveTrans = new List<Transform>();
+            for (int i = 0; i < count; i++)
+            {
+                float distance = Vector3.Distance(pos, trans_UnShow[i].position);
                 if (distance < 130)
                 {
                     willRemoveTrans.Add(trans_UnShow[i]);

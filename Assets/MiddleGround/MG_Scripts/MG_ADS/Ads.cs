@@ -69,7 +69,7 @@ public class Ads : MonoBehaviour
 	{
 		popCallback = callback;
 #if UNITY_EDITOR
-		callback();
+		callback?.Invoke();
 		Debug.Log("Show IV : 【" + des + "】");
 		return;
 #endif
@@ -77,13 +77,13 @@ public class Ads : MonoBehaviour
 #if UNITY_IOS
 		if (!MG_Manager.Instance.Get_Save_PackB()) 
 		{
-			callback();
+			callback?.Invoke();
 			return;
 		}
 #endif
 		if (Time.realtimeSinceStartup - interstialLasttime < 30)
-        {
-			callback();
+		{
+			callback?.Invoke();
 			return;
         }
 		if (IronSource.Agent.isInterstitialReady())
@@ -93,7 +93,7 @@ public class Ads : MonoBehaviour
 		}
 		else
 		{
-			callback();
+			callback?.Invoke();
 			MG_Manager.Instance.SendAdjustPlayAdEvent(false, false, adDes);
 		}
 	}
@@ -152,7 +152,7 @@ public class Ads : MonoBehaviour
 	Action popCallback;
 	public void InvokePopAd()
     {
-		popCallback();
+		popCallback?.Invoke();
     }
 }
 //FB A:774613690010415

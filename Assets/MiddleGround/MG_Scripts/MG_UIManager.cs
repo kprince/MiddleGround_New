@@ -17,7 +17,6 @@ namespace MiddleGround.UI
             {(int)MG_GamePanelType.ScratchPanel,"MG_Prefabs/MG_GamePanels/MG_GamePanel_Scratch" },
             {(int)MG_GamePanelType.SlotsPanel,"MG_Prefabs/MG_GamePanels/MG_GamePanel_Slots" },
             {(int)MG_PopPanelType.ExtraRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_ExtraReward" },
-            {(int)MG_PopPanelType.SettingPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Setting" },
             {(int)MG_PopPanelType.BuyDiceEnergy,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceBuyEnergy" },
             {(int)MG_PopPanelType.DiceSlotsPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_DiceSlots" },
             {(int)MG_PopPanelType.ShopPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Shop" },
@@ -34,7 +33,6 @@ namespace MiddleGround.UI
             {(int)MG_GamePanelType.DicePanel,"MG_SpriteAltas/MG_GamePanel_Dice" },
             {(int)MG_PopPanelType.ShopPanel,"MG_SpriteAltas/MG_PopPanel_Shop" },
             {(int)MG_PopPanelType.Random,"MG_SpriteAltas/MG_PopPanel_Random" },
-            {(int)MG_PopPanelType.SettingPanel,"MG_SpriteAltas/MG_PopPanel_Setting" },
             {(int)MG_GamePanelType.ScratchPanel,"MG_SpriteAltas/MG_GamePanel_Scratch" },
             {(int)MG_GamePanelType.WheelPanel,"MG_SpriteAltas/MG_GamePanel_Wheel" },
             {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
@@ -379,14 +377,14 @@ namespace MiddleGround.UI
             }
             return true;
         }
-        public bool ShowMenuPanel()
+        public bool ShowMenuPanel(MG_GamePanelType startPanel)
         {
             if(MenuPanel is null)
             {
-                MG_SaveManager.Current_GamePanel = 1;
+                MG_SaveManager.Current_GamePanel = (int)startPanel;
                 MenuPanel = Instantiate(Resources.Load<GameObject>(MenuPanelPath), MenuPanelRoot).GetComponent<MG_MenuPanel>();
                 StartCoroutine(MenuPanel.OnEnter());
-                ShowGamePanel(MG_GamePanelType.DicePanel);
+                ShowGamePanel(startPanel);
                 return true;
             }
             Debug.LogWarning("Show MG_MenuPanel Error : panel has show.");
@@ -519,17 +517,16 @@ namespace MiddleGround.UI
     }
     public enum MG_PopPanelType
     {
-        SettingPanel = 4,
-        ExchangePanel = 5,
-        DiceSlotsPanel = 6,
-        ExtraRewardPanel = 7,
-        ShopPanel = 8,
-        Random = 9,
-        BuyDiceEnergy = 10,
-        Rateus = 11,
-        MostRewardPanel = 12,
-        CashRewardPanel = 13,
-        GiftPanel = 14,
+        ExchangePanel = 4,
+        DiceSlotsPanel = 5,
+        ExtraRewardPanel = 6,
+        ShopPanel = 7,
+        Random = 8,
+        BuyDiceEnergy = 9,
+        Rateus = 10,
+        MostRewardPanel = 11,
+        CashRewardPanel = 12,
+        GiftPanel = 13,
     }
     public enum MG_GamePanelType
     {
