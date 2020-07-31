@@ -303,7 +303,7 @@ namespace MiddleGround.UI
             if (isClearing) return;
             pos.z = 0;
             trans_brush.position = VectorTransfer(pos);
-            CheckAllCardShow(pos);
+            CheckAllCardShowWithLine(pos);
             lastPos = pos;
             if (trans_UnShow.Count <= 2)
             {
@@ -389,7 +389,7 @@ namespace MiddleGround.UI
             }
         }
         readonly List<Transform> trans_UnShow = new List<Transform>();
-        bool CheckAllCardShow(Vector3 pos)
+        bool CheckAllCardShowWithLine(Vector3 pos)
         {
             bool showAll = false;
             int count = trans_UnShow.Count;
