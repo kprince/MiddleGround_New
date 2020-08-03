@@ -25,6 +25,8 @@ namespace MiddleGround.UI
             {(int)MG_PopPanelType.MostRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Reward" },
             {(int)MG_PopPanelType.CashRewardPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_CashReward" },
             {(int)MG_PopPanelType.GiftPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Gift" },
+            {(int)MG_PopPanelType.SignPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Sign" },
+            {(int)MG_PopPanelType.SettingPanel,"MG_Prefabs/MG_PopPanels/MG_PopPanel_Setting" },
         };
         readonly Dictionary<int, MG_UIBase> LoadedPanel_Dic = new Dictionary<int, MG_UIBase>();
 
@@ -38,6 +40,7 @@ namespace MiddleGround.UI
             {(int)MG_GamePanelType.SlotsPanel ,"MG_SpriteAltas/MG_GamePanel_Slots"},
             {(int)MG_PopPanelType.MostRewardPanel,"MG_SpriteAltas/MG_PopPanel_Reward" },
             {(int)MG_PopPanelType.CashRewardPanel,"MG_SpriteAltas/MG_PopPanel_CashReward" },
+            {(int)MG_PopPanelType.SignPanel,"MG_SpriteAltas/MG_PopPanel_Sign" },
         };
         readonly Dictionary<int, SpriteAtlas> LoadedSpriteAtlas_Dic = new Dictionary<int, SpriteAtlas>();
         const string MenuPanelPath = "MG_Prefabs/MG_MenuPanel";
@@ -53,6 +56,7 @@ namespace MiddleGround.UI
             GamePanelRoot = gamePanelRoot;
             MenuPanelRoot = menuPanelRoot;
             Instance = this;
+            ShowMenuPanel();
         }
         readonly Queue<PanelTask> Queue_PopPanel = new Queue<PanelTask>();
         Coroutine Cor_PopPanelTask = null;
@@ -377,14 +381,18 @@ namespace MiddleGround.UI
             }
             return true;
         }
-        public bool ShowMenuPanel(MG_GamePanelType startPanel)
+        public void CloseCurrentGamePanel()
+        {
+            if (Current_GamePanel is object)
+                StartCoroutine(Current_GamePanel.OnExit());
+            Current_GamePanel = null;
+        }
+        public bool ShowMenuPanel()
         {
             if(MenuPanel is null)
             {
-                MG_SaveManager.Current_GamePanel = (int)startPanel;
                 MenuPanel = Instantiate(Resources.Load<GameObject>(MenuPanelPath), MenuPanelRoot).GetComponent<MG_MenuPanel>();
                 StartCoroutine(MenuPanel.OnEnter());
-                ShowGamePanel(startPanel);
                 return true;
             }
             Debug.LogWarning("Show MG_MenuPanel Error : panel has show.");
@@ -457,6 +465,10 @@ namespace MiddleGround.UI
         {
             MenuPanel.UpdateWheelRP();
         }
+        public void UpdateSignRP()
+        {
+            MenuPanel.UpdateSignRP();
+        }
         public SpriteAtlas GetSpriteAtlas(int index)
         {
             if(LoadedSpriteAtlas_Dic.TryGetValue(index,out SpriteAtlas loadedSA))
@@ -527,6 +539,8 @@ namespace MiddleGround.UI
         MostRewardPanel = 11,
         CashRewardPanel = 12,
         GiftPanel = 13,
+        SignPanel = 14,
+        SettingPanel= 15,
     }
     public enum MG_GamePanelType
     {

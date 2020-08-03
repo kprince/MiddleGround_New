@@ -645,7 +645,6 @@ GameObject:
   - component: {fileID: 795929288257737097}
   - component: {fileID: 795929288257737094}
   - component: {fileID: 795929288257737098}
-  - component: {fileID: 8780363138495626737}
   m_Layer: 5
   m_Name: MG_Canvas
   m_TagString: Untagged
@@ -765,23 +764,14 @@ MonoBehaviour:
   willRateus: 0
   isGuid: 0
   next_GuidType: 0
+  NeedForceCashoutGuid: 1
+  NeedRateusGuid: 1
+  NeedFirstComeReward: 1
   _Tips: {fileID: 6405923251365969630}
   RewardType: 0
   RewardPanelType: 1
   RewardNum: 1
   RewardMutiple: 1
---- !u!225 &8780363138495626737
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795929288257737095}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &795929288301742045
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,7 +864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &777825615240638323
 RectTransform:
   m_ObjectHideFlags: 0

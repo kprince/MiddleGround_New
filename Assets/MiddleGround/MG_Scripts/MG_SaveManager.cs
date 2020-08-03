@@ -13,6 +13,7 @@ namespace MiddleGround.Save
         const string Save_Cash_Key = "MG_Cash";
         const string Save_CurrentSignDay_Key = "MG_CurrentSignDay";
         const string Save_LastSignDate = "MG_LastSignDate";
+        const string Save_SignState_Key = "MG_SignState";
         const string Save_MusicOn_Key = "MG_MusicOn";
         const string Save_SoundOn_Key = "MG_SoundOn";
         const string Save_PackB_Key = "MG_PackB";
@@ -335,6 +336,49 @@ namespace MiddleGround.Save
                     }
                 }
                 return false;
+            }
+        }
+        public static int LastSignDay
+        {
+            get
+            {
+                return PlayerPrefs.GetInt(Save_CurrentSignDay_Key, 0);
+            }
+        }
+        public static DateTime LastSignDate
+        {
+            get
+            {
+                string saveValue = PlayerPrefs.GetString(Save_LastSignDate, string.Empty);
+                if (string.IsNullOrEmpty(saveValue))
+                {
+                    DateTime now = DateTime.Now.AddDays(-1);
+                    PlayerPrefs.SetString(Save_LastSignDate, now.ToString());
+                    PlayerPrefs.Save();
+                    return now;
+                }
+                else
+                {
+                    return DateTime.Parse(saveValue);
+                }
+            }
+            set
+            {
+                PlayerPrefs.SetString(Save_LastSignDate, value.ToString());
+                PlayerPrefs.SetInt(Save_CurrentSignDay_Key, LastSignDay + 1);
+                PlayerPrefs.Save();
+            }
+        }
+        public static string SignState
+        {
+            get
+            {
+                return PlayerPrefs.GetString(Save_SignState_Key, "0000000");
+            }
+            set
+            {
+                PlayerPrefs.SetString(Save_SignState_Key, value);
+                PlayerPrefs.Save();
             }
         }
 

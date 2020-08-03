@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: e7e3aded380b0de468ffa677ef1fd17a, type: 3}
-    totalSpriteSurfaceArea: 2034948
+    totalSpriteSurfaceArea: 2037810
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -67,6 +67,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0fc48d5508dfce742881659a541db0a7, type: 3}
   - {fileID: 21300000, guid: a5ab69858fe54e8428c4ec355c46426e, type: 3}
   - {fileID: 21300000, guid: e0070f261a5d94c48a0ec884b947c9d9, type: 3}
+  - {fileID: 21300000, guid: d4a7eb07ee036204ea82232db3706f3c, type: 3}
   - {fileID: 21300000, guid: 6cabd868104f70a4087bd792b427fd08, type: 3}
   - {fileID: 21300000, guid: 79fb32aab94e74b4bbdcfbdf173c00ed, type: 3}
   - {fileID: 21300000, guid: 8703db6ba9e47ba42a847ea29d6e365b, type: 3}
@@ -83,6 +84,7 @@ SpriteAtlas:
   - MG_Sprite_Wheel_BaseOut
   - MG_Sprite_Wheel_BaseIn
   - MG_Sprite_Wheel_LockMask
+  - MG_Sprite_Common_AdIcon 1
   - MG_Sprite_Wheel_WheelTicket
   - MG_Sprite_Wheel_Gift
   - MG_Sprite_Wheel_Scratch

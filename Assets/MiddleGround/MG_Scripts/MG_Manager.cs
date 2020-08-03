@@ -32,15 +32,15 @@ namespace MiddleGround
         public bool NeedForceCashoutGuid = true;
         public bool NeedRateusGuid = true;
         public bool NeedFirstComeReward = true;
+        GameObject go_BG;
 
         MG_Config MG_Config;
-        CanvasGroup canvasGroup;
         bool hasShow = false;
         private void Awake()
         {
             Instance = this;
-            canvasGroup = GetComponent<CanvasGroup>();
             Application.targetFrameRate = 60;
+            go_BG = transform.GetChild(0).gameObject;
             gameObject.AddComponent<MG_UIManager>().Init(
                 transform.GetChild(1),
                 transform.GetChild(2),
@@ -49,42 +49,37 @@ namespace MiddleGround
             MG_Config = Resources.Load<ScriptableObject>("MG_ConfigAssets/MG_Dice_Config") as MG_Config;
             gameObject.AddComponent<MG_AudioManager>().Init(transform.Find("MG_AudioRoot").gameObject);
         }
-        private void Start()
+        public void OnLoadingEnd()
         {
-            ShowMGPanel();
+            MG_UIManager.Instance.MenuPanel.Init();
         }
         public void ShowMGPanel(MG_GamePanelType startShowPanel = MG_GamePanelType.DicePanel)
         {
-            canvasGroup.alpha = 1;
-            canvasGroup.blocksRaycasts = true;
-            if (!hasShow)
+            switch (startShowPanel)
             {
-                hasShow = true;
-                MG_UIManager.Instance.ShowMenuPanel(startShowPanel);
-            }
-            else
-            {
-                switch (startShowPanel)
-                {
-                    case MG_GamePanelType.DicePanel:
-                        MG_UIManager.Instance.MenuPanel.OnDiceButtonClick();
-                        break;
-                    case MG_GamePanelType.ScratchPanel:
-                        MG_UIManager.Instance.MenuPanel.OnScratchButtonClick();
-                        break;
-                    case MG_GamePanelType.SlotsPanel:
-                        MG_UIManager.Instance.MenuPanel.OnSlotsButtonClick();
-                        break;
-                    case MG_GamePanelType.WheelPanel:
-                        MG_UIManager.Instance.MenuPanel.OnWheelButtonClick();
-                        break;
-                }
+                case MG_GamePanelType.DicePanel:
+                    MG_UIManager.Instance.MenuPanel.OnDiceOutButtonClick();
+                    break;
+                case MG_GamePanelType.ScratchPanel:
+                    MG_UIManager.Instance.MenuPanel.OnScratchOutButtonClick();
+                    break;
+                case MG_GamePanelType.SlotsPanel:
+                    MG_UIManager.Instance.MenuPanel.OnSlotsOutButtonClick();
+                    break;
+                case MG_GamePanelType.WheelPanel:
+                    MG_UIManager.Instance.MenuPanel.OnWheelOutButtonClick();
+                    break;
             }
         }
         public void CloseMGPanel()
         {
-            canvasGroup.alpha = 0;
-            canvasGroup.blocksRaycasts = false;
+            MG_UIManager.Instance.MenuPanel.HideOrShowMenuButtons(false);
+            MG_UIManager.Instance.CloseCurrentGamePanel();
+            go_BG.SetActive(false);
+        }
+        public void SetBGState(bool show)
+        {
+            go_BG.SetActive(show);
         }
         public bool Get_Save_PackB()
         {
@@ -103,9 +98,17 @@ namespace MiddleGround
         {
             return MG_SaveManager.SoundOn;
         }
-        public void Set_Save_SoundOn(bool value)
+        public void Set_Save_SoundOn(bool isOn)
         {
-            MG_SaveManager.SoundOn = value;
+            MG_SaveManager.SoundOn = isOn;
+        }
+        public bool Get_Save_MuiceOn()
+        {
+            return MG_SaveManager.MusicOn;
+        }
+        public void Set_Save_MuiceOn(bool isOn)
+        {
+            MG_SaveManager.MusicOn = isOn;
         }
         public int Get_Save_Gold()
         {
@@ -261,6 +264,28 @@ namespace MiddleGround
         public int Get_Save_TotalTimes()
         {
             return MG_SaveManager.TotalPlayTimes;
+        }
+        public int Get_Save_NextSignDay()
+        {
+            return MG_SaveManager.LastSignDay;
+        }
+        public bool Get_Save_WetherSign()
+        {
+            DateTime now = DateTime.Now;
+            DateTime lastSign = MG_SaveManager.LastSignDate;
+            if (now.Year > lastSign.Year)
+                return true;
+            else if (now.Year == lastSign.Year)
+            {
+                if (now.Month > lastSign.Month)
+                    return true;
+                else if (now.Month == lastSign.Month)
+                {
+                    if (now.Day > lastSign.Day)
+                        return true;
+                }
+            }
+            return false;
         }
         public int Get_Config_NextGiftStep()
         {
@@ -990,6 +1015,7 @@ namespace MiddleGround
         ScratchToken,
         SlotsToken,
         DiceToken,
+        WheelToken,
         Null
     }
     public enum MG_PopRewardPanel_RewardType
