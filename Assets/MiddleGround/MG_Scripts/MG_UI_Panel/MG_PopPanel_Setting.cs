@@ -43,7 +43,7 @@ namespace MiddleGround.UI
         {
             MG_Manager.Play_ButtonClick();
             MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SettingPanel);
-            MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
+            MG_Manager.Instance.ShowShopPanel();
         }
         void OnWheelButtonClick()
         {

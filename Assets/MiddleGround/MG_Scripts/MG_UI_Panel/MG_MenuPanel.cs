@@ -233,8 +233,7 @@ namespace MiddleGround.UI
             OnMaskButtonClick();
             if (MG_Manager.Instance.isGuid) return;
             if (!MG_Manager.Instance.canChangeGame) return;
-            if (packB)
-                MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
+            MG_Manager.Instance.ShowShopPanel();
         }
         void OnCashButtonClick()
         {
@@ -242,8 +241,7 @@ namespace MiddleGround.UI
             OnMaskButtonClick();
             if (MG_Manager.Instance.isGuid) return;
             if (!MG_Manager.Instance.canChangeGame) return;
-            if (packB)
-                MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
+            MG_Manager.Instance.ShowShopPanel();
         }
         void OnSpecialButtonClick()
         {
@@ -251,8 +249,7 @@ namespace MiddleGround.UI
             OnMaskButtonClick();
             if (MG_Manager.Instance.isGuid) return;
             if (!MG_Manager.Instance.canChangeGame) return;
-            if (packB)
-                MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
+            MG_Manager.Instance.ShowShopPanel();
         }
         void UpdateAllContent()
         {

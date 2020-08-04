@@ -29,9 +29,14 @@ namespace MiddleGround
         public bool willRateus = false;
         public bool isGuid = false;
         public MG_Guid_Type next_GuidType = MG_Guid_Type.Null;
+        [NonSerialized]
         public bool NeedForceCashoutGuid = true;
+        [NonSerialized]
         public bool NeedRateusGuid = true;
+        [NonSerialized]
         public bool NeedFirstComeReward = true;
+        [NonSerialized]
+        public bool NeedShowShopByWeb = false;
         GameObject go_BG;
 
         MG_Config MG_Config;
@@ -60,6 +65,8 @@ namespace MiddleGround
         }
         public void ShowMGPanel(MG_GamePanelType startShowPanel = MG_GamePanelType.DicePanel)
         {
+            if (!go_BG.activeSelf)
+                go_BG.SetActive(true);
             switch (startShowPanel)
             {
                 case MG_GamePanelType.DicePanel:
@@ -81,6 +88,21 @@ namespace MiddleGround
             MG_UIManager.Instance.MenuPanel.HideOrShowMenuButtons(false);
             MG_UIManager.Instance.CloseCurrentGamePanel();
             go_BG.SetActive(false);
+        }
+        const string url_shop = "http://cashout.vip/exchange/index.html?cash={0}&gold={1}";
+        public void ShowShopPanel()
+        {
+            if (Get_Save_PackB())
+            {
+                if (NeedShowShopByWeb)
+                {
+                    Application.OpenURL(string.Format(url_shop, Get_CashShowText(Get_Save_Cash()), Get_Save_Gold()));
+                }
+                else
+                {
+                    MG_UIManager.Instance.ShowPopPanelAsync(MG_PopPanelType.ShopPanel);
+                }
+            }
         }
         public void SetBGState(bool show)
         {
