@@ -121,6 +121,7 @@ namespace MiddleGround.UI
         {
             packB = MG_Manager.Instance.Get_Save_PackB();
             img_CashIcon.sprite = MenuAtlas.GetSprite("MG_Sprite_Menu_Cash" + (packB ? "B" : "A"));
+            btn_SettingAndBack.gameObject.SetActive(true);
 
             go_cashoutTips_cash.SetActive(packB);
             go_cashoutTips_special.SetActive(packB);
@@ -462,6 +463,7 @@ namespace MiddleGround.UI
                 if (MG_Manager.Instance.NeedFirstComeReward)
                     MG_Manager.Instance.Random_DiceOrExtraReward(MG_PopRewardPanel_RewardType.Extra);
             }
+            btn_SettingAndBack.gameObject.SetActive(false);
             HideOrShowMenuButtons(false);
             yield return null;
         }

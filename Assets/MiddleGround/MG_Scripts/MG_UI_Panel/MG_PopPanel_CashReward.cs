@@ -93,28 +93,29 @@ namespace MiddleGround.UI
                 Debug.LogError("Show MG_CashReward Panel Error : rewardType is error.");
 
             text_reaminTime.text = "Remaining:" + MG_SaveManager.TodayExtraRewardTimes;
-            if (isPackB)
-                text_rewardnum.text = "$" + MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
-            else
-                text_rewardnum.text = MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
+            string showNumStr = isPackB ? "$" : "";
             switch (RewardPanelType)
             {
                 case MG_RewardPanelType.AdClaim:
                     go_adicon.SetActive(true);
                     text_get.text = "      Save in wallet";
+                    text_rewardnum.text=showNumStr + MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
                     break;
                 case MG_RewardPanelType.AdRandom:
                     go_adicon.SetActive(true);
                     needShowNothanks = true;
                     text_get.text = "      Random x1~5";
+                    text_rewardnum.text = showNumStr + MG_Manager.Get_CashShowText(RewardNum);
                     break;
                 case MG_RewardPanelType.FreeMutipleClaim:
                     go_adicon.SetActive(false);
                     text_get.text = "Save in wallet";
+                    text_rewardnum.text = showNumStr + MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
                     break;
                 case MG_RewardPanelType.FreeClaim:
                     go_adicon.SetActive(false);
                     text_get.text = "Save in wallet";
+                    text_rewardnum.text = showNumStr + MG_Manager.Get_CashShowText((int)(RewardNum * RewardMutiple));
                     break;
                 default:
                     Debug.LogError("Show MG_CashReward Panel Error : panelType is error.");

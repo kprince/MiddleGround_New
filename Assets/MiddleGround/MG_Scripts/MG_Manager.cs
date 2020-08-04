@@ -49,8 +49,13 @@ namespace MiddleGround
             MG_Config = Resources.Load<ScriptableObject>("MG_ConfigAssets/MG_Dice_Config") as MG_Config;
             gameObject.AddComponent<MG_AudioManager>().Init(transform.Find("MG_AudioRoot").gameObject);
         }
+        private void Start()
+        {
+            OnLoadingEnd();
+        }
         public void OnLoadingEnd()
         {
+            loadEnd = true;
             MG_UIManager.Instance.MenuPanel.Init();
         }
         public void ShowMGPanel(MG_GamePanelType startShowPanel = MG_GamePanelType.DicePanel)
