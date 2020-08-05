@@ -36,7 +36,7 @@ namespace MiddleGround
         [NonSerialized]
         public bool NeedFirstComeReward = true;
         [NonSerialized]
-        public bool NeedShowShopByWeb = false;
+        public bool NeedShowShopByWeb = true;
         GameObject go_BG;
 
         MG_Config MG_Config;
@@ -56,7 +56,8 @@ namespace MiddleGround
         }
         private void Start()
         {
-            OnLoadingEnd();
+            MG_UIManager.Instance.ShowMenuPanel();
+            //OnLoadingEnd();
         }
         public void OnLoadingEnd()
         {
@@ -113,7 +114,8 @@ namespace MiddleGround
 #if UNITY_EDITOR
             return true;
 #endif
-            return MG_SaveManager.PackB;
+            //return MG_SaveManager.PackB;
+            return true;
         }
         public void Set_Save_isPackB()
         {
@@ -1028,9 +1030,16 @@ namespace MiddleGround
         {
             return MG_AudioManager.Instance.PlayOneShot(MG_PlayAudioType.Fly);
         }
-        public static bool ShowRV(Action callback, int clickTime, string des)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="callback">when load ad successfully , it will be invoked.</param>
+        /// <param name="failCallback">when clicktime more than 2 times and load ad fail, it will be invoked.</param>
+        /// <param name="clickTime">the same button click time</param>
+        /// <param name="des">the description of ad's origin.</param>
+        public static void ShowRV(Action callback,Action failCallback, int clickTime, string des)
         {
-            return Ads._instance.ShowRewardVideo(callback, clickTime, des);
+            Ads._instance.ShowRewardVideo(callback, failCallback, clickTime, des);
         }
         public static void ShowIV(Action callback, string des)
         {

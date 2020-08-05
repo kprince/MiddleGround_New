@@ -83,13 +83,13 @@ namespace MiddleGround.UI
             if (isNoTicket)
             {
                 clickTime++;
-                MG_Manager.ShowRV(OnTicketAdCallback, clickTime, "scratch get ticket");
+                MG_Manager.ShowRV(OnTicketAdCallback,null, clickTime, "scratch get ticket");
                 return;
             }
             else if(isLock)
             {
                 clickTime++;
-                MG_Manager.ShowRV(OnLockAdCallback, clickTime, "scratch unlock");
+                MG_Manager.ShowRV(OnLockAdCallback,null, clickTime, "scratch unlock");
                 return;
             }
         }

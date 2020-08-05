@@ -49,11 +49,11 @@ namespace MiddleGround.UI
                 case MG_RewardPanelType.AdClaim:
                     clikcAdTime++;
                     RewardMutiple = 1;
-                    MG_Manager.ShowRV(GetReward, clikcAdTime, "Get Cash Reward in " + RewardPanelType + " RewardPanel");
+                    MG_Manager.ShowRV(GetReward, OnAdFailCallback, clikcAdTime, "Get Cash Reward in " + RewardPanelType + " RewardPanel");
                     break;
                 case MG_RewardPanelType.AdRandom:
                     clikcAdTime++;
-                    MG_Manager.ShowRV(GetReward, clikcAdTime, "Get Cash Reward in " + RewardPanelType + " RewardPanel");
+                    MG_Manager.ShowRV(GetReward, OnAdFailCallback, clikcAdTime, "Get Cash Reward in " + RewardPanelType + " RewardPanel");
                     break;
                 case MG_RewardPanelType.FreeMutipleClaim:
                     GetReward();
@@ -66,6 +66,10 @@ namespace MiddleGround.UI
                     Debug.LogError("Get MG_Cash Reward Error : panelType is error.");
                     break;
             }
+        }
+        void OnAdFailCallback()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.CashRewardPanel);
         }
         void GetReward()
         {

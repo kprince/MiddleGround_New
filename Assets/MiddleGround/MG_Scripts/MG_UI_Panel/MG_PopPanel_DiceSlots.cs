@@ -68,7 +68,7 @@ namespace MiddleGround.UI
             else
             {
                 clickTime++;
-                MG_Manager.ShowRV(OnSpinAdCallback, clickTime, "dice slots extra spin");
+                MG_Manager.ShowRV(OnSpinAdCallback, OnPopAdCallback, clickTime, "dice slots extra spin");
                 return;
             }
             isSpining = true;

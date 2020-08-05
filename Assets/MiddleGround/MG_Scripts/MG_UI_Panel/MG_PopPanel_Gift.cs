@@ -35,7 +35,7 @@ namespace MiddleGround.UI
             else
             {
                 clickAdTime++;
-                MG_Manager.ShowRV(OpenGift, clickAdTime, "Open Gift , reward is " + MG_Manager.Instance.RewardType);
+                MG_Manager.ShowRV(OpenGift, Giveup, clickAdTime, "Open Gift , reward is " + MG_Manager.Instance.RewardType);
             }
         }
         void OnGiveup()

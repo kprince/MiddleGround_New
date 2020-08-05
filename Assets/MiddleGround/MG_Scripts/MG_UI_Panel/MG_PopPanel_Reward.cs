@@ -44,18 +44,18 @@ namespace MiddleGround.UI
                     case MG_RewardPanelType.AdDouble:
                         RewardMutiple = 2;
                         clickAdTime++;
-                        MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                        MG_Manager.ShowRV(GetReward, OnAdFailCallback, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
                         break;
                     case MG_RewardPanelType.AdClaim:
                         clickAdTime++;
-                        MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                        MG_Manager.ShowRV(GetReward, OnAdFailCallback, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
                         break;
                     case MG_RewardPanelType.AdRandom:
                         clickAdTime++;
                         if (RewardType == MG_RewardType.Gold)
-                            MG_Manager.ShowRV(OnAdCallback, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                            MG_Manager.ShowRV(OnAdCallback, OnAdFailCallback, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
                         else
-                            MG_Manager.ShowRV(GetReward, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
+                            MG_Manager.ShowRV(GetReward, OnAdFailCallback, clickAdTime, "Get " + RewardType + " Reward in " + RewardPanelType + " RewardPanel");
                         break;
                 }
             }
@@ -85,6 +85,10 @@ namespace MiddleGround.UI
             cg_nothanks.blocksRaycasts = false;
             trans_btn.localPosition = v2_nogiveup_btnPos;
             go_adIcon.SetActive(false);
+        }
+        void OnAdFailCallback()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.MostRewardPanel);
         }
         bool hasLookAd = false;
         void GetReward()

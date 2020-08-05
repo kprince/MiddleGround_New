@@ -37,14 +37,22 @@ public class Ads : MonoBehaviour
 		IronSource.Agent.loadInterstitial();
 
 	}
-	public bool ShowRewardVideo(Action rewardedCallback, int clickAdTime,string des)
+	/// <summary>
+	/// 
+	/// </summary>
+	/// <param name="rewardedCallback">when load ad successfully , it will be invoked.</param>
+	/// <param name="failCallback">when clicktime more than 2 times and load ad fail, it will be invoked.</param>
+	/// <param name="clickAdTime">the same button click time</param>
+	/// <param name="des">the description of ad's origin.</param>
+	public void ShowRewardVideo(Action rewardedCallback,Action failCallback, int clickAdTime,string des)
 	{
 		adDes = des;
 		rewardCallback = rewardedCallback;
+		rewardFailCallback = failCallback;
 #if UNITY_EDITOR
-		rewardedCallback();
-		Debug.Log("Show RV : 【" + des + "】");
-		return true;
+        rewardedCallback();
+        Debug.Log("Show RV : 【" + des + "】");
+        return;
 #endif
 #if UNITY_IOS
 		if (!MG_Manager.Instance.Get_Save_PackB())
@@ -53,15 +61,15 @@ public class Ads : MonoBehaviour
 			return true;
 		}
 #endif
-		if (IronSource.Agent.isRewardedVideoAvailable())
+        if (IronSource.Agent.isRewardedVideoAvailable())
 		{
 			IronSource.Agent.showRewardedVideo();
-			return true;
+			return;
 		}
 		else
 		{
 			StartCoroutine(WaitLoadAD(true,clickAdTime));
-			return false;
+			return;
 		}
 	}
 	float interstialLasttime = 0;
@@ -130,12 +138,15 @@ public class Ads : MonoBehaviour
 		MG_Manager.Instance.SendAdjustPlayAdEvent(false, true, adDes);
 		if (clickAdTime >= 2)
 		{
-			MG_UIManager.Instance.CloseTopPopPanelAsync();
+			if (rewardFailCallback is object)
+				rewardFailCallback.Invoke();
+			//MG_UIManager.Instance.CloseTopPopPanelAsync();
 			MG_Manager.Instance.Show_PopTipsPanel(text);
 		}
 		notice.SetActive(false);
 	}
 	Action rewardCallback;
+	Action rewardFailCallback;
 	private bool canGetReward = false;
 	public void GetReward()
 	{

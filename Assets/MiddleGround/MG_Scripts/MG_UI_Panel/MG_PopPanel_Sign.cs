@@ -53,7 +53,7 @@ namespace MiddleGround.UI
             if (MG_Manager.Instance.Get_Save_WetherSign())
             {
                 clickTime++;
-                MG_Manager.ShowRV(OnAdCallback, clickTime, "signin ad");
+                MG_Manager.ShowRV(OnAdCallback, OnAdFailCallback, clickTime, "signin ad");
             }
             else
             {
@@ -79,6 +79,10 @@ namespace MiddleGround.UI
             MG_UIManager.Instance.UpdateSignRP();
             day %= 7;
             MG_SaveManager.SignState = MG_SaveManager.SignState.Remove(day, 1).Insert(day, "1");
+        }
+        void OnAdFailCallback()
+        {
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.SignPanel);
         }
         void OnNothanksClick()
         {

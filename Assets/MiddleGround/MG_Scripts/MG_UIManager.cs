@@ -56,7 +56,6 @@ namespace MiddleGround.UI
             GamePanelRoot = gamePanelRoot;
             MenuPanelRoot = menuPanelRoot;
             Instance = this;
-            ShowMenuPanel();
         }
         readonly Queue<PanelTask> Queue_PopPanel = new Queue<PanelTask>();
         Coroutine Cor_PopPanelTask = null;
@@ -443,7 +442,7 @@ namespace MiddleGround.UI
         }
         public void UpdateWheelTicketText()
         {
-            MG_PopPanel_Wheel _PopPanel_Wheel = Get_UIPanel((int)MG_GamePanelType.WheelPanel) as MG_PopPanel_Wheel;
+            MG_GamePanel_Wheel _PopPanel_Wheel = Get_UIPanel((int)MG_GamePanelType.WheelPanel) as MG_GamePanel_Wheel;
             if (_PopPanel_Wheel is null)
                 return;
             _PopPanel_Wheel.UpdateWheelTicketShow();

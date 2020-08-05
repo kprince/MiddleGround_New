@@ -78,13 +78,13 @@ namespace MiddleGround.UI
             if (isLocked)
             {
                 clickTime++;
-                MG_Manager.ShowRV(OnUnlockAdCallback, clickTime,"slots unlock");
+                MG_Manager.ShowRV(OnUnlockAdCallback, null, clickTime, "slots unlock");
                 return;
             }
             if (needAd)
             {
                 clickTime++;
-                MG_Manager.ShowRV(OnNoGoldAdCallback, clickTime,"slots adSpin");
+                MG_Manager.ShowRV(OnNoGoldAdCallback, null, clickTime,"slots adSpin");
                 return;
             }
             isSpining = true;

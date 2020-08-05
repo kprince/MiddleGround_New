@@ -28,12 +28,16 @@ namespace MiddleGround.UI
         {
             MG_Manager.Play_ButtonClick();
             clickTime++;
-            MG_Manager.ShowRV(OnBuyCallback, clickTime, "buy dice energy");
+            MG_Manager.ShowRV(OnBuyCallback, OnAdFailCallback, clickTime, "buy dice energy");
         }
         void OnBuyCallback()
         {
             clickTime = 0;
             MG_Manager.Instance.Add_Save_DiceLife(10);
+            MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.BuyDiceEnergy);
+        }
+        void OnAdFailCallback()
+        {
             MG_UIManager.Instance.ClosePopPanelAsync(MG_PopPanelType.BuyDiceEnergy);
         }
         public override IEnumerator OnEnter()
